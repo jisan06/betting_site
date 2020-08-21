@@ -3,7 +3,7 @@
 @section('card_body')
     <div class="card-body">
         <div class="row">
-            <div class="col-md-4"> 
+            <div class="col-md-6"> 
                 <div class="form-group {{ $errors->has('parent') ? ' has-danger' : '' }}">
                     <label for="role">User Role</label>
                     <select class="form-control" name="role" required>
@@ -20,7 +20,7 @@
                 </div>                                       
             </div>
 
-            <div class="col-md-4">                 
+            <div class="col-md-6">                 
                 <div class="form-group {{ $errors->has('name') ? ' has-danger' : '' }}">
                     <label for="name">Name</label>
                     <input type="text" class="form-control form-control-danger" name="name" value="{{ old('name') }}" required>
@@ -32,6 +32,12 @@
                 </div>                                       
             </div>
 
+            
+        </div>
+
+
+        <div class="row">
+            
             <div class="col-md-4">
                 <div class="form-group {{ $errors->has('username') ? ' has-danger' : '' }}">
                     <label for="user-name">User Name</label>
@@ -43,9 +49,7 @@
                     @endif
                 </div>
             </div>
-        </div>
-
-        <div class="row">
+            
             <div class="col-md-4"> 
                 <div class="form-group {{ $errors->has('email') ? ' has-danger' : '' }}">
                     <label for="email">Email</label>
@@ -58,7 +62,27 @@
                 </div>                                       
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-4"> 
+                <div class="form-group {{ $errors->has('parent') ? ' has-danger' : '' }}">
+                    <label for="club_id">Club Name</label>
+                    <select class="form-control" name="club_id" required>
+                        <option value=""> Select Club</option>
+                        @foreach($clubs as $club)
+                            <option value="{{$club->id}}">{{$club->name}}</option>
+                        @endforeach
+                    </select>
+                    @if ($errors->has('club_id'))
+                        @foreach($errors->get('club_id') as $error)
+                            <div class="form-control-feedback">{{ $error }}</div>
+                        @endforeach
+                    @endif
+                </div>                                       
+            </div>
+            
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
                 <div class="form-group {{ $errors->has('password') ? ' has-danger' : '' }}">
                     <label for="password">Password</label>
                     <input type="password" class="form-control form-control-danger" name="password" value="" required>
@@ -70,7 +94,7 @@
                 </div>                                        
             </div>
             
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <div class="form-group {{ $errors->has('userImage') ? ' has-danger' : '' }}">
                     <label for="user-image">User Image</label>
                     <input type="file" class="form-control-file border" name="userImage">

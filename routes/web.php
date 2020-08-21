@@ -150,6 +150,11 @@ Route::prefix('admin')->group(function()
 			Route::post('/location-status','Admin\AreaSetupController@status')->name('location.status');
 			Route::post('/location-delete','Admin\AreaSetupController@delete')->name('location.delete');
 
+			//club setup
+			Route::resource('/club','Admin\ClubController');
+			Route::post('/club-delete','Admin\ClubController@delete')->name('club.delete');
+			Route::any('/club-status','Admin\ClubController@status')->name('club.status');
+
 			// Client 
 			Route::get('/client','Admin\ClientController@index')->name('client.index');
 			Route::get('/client-add','Admin\ClientController@add')->name('client.add');

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Admin;
+use App\Club;
 use App\UserRoles;
 use DB;
 
@@ -35,8 +36,9 @@ class AdminController extends Controller
 
         $currentRole = UserRoles::where('id',$this->userRole)->first();
         $userRoles = UserRoles::where('level','>=',$currentRole->level)->orderBy('level','ASC')->get();
+        $clubs = Club::orderBy('name','ASC')->get();
 
-        return view('admin.users.add')->with(compact('title','formLink','buttonName','userRoles'));
+        return view('admin.users.add')->with(compact('title','formLink','buttonName','userRoles','clubs'));
     }
 
     public function saveUser(Request $request)
@@ -54,6 +56,7 @@ class AdminController extends Controller
 
         $users = Admin::create( [           
             'role' => $request->role,     
+            'club_id' => $request->club_id,     
             'name' => $request->name,           
             'username' => $request->username,           
             'image' => $userImage,           
@@ -101,6 +104,7 @@ class AdminController extends Controller
 
         $users->update( [           
             'role' => $request->role,     
+            'club_id' => $request->club_id,     
             'name' => $request->name,           
             'username' => $request->username,           
             'image' => $userImage,           
