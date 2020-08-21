@@ -1,139 +1,185 @@
-@php
-	$identification_type = array(
-								'nid'=>'NID',
-								'birth_registration'=>'Birth Registration',
-								'passport'=>'Passport',
-								'driving_licence'=>'Driving Licence'
-							);
-@endphp
+@extends('frontend.layouts.master') 
 
-<style type="text/css">
-	.nice-select{
-		height: 44px;
-	}
-</style>
-<div class="login-form-container">
-    <div class="login-register-form">
-        <form action="{{ route('user.registration') }}" class="quotation-form" method="post" enctype="multipart/form-data">
-		{{ csrf_field() }}
-			<input type="hidden" name="activeTab" value="registration">
-			<div class="row">
-				<div class="col-lg-6 col-sm-6">
-					<div class="form-group">
-						<label for="name">Name 
-							<span class="required">*</span>
-						</label>
-						<input type="text" name="name" class="form-control" id="name" placeholder="Full Name" value="{{ old('name') }}" required>
-					</div>
-				</div>
-
-				<div class="col-lg-6">
-					<div class="form-group">
-						<label for="phone">Phone No 
-							<span class="required">*</span>
-						</label>
-						<input type="text" name="phone" class="form-control" id="phone" placeholder="Phone No." value="{{ old('phone') }}" required>
-					</div>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-lg-6 col-sm-6">
-					<div class="form-group">
-						<label for="email">Email Address</label>
-						<input type="email" name="email" class="form-control" id="email" placeholder="Email" value="{{ old('email') }}">
-					</div>
-				</div>
-
-				<div class="col-lg-6 col-sm-6">
-					<div class="form-group">
-						<label for="email">Profile Picture
-							<span class="required">*</span> 
-							(<span style="color: red;font-size:15px">Image size 600*600 px</span>)
-						</label>
-						<input type="file" name="image" class="form-control" id="image" style="padding: 10px;">
-					</div>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-lg-6 col-sm-6">
-					<div class="form-group">
-						<label for="identification_type">Identification Type</label>
-						<select class="form-control" name="identification_type" id="identification_type">
-							<option>Select Identification Type</option>
-							@foreach ($identification_type as $key=>$value)
-								<option value="{{$key}}">{{$value}}</option>
-							@endforeach
-						</select>
-					</div>
-				</div>
-
-				<div class="col-lg-6 col-sm-6">
-					<div class="form-group">
-						<label for="identification_no" id="identification_no">Identification No</label>
-						<input type="identification_no" name="identification_no" class="form-control" id="identification_no" placeholder="" value="{{ old('identification_no') }}">
-					</div>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-lg-6">
-					<div class="row">
-						<div class="col-lg-12">
-							<div class="form-group">
-								<label for="password">Password 
-									<span class="required">*</span>
-								</label>
-								<input type="password" name="password" class="form-control" id="password" required>
-							</div>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-lg-12">
-							<div class="form-group">
-								<label for="confirm_password">Confirm Password 
-									<span class="required">*</span>
-								</label>
-								<input type="password" name="confirm_password" class="form-control" id="confirm_password" required>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-lg-6">
-					<div class="form-group">
-						<label for="address">Address 
-							<span class="required">*</span>
-						</label>
-						<textarea name="address" class="form-control" id="address" rows="6">{{ old('address') }}</textarea>
-					</div>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-lg-12 text-right">
-					<button type="submit" class="btn btn-primary">Register</button>
-				</div>
-			</div>
-		</form>
+@section('content')
+	<!-- breadcrumb begin -->
+    <div class="breadcrumb-bettix register-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-7 col-lg-7">
+                    <div class="breadcrumb-content">
+                        <h2>Register</h2>
+                        <ul>
+                            <li>
+                                <a href="#">Home</a>
+                            </li>
+                            <li>
+                                <a href="#">Pages</a>
+                            </li>
+                            <li>
+                                Contact
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+	<!-- breadcrumb end -->
 
-@section('custom_js')
-	<script type="text/javascript">
-		$('#identification_type').on('change', function() {
-			var identification_type = this.value;
-			if(identification_type == 'nid'){
-				$('#identification_no').text('NID No');
-			}else if(identification_type == 'birth_registration'){
-				$('#identification_no').text('Birth Registration No');
-			}else if(identification_type == 'passport'){
-				$('#identification_no').text('Passport No');
-			}else if(identification_type == 'driving_licence'){
-				$('#identification_no').text('Driving Licence');
-			}
-		});
-	</script>
+	<div class="register">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-7 col-lg-8 col-md-8">
+                    <div class="section-title">
+                        <h3>Create Your Account</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-xl-9 col-lg-9">
+                    <div class="all-form">
+                        <div class="single-form" id="first-step">
+                            <form>
+                            	<div class="row">
+                            		<div class="col-xl-6 col-lg-6 col-md-6">
+                            			<div class="form-group">
+	                                    	<label for="firstName">Full Name 
+	                                    		<span class="required">*</span>
+	                                    	</label>
+                            				<input type="text" value="" id="firstName" required>
+                            			</div>
+	                                </div>
+
+	                                <div class="col-xl-6 col-lg-6 col-md-6">
+                            			<div class="form-group">
+                                    		<label for="lastName">User Name 
+                                    			<span class="required">*</span>
+                                    		</label>
+                            				<input type="text" value="" id="lastName" required>
+                            			</div>
+	                                </div>
+                            	</div>
+
+                            	<div class="row">
+	                                <div class="col-xl-6 col-lg-6 col-md-6">
+                            			<div class="form-group">
+                                    		<label for="emailAdd">Mobile Number 
+                                    			<span class="required">*</span>
+                                    		</label>
+                            				<input type="text" id="emailAdd" required>
+                            			</div>
+	                                </div>
+
+                            		<div class="col-xl-6 col-lg-6 col-md-6">
+                            			<div class="form-group">
+                                    		<label for="lastName">Sponsor User Name</label>
+                            				<input type="text" value="" id="lastName" required>
+                            			</div>
+	                                </div>
+                            	</div>
+
+                            	<div class="row">
+	                                <div class="col-xl-6 col-lg-6 col-md-6">
+                            			<div class="form-group">
+                            				<label for="emailAdd">Club</label>
+                            				<p style="padding-bottom:5px;"></p>
+		                                    <select class="form-control">
+		                                    	<option value="">Select Club</option>
+		                                    </select>
+                            			</div>
+	                                </div>
+
+                            		<div class="col-xl-6 col-lg-6 col-md-6">
+                            			<div class="form-group">
+                                    		<label for="emailAdd">Email Address</label>
+                            				<input type="email" id="emailAdd">
+                            			</div>
+	                                </div>
+                            	</div>
+
+                            	<div class="row">
+	                                <div class="col-xl-6 col-lg-6 col-md-6">
+                            			<div class="form-group">
+                                    		<label for="emailAdd">Password 
+                                    			<span class="required">*</span>
+                                    		</label>
+                            				<input type="text" id="emailAdd" required>
+                            			</div>
+	                                </div>
+
+                            		<div class="col-xl-6 col-lg-6 col-md-6">
+                            			<div class="form-group">
+                                    		<label for="emailAdd">Confirm Password 
+                                    			<span class="required">*</span>
+                                    		</label>
+                            				<input type="text" id="emailAdd" required>
+                            			</div>
+	                                </div>
+                            	</div>
+
+                                <p>By clicking "NEXT", you confirm that you have read and understood the Bettix <a href="#">Privacy & Coockie Policy</a>, and agree to its terms.</p>
+                                <button class="next" type="submit">Next</button>
+                            </form>
+                        </div>
+                        <div class="single-form" id="second-step">
+                            <form>
+                                <div>
+                                    <input type="text" id="countryName">
+                                    <label for="countryName">Country</label>
+                                </div>
+                                <div>
+                                    <input type="text" id="address-line">
+                                    <label for="address-line">address line 1</label>
+                                </div>
+                                <div>
+                                    <input type="text" id="address-line-2">
+                                    <label for="address-line-2">address line 2</label>
+                                </div>
+                                <div>
+                                    <input type="text" id="cityName">
+                                    <label for="cityName">city Name</label>
+                                </div>
+                                <div>
+                                    <input type="text" id="mobileNumber">
+                                    <label for="mobileNumber">mobile Number</label>
+                                </div>
+                                <p>By clicking "NEXT", you confirm that you have read and understood the Bettix <a href="#">Privacy & Coockie Policy</a>, and agree to its terms.</p>
+                                <button class="next">Next</button>
+                            </form>
+                        </div>
+                        <div class="single-form" id="third-step">
+                            <form>
+                                <div>
+                                    <input type="text" id="userName">
+                                    <label for="userName">user Name</label>
+                                </div>
+                                <div>
+                                    <input type="password" id="passwordNo">
+                                    <label for="passwordNo">password</label>
+                                </div>
+                                <div>
+                                    <input type="password" id="passwordAgain">
+                                    <label for="passwordAgain">re-enter password</label>
+                                </div>
+                                <div>
+                                    <input type="text" id="securityQuote">
+                                    <label for="securityQuote">security Quote</label>
+                                </div><p>By clicking "NEXT", you confirm that you have read and understood the Bettix <a href="#">Privacy & Coockie Policy</a>, and agree to its terms.</p>
+                                <button class="next">Next</button>
+                            </form>
+                        </div>
+                        <div class="final-step" id="fourth-step">
+                            <div class="icon-completed">
+                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
+                                    <circle class="path circle" fill="none" stroke="#73AF55" stroke-width="6" stroke-miterlimit="10" cx="65.1" cy="65.1" r="62.1"/>
+                                    <polyline class="path check" fill="none" stroke="#73AF55" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" points="100.2,40.2 51.5,88.8 29.8,67.5 "/>
+                                </svg>
+                                <span class="text">Yeah! Almost Done!</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
