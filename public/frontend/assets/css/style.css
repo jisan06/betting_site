@@ -2581,9 +2581,9 @@ ul {
   .breadcrumb-bettix.contact-page {
     background: url("../img/breadcrumb-bg-contact.jpg") center center no-repeat;
     background-size: cover; }
-  .breadcrumb-bettix.register-page {
+  /*.breadcrumb-bettix.register-page {
     background: url("../img/breadcrumb-bg-register.jpg") center center no-repeat;
-    background-size: cover; }
+    background-size: cover; }*/
   .breadcrumb-bettix.error-page {
     background: url("../img/breadcrumb-bg-error.jpg") center 88% no-repeat;
     background-size: cover; }
@@ -4049,7 +4049,7 @@ ul {
     .register .single-form form input {
       width: 100%;
       height: 50px;
-      padding: 0 30px;
+      padding: 0 5px;
       margin-top: 30px;
       border: 1px solid rgba(56, 56, 56, 0.2);
       border-radius: 5px;
@@ -4141,7 +4141,8 @@ ul {
     stroke-dashoffset: 900; } }
 
 .login {
-  padding: 120px 0; }
+  padding: 30px 0; 
+}
   .login .login-form {
     -webkit-box-shadow: 0px 0px 11px 7px rgba(56, 56, 56, 0.08);
     box-shadow: 0px 0px 11px 7px rgba(56, 56, 56, 0.08);

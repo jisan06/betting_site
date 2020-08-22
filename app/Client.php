@@ -11,7 +11,7 @@ class Client extends Authenticatable
 	protected $table = "tbl_clients";
 
     protected $fillable = [
-    	'user_role_id','name','phone','email','identification_type','identification_no','address','area','birth_date','image','password','verification_code','token','status','created_by','updated_by'
+    	'user_role_id','club_id','name','username','sponsor_username','phone','email','identification_type','identification_no','address','birth_date','image','password','verification_code','token','status','created_by','updated_by'
     ];
 
 	protected $hidden = [

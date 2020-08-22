@@ -14,3 +14,7 @@
 <link rel="stylesheet" href="{{ asset('public/frontend') }}/assets/css/style.css">
 <!-- responsive -->
 <link rel="stylesheet" href="{{ asset('public/frontend') }}/assets/css/responsive.css">
+
+<link rel="stylesheet" href="{{ asset('public/frontend') }}/assets/css/custom_style.css">
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />

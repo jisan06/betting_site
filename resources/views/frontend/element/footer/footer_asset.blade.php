@@ -16,3 +16,15 @@
 <script src="{{ asset('public/frontend') }}/assets/js/oddometer-active.js"></script>
 <!-- main -->
 <script src="{{ asset('public/frontend') }}/assets/js/main.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js" defer></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@9.17.1/dist/sweetalert2.all.min.js"></script>
+
+<script>
+	$(document).ready(function () {
+		$(".select2").select2({
+	      tags: false,
+	      
+		});
+	})
+</script>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 16, 2020 at 12:42 PM
+-- Generation Time: Aug 22, 2020 at 01:51 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -35,6 +35,7 @@ CREATE TABLE `admins` (
   `email` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `username` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `role` int(11) DEFAULT NULL,
+  `club_id` int(11) NOT NULL,
   `password` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` int(11) NOT NULL DEFAULT 1,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -46,12 +47,35 @@ CREATE TABLE `admins` (
 -- Dumping data for table `admins`
 --
 
-INSERT INTO `admins` (`id`, `name`, `phone`, `email`, `username`, `role`, `password`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
-(4, 'Admin', NULL, 'admin@gmail.com', 'Admin', 2, '$2y$10$KSdee7hzr.8uJB89YOyV7eKvQG6uXyD45P0Fpf.FNHv9q46VCXM0i', 1, 'HftBsS0WaFhNaeki9GEnbTOdo99h14G9dS1WtBq9AJJkzUuSyNKsUxMufhEx', '2019-04-17 01:04:35', '2020-01-20 13:33:35'),
-(30, 'Dhaka Central Warehouse', NULL, 'dhakacentral@quickexpress.com.bd', 'JewelWH', 11, '$2y$10$uAjLoNdVTF8jqa153SLTveU/S1WlUfvtxzeU5Zx322kEw3VJY.lp.', 1, NULL, '2020-07-04 01:48:21', '2020-07-13 20:33:25'),
-(53, 'Dew Hunt', '01317243494', 'dew.fog1553@gmail.com', 'Dew', 14, '$2y$10$CTlIwyf35zQREEzMoPY6I.tyNPEZxcYxaGok4pp.uvPkxt8L4Qc0.', 1, NULL, '2020-07-06 21:52:48', '2020-07-06 21:52:48'),
-(56, 'Badda', NULL, 'badda@quickexpress.com.bd', NULL, NULL, '$2y$10$wdmwPD9LZ9XD3UP/aNCFzebuRumTO/hBDptsUcFJnZovkPwK299hq', 1, NULL, '2020-07-14 04:07:25', '2020-07-14 04:15:59'),
-(57, 'নিজের বাজার', NULL, 'nijer.bazar@gmail.com', NULL, 12, '$2y$10$qpsOGraOWlG4LlyAaHb.yexbXidPIo8hfIb3uVYpPeX4pwK5pDH4m', 1, NULL, '2020-07-14 05:16:57', '2020-07-16 00:03:24');
+INSERT INTO `admins` (`id`, `name`, `phone`, `email`, `username`, `role`, `club_id`, `password`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
+(4, 'Admin', NULL, 'admin@gmail.com', 'Admin', 2, 0, '$2y$10$KSdee7hzr.8uJB89YOyV7eKvQG6uXyD45P0Fpf.FNHv9q46VCXM0i', 1, 'HftBsS0WaFhNaeki9GEnbTOdo99h14G9dS1WtBq9AJJkzUuSyNKsUxMufhEx', '2019-04-17 01:04:35', '2020-01-20 13:33:35'),
+(30, 'Dhaka Central Warehouse', NULL, 'dhakacentral@quickexpress.com.bd', 'JewelWH', 11, 0, '$2y$10$uAjLoNdVTF8jqa153SLTveU/S1WlUfvtxzeU5Zx322kEw3VJY.lp.', 1, NULL, '2020-07-04 01:48:21', '2020-07-13 20:33:25'),
+(53, 'Dew Hunt', '01317243494', 'dew.fog1553@gmail.com', 'Dew', 14, 0, '$2y$10$CTlIwyf35zQREEzMoPY6I.tyNPEZxcYxaGok4pp.uvPkxt8L4Qc0.', 1, NULL, '2020-07-06 21:52:48', '2020-07-06 21:52:48'),
+(56, 'Badda', NULL, 'badda@quickexpress.com.bd', NULL, NULL, 0, '$2y$10$wdmwPD9LZ9XD3UP/aNCFzebuRumTO/hBDptsUcFJnZovkPwK299hq', 1, NULL, '2020-07-14 04:07:25', '2020-07-14 04:15:59'),
+(57, 'নিজের বাজার', NULL, 'nijer.bazar@gmail.com', NULL, 12, 0, '$2y$10$qpsOGraOWlG4LlyAaHb.yexbXidPIo8hfIb3uVYpPeX4pwK5pDH4m', 1, NULL, '2020-07-14 05:16:57', '2020-07-16 00:03:24');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `clubs`
+--
+
+CREATE TABLE `clubs` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `order_by` int(11) NOT NULL,
+  `status` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `clubs`
+--
+
+INSERT INTO `clubs` (`id`, `name`, `order_by`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Barcelona', 1, 1, '2020-08-20 04:08:27', '2020-08-20 09:31:05'),
+(3, 'India Club', 2, 1, '2020-08-22 03:27:43', '2020-08-22 03:27:43');
 
 -- --------------------------------------------------------
 
@@ -87,7 +111,8 @@ CREATE TABLE `migrations` (
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (1, '2014_10_12_000000_create_users_table', 1),
 (2, '2014_10_12_100000_create_password_resets_table', 1),
-(3, '2019_08_19_000000_create_failed_jobs_table', 1);
+(3, '2019_08_19_000000_create_failed_jobs_table', 1),
+(6, '2020_08_20_074820_create_clubs_table', 2);
 
 -- --------------------------------------------------------
 
@@ -163,7 +188,7 @@ CREATE TABLE `tbl_area` (
 
 INSERT INTO `tbl_area` (`id`, `name`, `charge`, `root_plan`, `description`, `status`, `order_by`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
 (8, 'Dhaka to Mymenshing', '500', NULL, NULL, 1, 1, 4, '2020-07-18 04:25:21', NULL, '2020-07-20 03:48:22'),
-(9, 'Dhaka to Chandpur', '300', 'Sayedabad -> zatrabari -> Chittagong Road -> Kanchpur -> Daudkandi -> Sachar -> Kachua', NULL, 1, 2, 4, '2020-07-18 04:28:40', NULL, '2020-07-20 03:42:24');
+(9, 'Dhaka to Chandpur', '300', 'Sayedabad -> zatrabari -> Chittagong Road -> Kanchpur -> Daudkandi -> Sachar -> Kachua', NULL, 1, 2, 4, '2020-07-18 04:28:40', NULL, '2020-08-20 09:17:56');
 
 -- --------------------------------------------------------
 
@@ -174,8 +199,10 @@ INSERT INTO `tbl_area` (`id`, `name`, `charge`, `root_plan`, `description`, `sta
 CREATE TABLE `tbl_clients` (
   `id` int(11) NOT NULL,
   `user_role_id` int(11) DEFAULT NULL,
-  `area` int(11) DEFAULT NULL,
+  `club_id` int(11) DEFAULT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `username` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sponsor_username` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `identification_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `identification_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -197,9 +224,8 @@ CREATE TABLE `tbl_clients` (
 -- Dumping data for table `tbl_clients`
 --
 
-INSERT INTO `tbl_clients` (`id`, `user_role_id`, `area`, `name`, `phone`, `identification_type`, `identification_no`, `email`, `address`, `birth_date`, `image`, `password`, `verification_code`, `token`, `status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(4, NULL, NULL, 'Jisan Ahmed', '01832967276', 'nid', '12121212121767', NULL, 'Dhaka', '1970-01-01', 'public/uploads/profile_image/client/download_38245118386.jpg', '$2y$10$8aBn.bQpBILc4xul9xchS.pq.HStXOHusRBWBjj9cexCh7L8hqHdi', '', 'kpGTAuB7GvmuJJWWPo2eByFnc2a68KPILmLyF6MN', 1, NULL, '2020-07-19 06:29:04', NULL, '2020-07-20 06:56:18'),
-(7, NULL, NULL, 'md hasan', '112312321', 'birth_registration', '12121212121', 'hasan@gmail.com', 'de\r\n101', NULL, 'public/uploads/profile_image/client/error4_18551697381.PNG', '$2y$10$YXnHyE4we.IqlK/tcI5cTOffHcuQjWDuaamXRGlEebUqKJcVSEyiu', '52760997880407aGFzYW5AZ21haWwuY29t', 'r1OOrzayuzL8OiJnbUCmFuWqqBjar9mQ5nCarKzV', 1, NULL, '2020-07-21 23:13:06', NULL, '2020-07-21 23:13:06');
+INSERT INTO `tbl_clients` (`id`, `user_role_id`, `club_id`, `name`, `username`, `sponsor_username`, `phone`, `identification_type`, `identification_no`, `email`, `address`, `birth_date`, `image`, `password`, `verification_code`, `token`, `status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
+(11, NULL, 3, 'Jisan Ahmed', 'jisan', 'jsit', '01832967276', NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$EHI1qX2B7jdvn18GTXwe7.lTSKJiUAr4iNJMdI6fBlp9kJmhMcTq.', NULL, NULL, 1, NULL, '2020-08-22 05:10:12', NULL, '2020-08-22 05:46:59');
 
 -- --------------------------------------------------------
 
@@ -281,7 +307,8 @@ INSERT INTO `tbl_menus` (`id`, `parent_menu`, `menu_name`, `menu_link`, `menu_ic
 (46, '43', 'Charge Setup', 'admin.index', 'fa fa-caret', 3, '1', '2020-07-12 22:22:41', '2020-07-12 22:22:41'),
 (50, '13', 'Location Setup', 'location.index', NULL, 1, '1', '2020-07-18 03:37:45', '2020-07-18 03:42:41'),
 (51, NULL, 'List', 'List', NULL, 5, '1', '2020-07-19 05:59:04', '2020-07-19 05:59:04'),
-(52, '51', 'Client List', 'client.index', NULL, 1, '1', '2020-07-19 06:14:50', '2020-07-19 06:14:50');
+(52, '51', 'Client List', 'client.index', NULL, 1, '1', '2020-07-19 06:14:50', '2020-07-19 06:14:50'),
+(54, '13', 'Club', 'club.index', NULL, 2, '1', '2020-08-20 02:24:33', '2020-08-20 02:24:33');
 
 -- --------------------------------------------------------
 
@@ -369,7 +396,11 @@ INSERT INTO `tbl_menu_actions` (`id`, `parent_menu_id`, `menu_type`, `action_nam
 (138, 52, 1, 'Add', 'client.add', 1, 1, '2020-07-19 06:15:40', '2020-07-19 06:16:46'),
 (139, 52, 2, 'Edit', 'client.edit', 2, 1, '2020-07-19 06:15:53', '2020-07-19 06:15:53'),
 (140, 52, 4, 'Delete', 'client.delete', 3, 1, '2020-07-19 06:16:18', '2020-07-19 06:16:18'),
-(141, 52, 3, 'Status', 'client.status', 4, 1, '2020-07-19 06:16:33', '2020-07-19 06:16:33');
+(141, 52, 3, 'Status', 'client.status', 4, 1, '2020-07-19 06:16:33', '2020-07-19 06:16:33'),
+(142, 54, 1, 'Add', 'club.create', 1, 1, '2020-08-20 02:47:58', '2020-08-20 09:04:58'),
+(143, 54, 2, 'Edit', 'club.edit', 2, 1, '2020-08-20 03:40:28', '2020-08-20 03:40:28'),
+(144, 54, 4, 'Delete', 'club.delete', 3, 1, '2020-08-20 07:38:00', '2020-08-20 08:58:22'),
+(145, 54, 3, 'Status', 'club.status', 4, 1, '2020-08-20 08:10:15', '2020-08-20 08:10:15');
 
 -- --------------------------------------------------------
 
@@ -559,8 +590,8 @@ CREATE TABLE `tbl_user_roles` (
 --
 
 INSERT INTO `tbl_user_roles` (`id`, `name`, `parent_role`, `level`, `status`, `permission`, `action_permission`, `created_at`, `updated_at`) VALUES
-(2, 'Super User', NULL, 1, 1, '1,6,7,8,10,11,12,39,2,3,4,5,38,13,50,51,52,53', '28,29,30,31,32,33,39,40,41,42,43,44,45,46,47,48,49,50,51,2,3,4,5,6,11,12,13,14,15,7,8,9,10,21,23,24,25,26,108,109,134,135,136,137,138,139,140,141,84,85,88,86,87', '2019-04-17 00:50:05', '2020-07-19 07:00:37'),
-(3, 'Admin', NULL, 1, 1, '1,6,7,8,10,11,12,39,2,3,4,5,38,13,50', '28,29,30,31,32,33,39,40,41,42,43,44,45,46,47,48,49,50,51,2,3,4,5,6,11,12,13,14,15,7,8,9,10,21,22,23,24,25,26,108,109,134,135,136,137', '2019-04-17 00:52:54', '2020-07-18 03:45:15');
+(2, 'Super User', NULL, 1, 1, '1,6,7,8,10,11,12,39,2,3,4,5,38,13,50,54,51,52', '28,29,30,31,32,33,39,40,41,42,43,44,45,46,47,48,49,50,51,2,3,4,5,6,11,12,13,14,15,7,8,9,10,21,23,24,25,26,108,109,134,135,136,137,142,143,144,145,138,139,140,141', '2019-04-17 00:50:05', '2020-08-20 08:10:37'),
+(3, 'Admin', NULL, 1, 1, '1,6,7,8,10,11,12,39,2,3,4,5,38,13,50,54', '28,29,30,31,32,33,39,40,41,42,43,44,45,46,47,48,49,50,51,2,3,4,5,6,11,12,13,14,15,7,8,9,10,21,23,24,25,26,108,109,134,135,136,137,142', '2019-04-17 00:52:54', '2020-08-20 02:48:18');
 
 -- --------------------------------------------------------
 
@@ -627,6 +658,12 @@ ALTER TABLE `admins`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `admins_email_unique` (`email`),
   ADD UNIQUE KEY `phone` (`phone`);
+
+--
+-- Indexes for table `clubs`
+--
+ALTER TABLE `clubs`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `failed_jobs`
@@ -739,7 +776,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+
+--
+-- AUTO_INCREMENT for table `clubs`
+--
+ALTER TABLE `clubs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -751,7 +794,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tbl_admin_panel_information`
@@ -769,7 +812,7 @@ ALTER TABLE `tbl_area`
 -- AUTO_INCREMENT for table `tbl_clients`
 --
 ALTER TABLE `tbl_clients`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `tbl_frontend_menu`
@@ -781,13 +824,13 @@ ALTER TABLE `tbl_frontend_menu`
 -- AUTO_INCREMENT for table `tbl_menus`
 --
 ALTER TABLE `tbl_menus`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT for table `tbl_menu_actions`
 --
 ALTER TABLE `tbl_menu_actions`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=142;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=146;
 
 --
 -- AUTO_INCREMENT for table `tbl_menu_action_type`
