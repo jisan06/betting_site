@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-xl-7 col-lg-7">
                 <div class="breadcrumb-content">
-                    <h2>Register</h2>
+                    <h2>Login</h2>
                     <ul>
                         <li>
                             <a href="{{ url('/') }}">Home</a>

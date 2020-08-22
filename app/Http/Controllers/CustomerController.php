@@ -10,7 +10,7 @@ class CustomerController extends Controller
 {  
     public function dashboard(){
         $title = "Dashboard";
-        return view('frontend.customer.dashboard')->with(compact('title'));
+        return view('frontend.customer.dashboard.index')->with(compact('title'));
     }
 
     public function profile(){
