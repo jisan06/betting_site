@@ -22,6 +22,7 @@
         </style>
         
         @yield('custom_css')
+        @stack('css')
     </head>
     
     <body class="skin-default fixed-layout">
@@ -107,6 +108,7 @@
 
         <!-- This page plugins -->
         @yield('custom-js')
+        @stack('js')
 
     </body>
 </html>

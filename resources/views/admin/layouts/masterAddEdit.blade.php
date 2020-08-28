@@ -12,10 +12,13 @@
         <link rel="icon" type="image/png" sizes="16x16" href="{{ asset($adminInformation->fav_icon) }}">
 
         <title>{{ $adminInformation->website_name }} {{ $adminInformation->prefix_title }} Admin {{ $adminInformation->prefix_title }}  {{ $title }}</title>
+        <link href="{{ asset('/public/admin-elite/assets/bootstrap-datetimepicker.min.css') }}" rel="stylesheet" type="text/css">
 
         @include('admin.partials.header-assets')
         
         @yield('custom_css')
+
+        
     </head>
 
     <body class="skin-default fixed-layout">
@@ -131,5 +134,17 @@
         <!-- This page plugins -->
         @yield('custom-js')
 
+        
+        <script src="{{ asset('/public/admin-elite/assets/bootstrap-datetimepicker.min.js') }}"></script>
+        <script>
+            $(function(){
+                $('#datetimepicker1').datetimepicker({
+                    format: "dd MM yyyy - HH:ii p",
+                    showMeridian: true,
+                    autoClose:true,
+                    todayBtn: true
+                });
+            })
+        </script>
     </body>
 </html>

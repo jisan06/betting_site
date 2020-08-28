@@ -155,6 +155,42 @@ Route::prefix('admin')->group(function()
 			Route::post('/club-delete','Admin\ClubController@delete')->name('club.delete');
 			Route::any('/club-status','Admin\ClubController@status')->name('club.status');
 
+			//Game setup
+			Route::any('/game','Admin\GamesController@index')->name('game.index');
+			Route::any('/game-add','Admin\GamesController@create')->name('game.create');
+			Route::any('/game-store','Admin\GamesController@store')->name('game.store');
+			Route::any('/game-edit/{id}','Admin\GamesController@edit')->name('game.edit');
+			Route::any('/game-update/{id}','Admin\GamesController@update')->name('game.update');
+			Route::post('/game-delete','Admin\GamesController@delete')->name('game.delete');
+			Route::any('/game-status','Admin\GamesController@status')->name('game.status');
+
+			//Match setup
+			Route::any('/match','Admin\MatchesController@index')->name('match.index');
+			Route::any('/match-add','Admin\MatchesController@create')->name('match.create');
+			Route::any('/match-store','Admin\MatchesController@store')->name('match.store');
+			Route::any('/match-edit/{id}','Admin\MatchesController@edit')->name('match.edit');
+			Route::any('/match-update/{id}','Admin\MatchesController@update')->name('match.update');
+			Route::post('/match-delete','Admin\MatchesController@delete')->name('match.delete');
+			Route::any('/match-status','Admin\MatchesController@status')->name('match.status');
+
+			// betting category
+			Route::get('/betting_category/{id}','Admin\BettingCategoriesController@index')->name('betting_category.index');
+			Route::get('/betting_category-add/{menuId}','Admin\BettingCategoriesController@add')->name('betting_category.add');
+			Route::post('/betting_category-save','Admin\BettingCategoriesController@save')->name('betting_category.save');
+			Route::get('/betting_category-edit/{betting_category_id}','Admin\BettingCategoriesController@edit')->name('betting_category.edit');
+			Route::post('/betting_category-update','Admin\BettingCategoriesController@update')->name('betting_category.update');
+			Route::post('/betting_category-status','Admin\BettingCategoriesController@status')->name('betting_category.status');
+			Route::post('/betting_category/delete','Admin\BettingCategoriesController@delete')->name('betting_category.delete');
+
+			// bettings
+			Route::get('/bett/{id}','Admin\BettsController@index')->name('bett.index');
+			Route::get('/bett-add/{menuId}','Admin\BettsController@add')->name('bett.add');
+			Route::post('/bett-save','Admin\BettsController@save')->name('bett.save');
+			Route::get('/bett-edit/{betting_category_id}','Admin\BettsController@edit')->name('bett.edit');
+			Route::post('/bett-update','Admin\BettsController@update')->name('bett.update');
+			Route::post('/bett-result','Admin\BettsController@result')->name('bett.result');
+			Route::post('/bett/delete','Admin\BettsController@delete')->name('bett.delete');
+
 			// Client 
 			Route::get('/client','Admin\ClientController@index')->name('client.index');
 			Route::get('/client-add','Admin\ClientController@add')->name('client.add');
