@@ -2,6 +2,9 @@
 <!-- All Jquery -->
 <!-- ============================================================== -->
 <script src="{{ asset('/public/admin-elite/assets/node_modules/jquery/jquery-3.2.1.min.js') }}"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js" defer></script>
+
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <!-- Jquery for multi select or choose -->
@@ -56,6 +59,8 @@
 <script src="{{ asset('/public/admin-elite/assets/node_modules/datatables/jquery.dataTables.min.js') }}"></script>
 
 <script src="{{ asset('/public/admin-elite/js/tinymce/tinymce.min.js') }}"></script>
+
+
  <script>
     $(document).ready(function () {
         setTimeout(function () { //$(".message").hide('blind', {}, 500)); 
@@ -73,7 +78,7 @@
 </script>
 
 
-<script>
+{{-- <script>
 	$( function() {
 		$( ".add_datepicker" ).datepicker({
 			changeMonth: true,
@@ -105,6 +110,15 @@
 			dateFormat: 'dd-mm-yy',
 		});
 	} );
+</script> --}}
+
+<script>
+    $(document).ready(function () {
+        $(".select2").select2({
+          tags: false,
+          
+        });
+    })
 </script>
 
 <script>
@@ -135,3 +149,21 @@
         window.history.go(-1);
     }
 </script>
+
+<script>
+        $( function() {
+            $( ".add_date_timepicker" ).datetimepicker({
+                format: "dd-mm-yyyy HH:ii p",
+                showMeridian: true,
+                autoclose: true,
+                todayBtn: true,
+           });
+
+            $(".date_timepicker").datetimepicker({
+                format: "dd-mm-yyyy HH:ii p",
+                showMeridian: true,
+                autoclose: true,
+                todayBtn: true
+            });
+        } );
+    </script>

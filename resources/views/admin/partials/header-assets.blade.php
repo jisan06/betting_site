@@ -12,6 +12,7 @@
 
 <!-- Custom CSS -->
 <link href="{{ asset('/public/admin-elite/dist/css/style.css') }}" rel="stylesheet">
+<link href="{{ asset('/public/admin-elite/dist/css/custom_style.css') }}" rel="stylesheet">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -43,3 +44,7 @@
 
 <!-- Tree Menu CSS -->
 <link href="{{ asset('/public/tree-menu/TreeMenu.css') }}" rel="stylesheet">
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
+
+{{-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet"> --}}

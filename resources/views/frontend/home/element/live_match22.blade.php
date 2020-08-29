@@ -84,7 +84,7 @@
                                             @endphp
                                                 <div class="part-match">
                                                     <div class="single-place-to-bet">
-                                                        <a href="javascript:void(0)">
+                                                        <a href="#">
                                                             <span class="bet-price">{{$betting->ratio}}</span>
                                                             <span class="result-for-final">
                                                                 {{$betting->name}}
@@ -296,3 +296,48 @@
         </div>
     </div>
 </div>
+
+<!-- bet modal begin -->
+<div class="bet-modal-bg">
+    <div class="bet-modal">
+        <div class="bet-header">
+            <span class="title">Predict a game</span>
+            <button class="cls-btn"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="bet-body">
+            <div class="place-of-bet">
+                <span class="place-of-bet-title">real madrid</span>
+                <input class="place-of-bet-number" type="number" value="1" readonly>
+            </div>
+            <div class="bet-descr">
+                <span class="team-name team-name-1st">america</span>
+                <span class="img-ic"><img src="assets/img/vs-icon.png" alt=""></span>
+                <span class="team-name team-name-2nd">iran</span>
+                <div class="team-score">[<span class="team-first-score">1</span>:<span class="team-second-score">1</span>] 1X2 Live Prediction</div>
+            </div>
+            <div class="ctrl-buttons">
+                <div class="butto-shadow">
+                    <button class="ctrl-button-for-number minus-number">-</button>
+                    <input type="number" value="1" max="99" min="1" class="number-of-stake" placeholder="stake">
+                    <button class="ctrl-button-for-number plus-number">+</button>
+                </div>
+            </div>
+            <div class="bet-total">
+                <ul>
+                    <li>
+                        <span class="number-of-stake-title">stake :</span>
+                        <input class="number-of-stake-count" type="number" value="1" readonly>
+                    </li>
+                    <li>
+                        <span class="number-of-bet">Total Est. Returns :</span>
+                        <span class="number-of-bet-count">82</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="bet-footer">
+            <button>Predict Now</button>
+        </div>
+    </div>
+</div>
+<!-- bet modal end -->

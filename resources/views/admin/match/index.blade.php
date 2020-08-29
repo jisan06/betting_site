@@ -1,6 +1,9 @@
 @extends('admin.layouts.masterIndex')
 
 @section('card_body')
+@php
+    use App\Game;
+@endphp
     <div class="card-body">
         {{-- <div align='center'>
             <font size='7' text-align='center' color='green' face='Comic sans MS'>This Page Is Now Under Construction</font>
@@ -15,16 +18,14 @@
                 <thead>
                     <tr>
                         <th width="10px">SL</th>
-                        <th width="50px">Game</th>
-                        <th width="50px">Name</th>
-                        <th width="50px">Team One</th>
-                        <th width="50px">Team Two</th>
-                        <th width="70px">League</th>
-                        <th width="40px">Date & Time</th>
-                        <th width="50px">Icon</th>
-                        <th width="20px">Order By</th>
-                        <th width="20px">Status</th>
+                        <th width="80px">Game</th>
+                        <th>Name</th>
+                        <th>Team One</th>
+                        <th>Team Two</th>
+                        <th width="140px">Date & Time</th>
                         <th width="20px">Live</th>
+                        <th width="40px">Order</th>
+                        <th width="20px">Status</th>
                         <th width="20px">Action</th>
                     </tr>
                 </thead>
@@ -33,22 +34,23 @@
                 		$sl = 1;
                 	@endphp
                 	@foreach ($matches as $match)
+                    @php
+                        $game = Game::find($match->game_id);
+                    @endphp
                 		<tr class="row_{{ $match->id }}">
                 			<td>{{ $sl++ }}</td>
-                            <td>{{ $match->game_id }}</td>
+                            <td>{{ $game->name }}</td>
                             <td>{{ $match->name }}</td>
                             <td>{{ $match->team_one }}</td>
                             <td>{{ $match->team_two }}</td>
-                            <td>{{ $match->league }}</td>
-                            <td>{{ $match->date_time }}</td>
-                            <td>{{ $match->icon }}</td>
-                            <td>{{ $match->order_by }}</td>
+                            <td>{{ date('d-m-Y H:i a',strtotime($match->date_time)) }}</td>
+                            <td>{{ $match->live }}</td>
+                            <td class="text-center">{{ $match->order_by }}</td>
                 			<td>
                                 @php
                                     echo \App\Link::status($match->id,$match->status);
                                 @endphp
                 			</td>
-                            <td>{{ $match->live }}</td>
                 			<td>
                     			@php
                     				echo \App\Link::action($match->id);

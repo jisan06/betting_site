@@ -976,7 +976,8 @@ ul {
     border: 1px solid rgba(221, 221, 221, 0.4);
     padding: 9px 30px 8px;
     border-bottom: none;
-    padding-left: 0; }
+    padding-left: 15px;
+  }
     .betting-table .bet-tab-content .tab-pane .sports-list .single-sport-box:last-child {
       border-bottom: 1px solid rgba(221, 221, 221, 0.4); }
     .betting-table .bet-tab-content .tab-pane .sports-list .single-sport-box:nth-child(2) {

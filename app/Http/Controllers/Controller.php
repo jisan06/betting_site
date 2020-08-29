@@ -21,6 +21,6 @@ class Controller extends BaseController
             $this->userRole = @Auth::user()->role;
             
             return $next($request);
-         });
+        });
     }
 }

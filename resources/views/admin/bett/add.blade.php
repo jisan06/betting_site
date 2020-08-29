@@ -40,7 +40,7 @@
                     <div class="col-md-6">
                         <label for="ratio">Ratio</label>
                         <div class="form-group {{ $errors->has('ratio') ? ' has-danger' : '' }}">
-                            <input type="number" min="0" class="form-control form-control-danger" placeholder="ratio" name="ratio" value="{{ old('ratio') }}" required>
+                            <input type="text" min="0" class="form-control form-control-danger" placeholder="ratio" name="ratio" value="{{ old('ratio') }}" required>
                             @if ($errors->has('ratio'))
                                 @foreach($errors->get('ratio') as $error)
                                     <div class="form-control-feedback">{{ $error }}</div>

@@ -41,6 +41,7 @@ class MatchesController extends Controller
             'status'=>'required'
         ]);
 
+        $request->date_time = date('Y-m-d h:i:s',strtotime($request->date_time));
         Match::create([
             'game_id' => $request->game_id,
             'name' => $request->name,
@@ -84,7 +85,7 @@ class MatchesController extends Controller
             'status'=>'required'
         ]);
 
-
+        $request->date_time = date('Y-m-d h:i:s',strtotime($request->date_time));
         $match->update([
             'game_id' => $request->game_id,
             'name' => $request->name,

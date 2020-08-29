@@ -6,7 +6,7 @@
         <div class="col-md-6"> 
             <div class="form-group {{ $errors->has('game_id') ? ' has-danger' : '' }}">
                 <label for="game_id">Game</label>
-                <select class="form-control" name="game_id" required>
+                <select class="form-control select2" name="game_id" required>
                     <option value=""> Select Game</option>
                     @foreach($games as $game)
                         <option value="{{$game->id}}">{{$game->name}}</option>
@@ -69,18 +69,14 @@
             </div>
         </div>
         <div class="col-md-6">
-            <div class="row">
-                <div class="col-md-12">
-                    <label for="date_time">Date & Time</label>
-                    <div class="form-group {{ $errors->has('date_time') ? ' has-danger' : '' }}">
-                        <input id="datetimepicker1" type="text" class="form-control" placeholder="Date & time of The Match" name="date_time" value="{{ old('date_time') }}" required>
-                        @if ($errors->has('date_time'))
-                            @foreach($errors->get('date_time') as $error)
-                                <div class="form-control-feedback">{{ $error }}</div>
-                            @endforeach
-                        @endif
-                    </div>
-                </div>
+            <label for="date_time">Date & Time</label>
+            <div class="form-group {{ $errors->has('date_time') ? ' has-danger' : '' }}">
+                <input type="text" class="form-control add_date_timepicker" placeholder="Date & time of The Match" name="date_time" value="{{ old('date_time') }}" readonly required>
+                @if ($errors->has('date_time'))
+                    @foreach($errors->get('date_time') as $error)
+                        <div class="form-control-feedback">{{ $error }}</div>
+                    @endforeach
+                @endif
             </div>
         </div>
     </div>
@@ -88,7 +84,7 @@
         <div class="col-md-4">
             <label for="icon">Icon</label>
             <div class="form-group {{ $errors->has('icon') ? ' has-danger' : '' }}">
-                <input type="text" class="form-control" placeholder="Icon of The Match" name="icon" value="{{ old('icon') }}" required>
+                <input type="text" class="form-control" placeholder="Icon of The Match" name="icon" value="{{ old('icon') }}">
                 @if ($errors->has('icon'))
                     @foreach($errors->get('icon') as $error)
                         <div class="form-control-feedback">{{ $error }}</div>
