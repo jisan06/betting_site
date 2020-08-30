@@ -40,3 +40,37 @@
   font-size: 11px;
   color: #0f73ca;
 }
+
+.betting_modal_match{
+  text-align: left !important;
+  text-align: left !important;
+  padding: 10px;
+}
+
+.betting_modal_match h6{
+  font-size: 15px;
+  color: #5d5c5c;
+  text-transform: uppercase;
+}
+
+.bet_modal_bet_category{
+  font-size: 14px;
+  color: #000000;
+}
+
+.betting_modal_match .place-of-bet{
+  text-align: center;
+}
+
+.number-of-stake{
+  width: 190px;
+  border: 1px solid #949494;
+  height: 28px;
+  font-size: 17px;
+}
+
+.number-of-stake::-webkit-outer-spin-button,
+.number-of-stake::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

@@ -55,7 +55,7 @@
                             @endphp
                                 <div class="sports-list">
                                     <h4 class="title">
-                                        {{$match->name}}
+                                        {{$match->team_one}} VS {{$match->team_two}}
                                         <br>
                                         <span class="leauge_name">{{$match->league}}</span> ||
                                         <span class="duration">{{ date('d M Y H:i a',strtotime($match->date_time)) }}</span> 
@@ -64,6 +64,7 @@
                                         foreach ($betting_category_list as $betting_category) {
                                             $betting_list = Bett::where('betting_category_id',$betting_category->id)
                                                 ->get();
+                                                if(count($betting_list) > 0){
                                     @endphp
                                         <div class="single-sport-box">
                                             {{-- <div class="part-icon">
@@ -72,7 +73,16 @@
                                             <div class="part-team">
                                                 <ul>
                                                     <li>
-                                                        <span class="team-name">
+                                                        <span class="match_name" style="display: none;">
+                                                            {{$match->team_one}} VS {{$match->team_two}}
+                                                        </span>
+
+                                                        <span class="match_leauge" style="display: none;">
+                                                            <span class="leauge_name">{{$match->league}}</span> ||
+                                                            <span class="duration">{{ date('d M Y H:i a',strtotime($match->date_time)) }}</span> 
+                                                        </span>
+
+                                                        <span class="team-name betting_category">
                                                             {{$betting_category->name}}
                                                         </span>
                                                     </li>
@@ -80,11 +90,11 @@
                                             </div>
                                             @php
                                                 foreach ($betting_list as $betting) {
-                                                    
                                             @endphp
                                                 <div class="part-match">
                                                     <div class="single-place-to-bet">
                                                         <a href="javascript:void(0)">
+                                                            <span style="display: none;" class="betting_id">{{$betting->id}}</span>
                                                             <span class="bet-price">{{$betting->ratio}}</span>
                                                             <span class="result-for-final">
                                                                 {{$betting->name}}
@@ -100,7 +110,7 @@
                                             </div>
                                         </div>
                                     @php
-                                        }
+                                        } }
                                     @endphp
                                 </div>
                             @php
@@ -296,3 +306,80 @@
         </div>
     </div>
 </div>
+
+@section('betting_modal')
+    <div class="bet-modal-bg ">
+        <div class="bet-modal">
+            <div class="bet-header">
+                <span class="title">Place Bet</span>
+                <button class="cls-btn"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="bet-body">
+                <div class="betting_modal_match">
+                    <input type="hidden" class="bet_modal_betting_id" name="bet_modal_betting_id" value="">
+                    <h6>
+                        <span class="bet_modal_match_name"></span>
+                        <br>
+                        <span class="bet_modal_match_leauge">
+                            
+                        </span>
+                         
+                    </h6>
+
+                    <span class="bet_modal_bet_category"></span>
+
+                    <div class="place-of-bet">
+                        <span class="place-of-bet-title"></span>
+                        <input class="place-of-bet-number" type="number" value="1" readonly>
+                    </div>
+                </div>
+
+                <div class="ctrl-buttons">
+                    <div class="butto-shadow">
+                        <button class="ctrl-button-for-number minus-number">-</button>
+                        <input type="number" value="1" min="1" class="number-of-stake" placeholder="stake" oninput="bettAmountFunction()">
+                        <button class="ctrl-button-for-number plus-number">+</button>
+                    </div>
+                </div>
+
+                <div class="bet-total">
+                    <ul>
+                        <li>
+                            <span class="number-of-stake-title">stake :</span>
+                            <input class="number-of-stake-count" type="number" value="100" readonly>
+                        </li>
+                        <li>
+                            <span class="number-of-bet">Possible Winning Amount :</span>
+                            <span class="number-of-bet-count">82</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="bet-footer">
+                @if(Auth::guard('customer')->user())
+                    <button class="btn btn-primary">Place Bet</button>
+                @else
+                    <a href="{{ route('user.login') }}" style="color: red;font-weight: bold;">Click for Login</a>
+                @endif
+                
+            </div>
+        </div>
+    </div>
+@endsection
+
+@section('custom_js')
+    <script type="text/javascript">
+        function bettAmountFunction(){
+            var odds = $('.bet-modal').find('.number-of-stake').val();
+            $('.bet-modal').find('.number-of-stake-count').val(odds);
+            $('.altv-3').html(odds);
+
+            var betNumber = $('.bet-modal').find('.place-of-bet-number').val();
+            var stakeCount = $('.bet-modal').find('.number-of-stake-count').val();
+            var betTotal = betNumber * stakeCount;
+            var n = betTotal.toFixed(2);
+            $('.bet-modal').find('.number-of-bet-count').html(n);
+        }
+    </script>
+@endsection

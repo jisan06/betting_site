@@ -138,8 +138,10 @@ html {
         display: inline-block;
         margin-right: 5px; }
       .bet-modal-bg .bet-modal .bet-body .place-of-bet .altv-1 {
-        color: #555;
-        padding: 25px 0 7px; }
+        color: #fff;
+        padding: 0px 6px 0px;
+        background: #0dc388;
+      }
       .bet-modal-bg .bet-modal .bet-body .bet-descr {
         line-height: 26px; }
         .bet-modal-bg .bet-modal .bet-body .bet-descr span.img-ic {
@@ -161,9 +163,10 @@ html {
           font-weight: 400;
           color: #777; }
       .bet-modal-bg .bet-modal .bet-body .ctrl-buttons {
-        padding: 28px 0 30px;
+        padding: 10px 0 20px;
         font-size: 25px;
-        line-height: 40px; }
+        line-height: 40px 
+      }
         .bet-modal-bg .bet-modal .bet-body .ctrl-buttons .butto-shadow {
           display: inline-block;
           -webkit-box-shadow: 0px 2px 10px 0px rgba(56, 56, 56, 0.2);
@@ -200,19 +203,20 @@ html {
     .bet-modal-bg .bet-modal .bet-footer {
       padding: 20px 0; }
       .bet-modal-bg .bet-modal .bet-footer button {
-        background: transparent;
-        border: none;
-        outline: none;
-        cursor: pointer;
+        /*background: transparent;
+        border: none; 
+        outline: none; 
+        cursor: pointer;*/
         text-transform: uppercase;
         font-weight: 500;
-        color: #383838;
+        /* color: #383838; */
         font-size: 14px;
         height: 40px;
         padding: 0 30px;
         -webkit-box-shadow: 0px 2px 10px 0px rgba(56, 56, 56, 0.2);
         box-shadow: 0px 2px 10px 0px rgba(56, 56, 56, 0.2);
-        border-radius: 50px; }
+        /* border-radius: 50px;*/
+      }
 
 .overflow-hidden {
   overflow: hidden;

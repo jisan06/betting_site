@@ -75,7 +75,7 @@
         });
 
         $('body').css('padding-right', '0');
-        $('.number-of-stake').val(1);
+        $('.number-of-stake').val(100);
     });
     
     // lock screen title
@@ -99,11 +99,9 @@
     // bet number function
     function stakeIncreme() {
         var stakeCount = parseInt($('.number-of-stake').val());
-        if(stakeCount < 90) {
             stakeCount++;
             $('.number-of-stake').val(stakeCount);
             $('.altv-2').html(stakeCount);
-        }
     }
     function stakeDecreme() {
         var stakeCount = parseInt($('.number-of-stake').val());
@@ -126,26 +124,38 @@
         $('.bet-modal').find('.number-of-bet-count').html(n);
     }
 
-    
-
     // all click event for placing bet
     $('.single-place-to-bet').find('a').on('click', function(){
         event.preventDefault();
         $('body').css('padding-right', '17px');
         lockScroll();
         var betTitle = $(this).find('.result-for-final').html();
+
+        var matchName = $(this).closest('.single-place-to-bet').parent().siblings(".part-team").find('li:first-child').find('.match_name').html();
+        var matchLeauge = $(this).closest('.single-place-to-bet').parent().siblings(".part-team").find('li:first-child').find('.match_leauge').html();
+        var betting_category = $(this).closest('.single-place-to-bet').parent().siblings(".part-team").find('li:first-child').find('.betting_category').html();
+        var betting_id = $(this).find('.betting_id').text();
         var teamName1st = $(this).closest('.single-place-to-bet').parent().siblings(".part-team").find('li:first-child').find('.team-name').html();
+
         var teamName2nd = $(this).closest('.single-place-to-bet').parent().siblings(".part-team").find('li:last-child').find('.team-name').html();
         var team1stScore = $(this).closest('.single-place-to-bet').parent().siblings(".part-team").find('li:first-child').find('.score-number').html();
         var team2ndScore = $(this).closest('.single-place-to-bet').parent().siblings(".part-team").find('li:last-child').find('.score-number').html();
         var betPrice = $(this).find('.bet-price').html();
+        var wining_amount = $(this).find('.bet-price').html()*100;
         $('.place-of-bet-number').val(betPrice);
         $('.bet-modal').find('.place-of-bet').find('.place-of-bet-title').html(betTitle);
-        $('.bet-modal').find('.bet-descr').find('.team-name-1st').html(teamName1st);
-        $('.bet-modal').find('.bet-descr').find('.team-name-2nd').html(teamName2nd);
+
+        $('.bet-modal').find('.bet_modal_match_name').html(matchName);
+        $('.bet-modal').find('.bet_modal_match_leauge').html(matchLeauge);
+        $('.bet-modal').find('.bet_modal_bet_category').html(betting_category);
+        $('.bet-modal').find('.bet_modal_betting_id').val(betting_id);
+
+        /*$('.bet-modal').find('.bet-descr').find('.team-name-1st').html(teamName1st);
+
+        $('.bet-modal').find('.bet-descr').find('.team-name-2nd').html(teamName2nd);*/
         $('.bet-modal').find('.bet-descr').find('.team-score').find('.team-first-score').html(team1stScore);
         $('.bet-modal').find('.bet-descr').find('.team-score').find('.team-second-score').html(team2ndScore);
-        $('.bet-modal').find('.number-of-bet-count').html(betPrice);
+        $('.bet-modal').find('.number-of-bet-count').html(wining_amount);
 
         // placing bet modal form
         var altv_1 = $('.place-of-bet-number');
@@ -156,7 +166,8 @@
         var altv_2 = $('.number-of-stake');
         altv_2.before('<span class="altv-2"></span>');
         $('.altv-2').html(altv_2.val());
-        altv_2.hide();
+        $('.altv-2').hide();
+        //altv_2.hide();
         var altv_3 = $('.number-of-stake-count');
         altv_3.before('<span class="altv-3"></span>');
         $('.altv-3').html(altv_3.val());
