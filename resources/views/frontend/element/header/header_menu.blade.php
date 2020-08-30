@@ -5,7 +5,7 @@
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-6 d-xl-block d-lg-block d-flex align-items-center">
                         <div class="logo">
-                            <a href="index.html">
+                            <a href="{{ url('/') }}">
                                 <img src="{{ asset('public/frontend') }}/assets/img/logo.png" alt="logo">
                             </a>
                         </div>

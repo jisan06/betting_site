@@ -241,6 +241,8 @@ Route::prefix('user')->group(function(){
 			Route::any('/profile', 'CustomerController@profile')->name('user.customerProfile');
 			Route::any('/profile-edit', 'CustomerController@editProfile')->name('user.editProfile');
 			Route::any('/logout', 'Auth\Customer\CustomerAuthController@logout')->name('user.logout');
+
+			Route::any('/user-bett-save', 'CustomerBettController@saveBett')->name('user.saveBett');
 		});
 
 	});
