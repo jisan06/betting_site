@@ -2,7 +2,8 @@
     <div class="bett-menu">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
-                <a class="nav-link active" href="{{ route('user.dashboard') }}">
+                <a class="nav-link {{\URL::current() == route('user.dashboard') ? 'active' : ''}}" 
+                    href="{{ route('user.dashboard') }}">
                     <span class="text">
                         Dashboard
                     </span>
@@ -10,7 +11,8 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('user.customerProfile') }}">
+                <a class="nav-link {{\URL::current() == route('user.customerProfile') ? 'active' : ''}}"
+                    href="{{ route('user.customerProfile') }}">
                     <span class="text">
                         Profile
                     </span>
@@ -18,7 +20,8 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link">
+                <a class="nav-link {{\URL::current() == route('user.betts') ? 'active' : ''}}" 
+                    href="{{ route('user.betts') }}">
                     <span class="text">
                         Bet
                     </span>
@@ -26,7 +29,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link">
+                <a class="nav-link {{\URL::current() == route('user.deposite') ? 'active' : ''}}"href="{{ route('user.deposite') }}">
                     <span class="text">
                         Deposite
                     </span>

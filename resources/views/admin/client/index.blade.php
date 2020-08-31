@@ -1,9 +1,6 @@
 @extends('admin.layouts.masterIndex')
 
 @section('card_body')
-@php 
-    use App\AreaSetup;
-@endphp
     <div class="card-body">
         {{-- <div align='center'>
             <font size='7' text-align='center' color='green' face='Comic sans MS'>This Page Is Now Under Construction</font>
@@ -31,9 +28,6 @@
                 		$sl = 1;
                 	@endphp
                 	@foreach ($clients as $client)
-                    @php
-                        $getArea = AreaSetup::where('id',$client->area)->first();
-                    @endphp
                 		<tr class="row_{{ $client->id }}">
                 			<td>{{ $sl++ }}</td>
                 			<td>{{ $client->name }}</td>

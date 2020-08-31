@@ -141,15 +141,6 @@ Route::prefix('admin')->group(function()
 			Route::post('/post-status','Admin\PostController@status')->name('post.status');
 			Route::post('/post/delete','Admin\PostController@delete')->name('post.delete');
 
-			// Area/Location Setup
-			Route::get('/location','Admin\AreaSetupController@index')->name('location.index');
-			Route::get('/location-add','Admin\AreaSetupController@add')->name('location.add');
-			Route::post('/location-save','Admin\AreaSetupController@save')->name('location.save');
-			Route::get('/location-edit/{id}','Admin\AreaSetupController@edit')->name('location.edit');
-			Route::post('/location-update','Admin\AreaSetupController@update')->name('location.update');
-			Route::post('/location-status','Admin\AreaSetupController@status')->name('location.status');
-			Route::post('/location-delete','Admin\AreaSetupController@delete')->name('location.delete');
-
 			//club setup
 			Route::resource('/club','Admin\ClubController');
 			Route::post('/club-delete','Admin\ClubController@delete')->name('club.delete');
@@ -200,6 +191,15 @@ Route::prefix('admin')->group(function()
 			Route::post('/client-status','Admin\ClientController@status')->name('client.status');
 			Route::post('/client-delete','Admin\ClientController@delete')->name('client.delete');
 
+			//Deposite Request
+			Route::any('/deposite-request','Admin\DepositeRequestController@index')->name('depositeRequest.index');
+			Route::any('/deposite-request-edit/{id}','Admin\DepositeRequestController@edit')->name('depositeRequest.edit');
+			Route::any('/deposite-request-update/{id}','Admin\DepositeRequestController@update')->name('depositeRequest.update');
+			Route::post('/deposite-request-delete','Admin\DepositeRequestController@delete')->name('depositeRequest.delete');
+			Route::any('/deposite-request-status','Admin\DepositeRequestController@status')->name('depositeRequest.status');
+
+
+
 		});
 	});
 
@@ -242,7 +242,13 @@ Route::prefix('user')->group(function(){
 			Route::any('/profile-edit', 'CustomerController@editProfile')->name('user.editProfile');
 			Route::any('/logout', 'Auth\Customer\CustomerAuthController@logout')->name('user.logout');
 
-			Route::any('/user-bett-save', 'CustomerBettController@saveBett')->name('user.saveBett');
+			Route::any('/betts', 'CustomerBettController@index')->name('user.betts');
+			Route::any('/bett-save', 'CustomerBettController@saveBett')->name('user.saveBett');
+			Route::any('/betts/view/{id}', 'CustomerBettController@view')->name('user.bettsView');
+
+			Route::any('/deposite', 'CustomerDepositeController@index')->name('user.deposite');
+			Route::any('/deposite/request', 'CustomerDepositeController@depositeRequest')->name('user.depositeRequest');
+			Route::any('/deposite/view/{id}', 'CustomerDepositeController@view')->name('user.depositeview');
 		});
 
 	});

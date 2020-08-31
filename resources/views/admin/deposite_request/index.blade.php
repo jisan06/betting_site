@@ -1,6 +1,14 @@
 @extends('admin.layouts.masterIndex')
 
 @section('card_body')
+@php
+    use App\Game;
+@endphp
+<style type="text/css">
+    .addBtn{
+        display: none;
+    }
+</style>
     <div class="card-body">
         {{-- <div align='center'>
             <font size='7' text-align='center' color='green' face='Comic sans MS'>This Page Is Now Under Construction</font>
@@ -14,38 +22,42 @@
             <table id="dataTable" class="table table-bordered table-striped"  name="areaTable">
                 <thead>
                     <tr>
-                        <th width="20px">SL</th>
-                        <th width="200px">Name</th>
-                        <th width="200px">Travel Charge</th>
-                        <th>Description</th>
-                        <th width="90px">Order By</th>
-                        <th width="20px">Status</th>
-                        <th width="80px">Action</th>
+                        <th width="25px">SL</th>
+                        <th width="90px">Date</th>
+                        <th>From</th>
+                        <th>To</th>
+                        <th>Transaction No</th>
+                        <th width="100px" class="text-right">Amount</th>
+                        <th width="100px" class="text-center">Status</th>
+                        <th width="70px" class="text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody id="">
                 	@php
-                		$sl = 1;
-                	@endphp
-                	@foreach ($areas as $area)
-                		<tr class="row_{{ $area->id }}">
-                			<td>{{ $sl++ }}</td>
-                            <td>{{ $area->name }}</td>
-                			<td>{{ $area->charge }}</td>
-                            <td>{{ $area->description }}</td>
-                			<td>{{ $area->order_by }}</td>
-                			<td>
+                        $sl = 0;
+                        foreach ($customer_deposite_list as $customer_deposite) {
+                    @endphp
+                        <tr class="row_{{$customer_deposite->id}}">
+                            <td>{{++$sl}}</td>
+                            <td>{{date('d M Y',strtotime($customer_deposite->created_at))}}</td>
+                            <td>{{$customer_deposite->deposite_from}}</td>
+                            <td>{{$customer_deposite->deposite_to}}</td>
+                            <td>{{$customer_deposite->transaction_no}}</td>
+                            <td class="text-right">{{$customer_deposite->deposite_amount}}</td>
+                            <td>
                                 @php
-                                    echo \App\Link::status($area->id,$area->status);
+                                    echo \App\Link::status($customer_deposite->id,$customer_deposite->status);
                                 @endphp
-                			</td>
-                			<td>
-                    			@php
-                    				echo \App\Link::action($area->id);
-                    			@endphp                				
-                			</td>
-                		</tr>
-                	@endforeach
+                            </td>
+                            <td>
+                                @php
+                                    echo \App\Link::action($customer_deposite->id);
+                                @endphp                             
+                            </td>
+                        </tr>
+                    @php
+                        }
+                    @endphp
                 </tbody>
             </table>
         </div>
@@ -65,7 +77,7 @@
                   }
                 });
 
-                areaId = $(this).parent().data('id');
+                deposite_id = $(this).parent().data('id');
                 var tableRow = this;
                 swal({   
                     title: "Are you sure?",   
@@ -82,8 +94,8 @@
                     if (isConfirm) {
                         $.ajax({
                             type: "POST",
-                            url : "{{ route('location.delete') }}",
-                            data : {areaId:areaId},
+                            url : "{{ route('depositeRequest.delete') }}",
+                            data : {deposite_id:deposite_id},
                            
                             success: function(response) {
                                 swal({
@@ -93,7 +105,7 @@
                                     timer: 1000,
                                     html: true,
                                 });
-                                $('.row_'+areaId).remove();
+                                $('.row_'+deposite_id).remove();
                             },
                             error: function(response) {
                                 error = "Failed.";
@@ -120,21 +132,21 @@
                 });
             });
         });
-                
+
         //ajax status change code
-        function statusChange(areaId) {
+        function statusChange(deposite_id) {
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 type: "post",
-                url: "{{ route('location.status') }}",
-                data: {areaId:areaId},
+                url: "{{ route('depositeRequest.status') }}",
+                data: {deposite_id:deposite_id},
                 success: function(response) {
                     swal({
                         title: "<small class='text-success'>Success!</small>", 
                         type: "success",
-                        text: "Status Successfully Updated!",
+                        text: "Deposite Updated!",
                         timer: 1000,
                         html: true,
                     });
@@ -150,6 +162,8 @@
                     });
                 }
             });
-        }
+        }        
+        
+        
     </script>
 @endsection

@@ -43,7 +43,7 @@ class BettingCategoriesController extends Controller
 
         $this->validate($request,[
             'match_id'=>'required',
-            'name'=>'required|unique:tbl_betting_categories',
+            'name'=>'required',
             'order_by'=>'required',
             'status'=>'required'
         ]);
@@ -55,7 +55,7 @@ class BettingCategoriesController extends Controller
             'status' => $request->status,
         ]);
 
-        return redirect(route('betting_category.add',$request->match_id))->with('msg','Betting Category Added Successfully');
+        return redirect(route('betting_category.index',$request->match_id))->with('msg','Betting Category Added Successfully');
                
     }
 

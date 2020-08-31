@@ -45,11 +45,11 @@
                         <div class="tab-pane fade show active" id="all-live-sports" role="tabpanel" aria-labelledby="all-live-sports-tab">
                             <div class="sport-content-title">
                                 <h3>All Sports 
-                                    <span class="sport-content-conter">[{{count($match_list)}}]</span>
+                                    <span class="sport-content-conter">[{{count($live_match_list)}}]</span>
                                 </h3>
                             </div>
                             @php
-                                foreach ($match_list as $match) {
+                                foreach ($live_match_list as $match) {
                                     $betting_category_list = BettingCategory::where('match_id',$match->id)
                                         ->where('status',1)
                                         ->get();
@@ -90,7 +90,12 @@
                                                 </ul>
                                             </div>
                                             @php
+                                                $count_betting = 0;
                                                 foreach ($betting_list as $betting) {
+                                                    $get_count_betting = CustomerBett::where('betting_id',@$betting->id)->count();
+                                                    $count_betting = $count_betting + $get_count_betting;
+
+
                                                     $exist_betting_check = CustomerBett::where('client_id',@Auth::guard('customer')->user()->id)->where('betting_id',@$betting->id)->first();
                                                     if(@$exist_betting_check && @Auth::guard('customer')->user()){
                                                         $disabled = "disabled";
@@ -113,7 +118,7 @@
                                                 }
                                             @endphp
                                             <div class="part-bnonus">
-                                                <span class="bonus-number">+336</span>
+                                                <span class="bonus-number">+{{$count_betting}}</span>
                                             </div>
                                         </div>
                                     @php
@@ -126,16 +131,19 @@
                         </div>
                         @foreach ($game_list as $game)
                         @php
-                            $match_list = Match::where('game_id',$game->id)->where('status',1)->get()
+                            $live_match_list = Match::where('game_id',$game->id)
+                                                ->where('live',1)
+                                                ->where('status',1)
+                                                ->get()
                         @endphp
                             <div class="tab-pane fade" id="live-match-{{$game->id}}" role="tabpanel" aria-labelledby="tennis-tab">
                                 <div class="sport-content-title">
                                     <h3>{{$game->name}}
-                                        <span class="sport-content-conter">[{{count($match_list)}}]</span>
+                                        <span class="sport-content-conter">[{{count($live_match_list)}}]</span>
                                     </h3>
                                 </div>
                                 @php
-                                    foreach ($match_list as $match) {
+                                    foreach ($live_match_list as $match) {
                                         $betting_category_list = BettingCategory::where('match_id',$match->id)
                                             ->where('status',1)
                                             ->get();
@@ -176,7 +184,11 @@
                                                     </ul>
                                                 </div>
                                                 @php
+                                                    $count_betting = 0;
                                                     foreach ($betting_list as $betting) {
+                                                        $get_count_betting = CustomerBett::where('betting_id',@$betting->id)->count();
+                                                        $count_betting = $count_betting + $get_count_betting;
+
                                                         $exist_betting_check = CustomerBett::where('client_id',@Auth::guard('customer')->user()->id)->where('betting_id',@$betting->id)->first();
                                                         if(@$exist_betting_check && @Auth::guard('customer')->user()){
                                                             $disabled = "disabled";
@@ -199,7 +211,7 @@
                                                     }
                                                 @endphp
                                                 <div class="part-bnonus">
-                                                    <span class="bonus-number">+336</span>
+                                                    <span class="bonus-number">+{{$count_betting}}</span>
                                                 </div>
                                             </div>
                                         @php

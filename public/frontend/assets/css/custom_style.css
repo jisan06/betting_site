@@ -80,3 +80,42 @@
   cursor: default;
   color: #a9a9a9 !important;
 }
+
+.custom_table thead tr{
+  background: #0aa3b3;
+  text-align: center;
+}
+
+.custom_table thead th{
+  color: #fff;
+  padding: 2px 5px 2px 6px;
+  font-size: 14px;
+  text-align: left;
+}
+
+.custom_table tbody td{
+  font-size: 13px;
+}
+
+#dataTable_length{
+  display: inline-block !important;
+}
+
+.dataTables_filter{
+  display: inline-block !important;
+  float: right;
+}
+
+.details_table .head_name{
+  font-size: 14px;
+}
+
+.details_table td{
+  font-size: 14px;
+}
+
+.crud_from{
+  border: 1px solid #ccc;
+  padding: 25px 20px;
+}
+

@@ -4,11 +4,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use App\Client;
 use App\CustomerBett;
 
 class CustomerBettController extends Controller
 {  
+    public function index(){
+        $title = "My Bets";
+        $customer_bets_list = CustomerBett::
+                                            where('client_id',\Auth::guard('customer')->user()->id)
+                                            ->orderBy('id','desc')
+                                            ->get();
+        return view('frontend.customer.betts.index')->with(compact('title','customer_bets_list'));
+    }
+
+    public function view($id){
+        $title = "Bet Details";
+        $customer_bets_details = CustomerBett::find($id);
+        return view('frontend.customer.betts.view')->with(compact('title','customer_bets_details'));
+    }
 
     public function saveBett(){
         $this->validate(request(), [

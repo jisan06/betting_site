@@ -141,7 +141,7 @@ class MenuController extends Controller
             }
         }
 
-        return redirect(route('menu.index',$request->menuId))->with('msg','Menu Updated Successfully');
+        return redirect(route('menu.index'))->with('msg','Menu Updated Successfully');
     }
 
     public function delete(Request $request)

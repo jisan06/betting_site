@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 30, 2020 at 07:15 PM
+-- Generation Time: Aug 31, 2020 at 08:21 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -165,34 +165,6 @@ INSERT INTO `tbl_admin_panel_information` (`id`, `website_name`, `prefix_title`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_area`
---
-
-CREATE TABLE `tbl_area` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `charge` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `root_plan` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT 1,
-  `order_by` int(11) DEFAULT NULL,
-  `created_by` int(11) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_by` int(11) DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `tbl_area`
---
-
-INSERT INTO `tbl_area` (`id`, `name`, `charge`, `root_plan`, `description`, `status`, `order_by`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(8, 'Dhaka to Mymenshing', '500', NULL, NULL, 1, 1, 4, '2020-07-18 04:25:21', NULL, '2020-07-20 03:48:22'),
-(9, 'Dhaka to Chandpur', '300', 'Sayedabad -> zatrabari -> Chittagong Road -> Kanchpur -> Daudkandi -> Sachar -> Kachua', NULL, 1, 2, 4, '2020-07-18 04:28:40', NULL, '2020-08-20 09:17:56');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `tbl_betting_categories`
 --
 
@@ -214,7 +186,8 @@ INSERT INTO `tbl_betting_categories` (`id`, `match_id`, `name`, `order_by`, `sta
 (1, 4, 'sdafsdaf Updated', 12, 1, '2020-08-25 16:18:40', '2020-08-25 18:51:59'),
 (3, 1, 'omarfaruk.mh686@gmail.com', 1, 1, '2020-08-25 19:42:48', '2020-08-25 19:42:48'),
 (4, 6, 'To Win The Match .. ?', 1, 1, '2020-08-29 08:27:09', '2020-08-29 08:27:09'),
-(5, 6, 'Total Score', 2, 1, '2020-08-29 08:27:30', '2020-08-29 08:27:30');
+(5, 6, 'Total Score', 2, 1, '2020-08-29 08:27:30', '2020-08-29 08:27:30'),
+(6, 7, 'To Win The Match .. ?', 1, 1, '2020-08-31 00:08:56', '2020-08-31 00:08:56');
 
 -- --------------------------------------------------------
 
@@ -241,7 +214,9 @@ INSERT INTO `tbl_betts` (`id`, `betting_category_id`, `name`, `ratio`, `result`,
 (3, 3, 'Add', 4, NULL, '2020-08-25 19:43:09', '2020-08-25 19:43:09'),
 (4, 4, 'India', 2, 0, '2020-08-29 08:28:09', '2020-08-29 08:28:24'),
 (5, 4, 'Pakistan', 1.5, NULL, '2020-08-29 08:29:56', '2020-08-29 08:29:56'),
-(6, 4, 'Draw', 1, NULL, '2020-08-29 12:02:09', '2020-08-29 12:02:09');
+(6, 4, 'Draw', 1, NULL, '2020-08-29 12:02:09', '2020-08-29 12:02:09'),
+(7, 6, 'Barcelona', 1, NULL, '2020-08-31 00:09:31', '2020-08-31 00:09:31'),
+(8, 6, 'PSG', 2, NULL, '2020-08-31 00:09:47', '2020-08-31 00:09:47');
 
 -- --------------------------------------------------------
 
@@ -263,6 +238,7 @@ CREATE TABLE `tbl_clients` (
   `address` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `birth_date` date DEFAULT NULL,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `balance` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `verification_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `token` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -277,8 +253,8 @@ CREATE TABLE `tbl_clients` (
 -- Dumping data for table `tbl_clients`
 --
 
-INSERT INTO `tbl_clients` (`id`, `user_role_id`, `club_id`, `name`, `username`, `sponsor_username`, `phone`, `identification_type`, `identification_no`, `email`, `address`, `birth_date`, `image`, `password`, `verification_code`, `token`, `status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(11, NULL, 3, 'Jisan Ahmed', 'jisan', 'jsit', '01832967276', NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$EHI1qX2B7jdvn18GTXwe7.lTSKJiUAr4iNJMdI6fBlp9kJmhMcTq.', NULL, NULL, 1, NULL, '2020-08-22 05:10:12', NULL, '2020-08-22 05:46:59');
+INSERT INTO `tbl_clients` (`id`, `user_role_id`, `club_id`, `name`, `username`, `sponsor_username`, `phone`, `identification_type`, `identification_no`, `email`, `address`, `birth_date`, `image`, `balance`, `password`, `verification_code`, `token`, `status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
+(11, NULL, 3, 'Jisan Ahmed', 'jisan', 'jsit', '01832967276', NULL, NULL, NULL, NULL, NULL, NULL, '60', '$2y$10$EHI1qX2B7jdvn18GTXwe7.lTSKJiUAr4iNJMdI6fBlp9kJmhMcTq.', NULL, NULL, 1, NULL, '2020-08-22 05:10:12', NULL, '2020-08-31 12:16:36');
 
 -- --------------------------------------------------------
 
@@ -302,8 +278,34 @@ CREATE TABLE `tbl_client_betts` (
 --
 
 INSERT INTO `tbl_client_betts` (`id`, `client_id`, `betting_id`, `betting_stack`, `wining_amount`, `winning_status`, `created_at`, `updated_at`) VALUES
-(10, 11, 4, '100', '200', NULL, '2020-08-30 10:53:55', '2020-08-30 10:53:55'),
-(11, 11, 5, '200', '300.00', NULL, '2020-08-30 11:13:44', '2020-08-30 11:13:44');
+(1, 11, 4, '200', '400.00', NULL, '2020-08-30 11:15:48', '2020-08-30 11:15:48'),
+(2, 11, 5, '150', '225.00', NULL, '2020-08-30 23:40:24', '2020-08-30 23:40:24');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_client_deposites`
+--
+
+CREATE TABLE `tbl_client_deposites` (
+  `id` int(11) NOT NULL,
+  `client_id` int(11) DEFAULT NULL,
+  `deposite_from` varchar(255) DEFAULT NULL,
+  `deposite_to` varchar(255) DEFAULT NULL,
+  `transaction_no` varchar(255) DEFAULT NULL,
+  `deposite_amount` varchar(255) DEFAULT NULL,
+  `status` int(11) DEFAULT 0,
+  `is_deposited` int(11) DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_client_deposites`
+--
+
+INSERT INTO `tbl_client_deposites` (`id`, `client_id`, `deposite_from`, `deposite_to`, `transaction_no`, `deposite_amount`, `status`, `is_deposited`, `created_at`, `updated_at`) VALUES
+(5, 11, '12123123213', '01923943943', '12312323432432', '50', 1, 1, '2020-08-31 12:15:11', '2020-08-31 12:16:36');
 
 -- --------------------------------------------------------
 
@@ -387,7 +389,8 @@ CREATE TABLE `tbl_matches` (
 --
 
 INSERT INTO `tbl_matches` (`id`, `game_id`, `name`, `team_one`, `team_two`, `league`, `date_time`, `icon`, `order_by`, `status`, `live`, `created_at`, `updated_at`) VALUES
-(6, 2, 'India vs Pakistan', 'India', 'Pakistan', 'sdfcsdf', '2020-08-29 08:38:00', 'fgf', 1, 1, 1, '2020-08-29 03:59:17', '2020-08-30 03:24:31');
+(6, 2, 'India vs Pakistan', 'India', 'Pakistan', 'sdfcsdf', '2020-08-29 08:38:00', 'fgf', 1, 1, 2, '2020-08-29 03:59:17', '2020-08-31 12:20:04'),
+(7, 3, 'Barcelona VS PSG', 'Barcelona', 'PSG', 'English Premiere Leauge', '2020-09-01 01:00:00', NULL, 2, 1, 0, '2020-08-31 00:04:15', '2020-08-31 12:20:04');
 
 -- --------------------------------------------------------
 
@@ -433,17 +436,18 @@ INSERT INTO `tbl_menus` (`id`, `parent_menu`, `menu_name`, `menu_link`, `menu_ic
 (34, '29', 'Issue Agent', 'issueToAgent.index', NULL, 6, '1', '2020-07-01 05:50:00', '2020-07-04 05:41:41'),
 (36, '29', 'Warehouse Receive', 'receiveFromWarehouse.index', 'fa fa-caret', 5, '1', '2020-07-04 04:06:39', '2020-07-04 05:41:00'),
 (38, '39', 'Admin Information', 'adminPanelInformation.index', 'fa fa-bars', 5, '1', '2020-07-07 03:38:46', '2020-07-07 03:38:46'),
-(39, NULL, 'User Management', 'admin.index', 'fa fa-bars', 3, '1', NULL, '2020-07-11 20:40:37'),
+(39, NULL, 'User Management', 'admin.index', 'fa fa-bars', 100, '1', NULL, '2020-08-31 09:06:17'),
 (44, '43', 'Service', 'service.index', 'fa fa-caret', 1, '1', '2020-07-12 22:21:38', '2020-07-12 22:21:38'),
 (45, '43', 'Service Type', 'serviceType.index', 'fa fa-caret', 2, '1', '2020-07-12 22:21:58', '2020-07-12 22:21:58'),
 (46, '43', 'Charge Setup', 'admin.index', 'fa fa-caret', 3, '1', '2020-07-12 22:22:41', '2020-07-12 22:22:41'),
-(50, '13', 'Location Setup', 'location.index', NULL, 1, '1', '2020-07-18 03:37:45', '2020-07-18 03:42:41'),
-(51, NULL, 'List', 'List', NULL, 5, '1', '2020-07-19 05:59:04', '2020-07-19 05:59:04'),
+(51, NULL, 'Basic List', 'List', NULL, 5, '1', '2020-07-19 05:59:04', '2020-08-31 09:05:59'),
 (52, '51', 'Client List', 'client.index', NULL, 1, '1', '2020-07-19 06:14:50', '2020-07-19 06:14:50'),
 (54, '13', 'Club', 'club.index', NULL, 2, '1', '2020-08-20 02:24:33', '2020-08-20 02:24:33'),
 (55, '13', 'Games', 'game.index', NULL, 3, '1', '2020-08-23 12:52:44', '2020-08-23 12:52:44'),
 (56, NULL, 'Set Betting', 'admin.index', NULL, 6, '1', '2020-08-23 14:24:48', '2020-08-23 16:47:30'),
-(57, '56', 'Matches', 'match.index', NULL, 1, '1', '2020-08-23 16:46:20', '2020-08-23 16:46:20');
+(57, '56', 'Matches', 'match.index', NULL, 1, '1', '2020-08-23 16:46:20', '2020-08-23 16:46:20'),
+(58, '59', 'Deposite Request', 'depositeRequest.index', NULL, 1, '1', '2020-08-31 09:10:26', '2020-08-31 09:26:59'),
+(59, NULL, 'Transactions', 'admin.index', NULL, 6, '1', '2020-08-31 09:26:43', '2020-08-31 09:26:43');
 
 -- --------------------------------------------------------
 
@@ -524,10 +528,6 @@ INSERT INTO `tbl_menu_actions` (`id`, `parent_menu_id`, `menu_type`, `action_nam
 (119, 45, 2, 'Edit', 'serviceType.edit', 2, 1, '2020-07-12 22:26:32', '2020-07-12 22:26:32'),
 (120, 45, 3, 'Status', 'serviceType.status', 3, 1, '2020-07-12 22:26:43', '2020-07-12 22:26:43'),
 (121, 45, 4, 'Delete', 'serviceType.delete', 4, 1, '2020-07-12 22:26:54', '2020-07-12 22:26:54'),
-(134, 50, 1, 'Add', 'location.add', 1, 1, '2020-07-18 03:41:43', '2020-07-18 03:41:43'),
-(135, 50, 2, 'Edit', 'location.edit', 2, 1, '2020-07-18 03:41:54', '2020-07-18 03:41:54'),
-(136, 50, 4, 'Delete', 'location.delete', 3, 1, '2020-07-18 03:42:06', '2020-07-18 03:42:06'),
-(137, 50, 3, 'Status', 'location.status', 4, 1, '2020-07-18 03:42:17', '2020-07-18 03:42:17'),
 (138, 52, 1, 'Add', 'client.add', 1, 1, '2020-07-19 06:15:40', '2020-07-19 06:16:46'),
 (139, 52, 2, 'Edit', 'client.edit', 2, 1, '2020-07-19 06:15:53', '2020-07-19 06:15:53'),
 (140, 52, 4, 'Delete', 'client.delete', 3, 1, '2020-07-19 06:16:18', '2020-07-19 06:16:18'),
@@ -544,7 +544,10 @@ INSERT INTO `tbl_menu_actions` (`id`, `parent_menu_id`, `menu_type`, `action_nam
 (151, 57, 2, 'Edit', 'match.edit', 3, 1, '2020-08-25 10:48:00', '2020-08-29 03:34:07'),
 (152, 57, 4, 'Delete', 'match.delete', 4, 1, '2020-08-25 11:30:47', '2020-08-29 03:34:28'),
 (153, 57, 3, 'Status', 'match.status', 5, 1, '2020-08-25 11:35:32', '2020-08-29 03:34:44'),
-(154, 57, 8, 'Betting Categories', 'betting_category.index', 2, 1, '2020-08-25 15:44:01', '2020-08-29 03:33:41');
+(154, 57, 8, 'Betting Categories', 'betting_category.index', 2, 1, '2020-08-25 15:44:01', '2020-08-29 03:33:41'),
+(155, 58, 2, 'Edit', 'depositeRequest.edit', 1, 1, '2020-08-31 09:15:03', '2020-08-31 09:15:03'),
+(156, 58, 4, 'Delete', 'depositeRequest.delete', 2, 1, '2020-08-31 09:16:10', '2020-08-31 09:16:10'),
+(157, 58, 3, 'Status', 'depositeRequest.status', 3, 1, '2020-08-31 09:39:23', '2020-08-31 09:39:23');
 
 -- --------------------------------------------------------
 
@@ -734,7 +737,7 @@ CREATE TABLE `tbl_user_roles` (
 --
 
 INSERT INTO `tbl_user_roles` (`id`, `name`, `parent_role`, `level`, `status`, `permission`, `action_permission`, `created_at`, `updated_at`) VALUES
-(2, 'Super User', NULL, 1, 1, '1,6,7,8,10,11,12,39,2,3,4,5,38,13,50,54,55,51,52,56,57', '28,29,30,31,32,33,39,40,41,42,43,44,45,46,47,48,49,50,51,2,3,4,5,6,11,12,13,14,15,7,8,9,10,21,23,24,25,26,108,109,134,135,136,137,142,143,144,145,146,147,148,149,138,139,140,141,150,151,152,153,154', '2019-04-17 00:50:05', '2020-08-25 15:44:15'),
+(2, 'Super User', NULL, 1, 1, '1,6,7,8,10,11,12,13,54,55,51,52,56,57,59,58,39,2,3,4,5,38', '28,29,30,31,32,33,39,40,41,42,43,44,45,46,47,48,49,50,51,142,143,144,145,146,147,148,149,138,139,140,141,150,154,151,152,153,155,156,157,2,3,4,5,6,11,12,13,14,15,7,8,9,10,21,23,24,25,26,108,109', '2019-04-17 00:50:05', '2020-08-31 09:40:02'),
 (3, 'Admin', NULL, 1, 1, '1,6,7,8,10,11,12,39,2,3,4,5,38,13,50,54', '28,29,30,31,32,33,39,40,41,42,43,44,45,46,47,48,49,50,51,2,3,4,5,6,11,12,13,14,15,7,8,9,10,21,23,24,25,26,108,109,134,135,136,137,142', '2019-04-17 00:52:54', '2020-08-20 02:48:18');
 
 -- --------------------------------------------------------
@@ -834,12 +837,6 @@ ALTER TABLE `tbl_admin_panel_information`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tbl_area`
---
-ALTER TABLE `tbl_area`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `tbl_betting_categories`
 --
 ALTER TABLE `tbl_betting_categories`
@@ -861,6 +858,12 @@ ALTER TABLE `tbl_clients`
 -- Indexes for table `tbl_client_betts`
 --
 ALTER TABLE `tbl_client_betts`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl_client_deposites`
+--
+ALTER TABLE `tbl_client_deposites`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -977,22 +980,16 @@ ALTER TABLE `tbl_admin_panel_information`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `tbl_area`
---
-ALTER TABLE `tbl_area`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
 -- AUTO_INCREMENT for table `tbl_betting_categories`
 --
 ALTER TABLE `tbl_betting_categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tbl_betts`
 --
 ALTER TABLE `tbl_betts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tbl_clients`
@@ -1004,7 +1001,13 @@ ALTER TABLE `tbl_clients`
 -- AUTO_INCREMENT for table `tbl_client_betts`
 --
 ALTER TABLE `tbl_client_betts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `tbl_client_deposites`
+--
+ALTER TABLE `tbl_client_deposites`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tbl_frontend_menu`
@@ -1022,19 +1025,19 @@ ALTER TABLE `tbl_games`
 -- AUTO_INCREMENT for table `tbl_matches`
 --
 ALTER TABLE `tbl_matches`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tbl_menus`
 --
 ALTER TABLE `tbl_menus`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT for table `tbl_menu_actions`
 --
 ALTER TABLE `tbl_menu_actions`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=155;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=158;
 
 --
 -- AUTO_INCREMENT for table `tbl_menu_action_type`

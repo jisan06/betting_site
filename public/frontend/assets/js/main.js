@@ -184,8 +184,8 @@
         $('.bet-modal').removeClass('open');
         $('body').css('padding-right', '0');
         unlockScroll();
-        $('.number-of-stake').val(1); 
-        $('.number-of-stake-count').val(1);
+        $('.number-of-stake').val(100); 
+        $('.number-of-stake-count').val(100);
         $('.altv-1').remove();
         $('.altv-2').remove();
         $('.altv-3').remove();

@@ -1,4 +1,5 @@
 <script src="{{ asset('public/frontend') }}/assets/js/jquery-3.4.1.min.js"></script>
+<script src="{{ asset('/public/admin-elite/assets/node_modules/datatables/jquery.dataTables.min.js') }}"></script>
 <!-- bootstrap -->
 <script src="{{ asset('public/frontend') }}/assets/js/bootstrap.min.js"></script>
 <!-- owl carousel -->
@@ -9,6 +10,7 @@
 <script src="{{ asset('public/frontend') }}/assets/js/jquery.filterizr.min.js"></script>
 <!-- wow js-->
 <script src="{{ asset('public/frontend') }}/assets/js/wow.min.js"></script>
+
 <!-- clock js -->
 <script src="{{ asset('public/frontend') }}/assets/js/clock.min.js"></script>
 <script src="{{ asset('public/frontend') }}/assets/js/jquery.appear.min.js"></script>
@@ -27,4 +29,29 @@
 	      
 		});
 	})
+</script>
+
+<script>
+    $(document).ready(function() {
+        var updateThis ;
+
+        var table = $('#dataTable').DataTable( {
+            "orderable": false,
+            "bSort" : false,
+            "pageLength": 25,
+        } );
+        table.on( 'order.dt search.dt', function () {
+            table.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+                cell.innerHTML = i+1;
+            } );
+        } ).draw();
+
+    });
+                
+</script>
+
+<script>
+  $(document).ready(function(){
+        $('.alert-success').fadeIn().delay(7000).fadeOut();
+  });
 </script>

@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use App\Client;
 use App\Admin;
 use App\UserRoles;
-use App\AreaSetup;
 
 class ClientController extends Controller
 {
@@ -29,9 +28,8 @@ class ClientController extends Controller
 
         $currentRole = UserRoles::where('id',$this->userRole)->first();
         $userRoles = UserRoles::where('level','>=',$currentRole->level)->orderBy('level','ASC')->get();
-        $area_list = AreaSetup::where('status',1)->orderBy('name','asc')->get();
 
-    	return view('admin.client.add')->with(compact('title','formLink','buttonName','userRoles','area_list'));
+    	return view('admin.client.add')->with(compact('title','formLink','buttonName','userRoles'));
     }
 
     public function save(Request $request)
@@ -70,12 +68,10 @@ class ClientController extends Controller
     	$buttonName = "Update";
 
         $currentRole = UserRoles::where('id',$this->userRole)->first();
-        $userRoles = UserRoles::where('level','>=',$currentRole->level)->orderBy('level','ASC')->get();
-        $area_list = AreaSetup::where('status',1)->orderBy('name','asc')->get();
 
     	$client = Client::where('id',$clientId)->first();
 
-    	return view('admin.client.edit')->with(compact('title','formLink','buttonName','client','userRoles','area_list'));
+    	return view('admin.client.edit')->with(compact('title','formLink','buttonName','client','userRoles'));
     }
 
     public function update(Request $request)

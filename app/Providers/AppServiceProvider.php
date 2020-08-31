@@ -12,6 +12,8 @@ use App\AdminPanelInformation;
 use App\Menu;
 use App\MenuAction;
 use App\SocialLinks;
+use App\Match;
+use Carbon\Carbon;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -84,6 +86,28 @@ class AppServiceProvider extends ServiceProvider
         View::composer('*',function($socialInfo){
             $social_link_list = SocialLinks::where('status',1)->get();
             $socialInfo->with('social_link_list',$social_link_list);
+        });
+
+        //Code for update betting live,upcoming,closed status by date
+        View::composer('*',function(){
+
+            //change status for upcoming match
+            Match::whereDate('date_time','>', Carbon::today())
+            ->update([
+                'live' => 0
+            ]);
+
+            //change status for which match are live today
+            Match::whereDate('date_time', Carbon::today())
+            ->update([
+                'live' => 1
+            ]);
+
+            //change status for which match are closed
+            Match::whereDate('date_time','<', Carbon::today())
+            ->update([
+                'live' => 2
+            ]);
         });
     }
 
