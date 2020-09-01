@@ -27,9 +27,7 @@
                         <th>From</th>
                         <th>To</th>
                         <th>Transaction No</th>
-                        <th width="100px" class="text-right">Amount</th>
-                        <th width="100px" class="text-center">Status</th>
-                        <th width="70px" class="text-center">Action</th>
+                        <th width="100px" class="text-right">Amount</th>                        <th width="70px" class="text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody id="">
@@ -44,11 +42,6 @@
                             <td>{{$customer_deposite->deposite_to}}</td>
                             <td>{{$customer_deposite->transaction_no}}</td>
                             <td class="text-right">{{$customer_deposite->deposite_amount}}</td>
-                            <td>
-                                @php
-                                    echo \App\Link::status($customer_deposite->id,$customer_deposite->status);
-                                @endphp
-                            </td>
                             <td>
                                 @php
                                     echo \App\Link::action($customer_deposite->id);

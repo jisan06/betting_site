@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 31, 2020 at 08:21 PM
+-- Generation Time: Sep 01, 2020 at 09:55 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -212,7 +212,7 @@ CREATE TABLE `tbl_betts` (
 INSERT INTO `tbl_betts` (`id`, `betting_category_id`, `name`, `ratio`, `result`, `created_at`, `updated_at`) VALUES
 (1, 1, 'Sahariar Updated', 520, 0, '2020-08-25 18:50:17', '2020-08-25 19:42:28'),
 (3, 3, 'Add', 4, NULL, '2020-08-25 19:43:09', '2020-08-25 19:43:09'),
-(4, 4, 'India', 2, 0, '2020-08-29 08:28:09', '2020-08-29 08:28:24'),
+(4, 4, 'India', 2, 0, '2020-08-29 08:28:09', '2020-09-01 01:54:22'),
 (5, 4, 'Pakistan', 1.5, NULL, '2020-08-29 08:29:56', '2020-08-29 08:29:56'),
 (6, 4, 'Draw', 1, NULL, '2020-08-29 12:02:09', '2020-08-29 12:02:09'),
 (7, 6, 'Barcelona', 1, NULL, '2020-08-31 00:09:31', '2020-08-31 00:09:31'),
@@ -389,8 +389,8 @@ CREATE TABLE `tbl_matches` (
 --
 
 INSERT INTO `tbl_matches` (`id`, `game_id`, `name`, `team_one`, `team_two`, `league`, `date_time`, `icon`, `order_by`, `status`, `live`, `created_at`, `updated_at`) VALUES
-(6, 2, 'India vs Pakistan', 'India', 'Pakistan', 'sdfcsdf', '2020-08-29 08:38:00', 'fgf', 1, 1, 2, '2020-08-29 03:59:17', '2020-08-31 12:20:04'),
-(7, 3, 'Barcelona VS PSG', 'Barcelona', 'PSG', 'English Premiere Leauge', '2020-09-01 01:00:00', NULL, 2, 1, 0, '2020-08-31 00:04:15', '2020-08-31 12:20:04');
+(6, 2, 'India vs Pakistan', 'India', 'Pakistan', 'sdfcsdf', '2020-08-29 08:38:00', 'fgf', 1, 1, 2, '2020-08-29 03:59:17', '2020-09-01 01:53:54'),
+(7, 3, 'Barcelona VS PSG', 'Barcelona', 'PSG', 'English Premiere Leauge', '2020-09-01 01:00:00', NULL, 2, 1, 1, '2020-08-31 00:04:15', '2020-09-01 01:53:54');
 
 -- --------------------------------------------------------
 
