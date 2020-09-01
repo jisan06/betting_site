@@ -44,6 +44,7 @@
 
         @include('frontend.element.footer.footer_bottom')
         @include('frontend.element.footer.footer_asset')
+        @include('frontend.element.others.betting_javascript')
 		@yield('custom_js')
 	</body>
 </html>

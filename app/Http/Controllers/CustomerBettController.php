@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\CustomerBett;
+use App\Client;
 
 class CustomerBettController extends Controller
 {  
@@ -33,6 +34,19 @@ class CustomerBettController extends Controller
                 'betting_stack.not_in' => 'Betting stack must be greater than 0'
             ]
         );
+
+
+        $client_info = Client::find(\Auth::guard('customer')->user()->id);
+        if($client_info->balance < request()->betting_stack){
+            $this->validate(request(), [
+                'current_balance' => ['required'],
+            ],
+                [
+                    'current_balance.required' => "You don't have suffucient balance",
+                ]
+            );
+        }
+
         $customer_bett = new CustomerBett();
 		$customer_bett->create([
             'client_id' => \Auth::guard('customer')->user()->id,
@@ -41,6 +55,13 @@ class CustomerBettController extends Controller
             'wining_amount' => request()->wining_amount,
         ]);
 
-        return 1;
+        $client_info->update([
+            'balance' => $client_info->balance - request()->betting_stack,
+         ]);
+
+         return response()->json([
+                'balance'=> number_format($client_info->balance, 2, '.', ''),
+
+            ]);
     }
 }

@@ -74,7 +74,7 @@
                             <label for="image">Slider Image</label>
                             <input type="hidden" class="form-control" name="previousImage" value="{{ $slider->image }}">
                             <input type="file" class="form-control" placeholder="Category Image" name="image" value="{{ old('image') }}">
-                            <span class="imageSizeInfo">/* Min Width: 410px, Min Height: 410px <br></span>
+                            <span class="imageSizeInfo">/* Min Width: 1920px, Min Height: 1280px <br></span>
                             @if ($errors->has('image'))
                                 @foreach($errors->get('image') as $error)
                                     <div class="form-control-feedback">{{ $error }}</div>

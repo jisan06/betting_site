@@ -670,7 +670,7 @@ ul {
       line-height: 46px; }
 
 .banner {
-  background: url("../img/banner-2.jpg") bottom center no-repeat;
+  /*background: url("../img/banner-2.jpg") bottom center no-repeat*/;
   background-size: cover;
   position: relative;
   z-index: 2; }
@@ -713,7 +713,7 @@ ul {
     padding: 130px 0; }
     .banner .banner-content h1 {
       color: #fff;
-      font-size: 60px;
+      font-size: 30px;
       line-height: 70px;
       text-transform: uppercase;
       font-weight: 700;
@@ -722,7 +722,8 @@ ul {
       color: #f81b64;
       text-transform: uppercase;
       margin-bottom: 36px;
-      font-size: 24px; }
+      font-size: 20px; 
+    }
     .banner .banner-content p {
       color: #ddd;
       font-size: 17px;

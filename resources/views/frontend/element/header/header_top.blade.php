@@ -31,7 +31,10 @@
                         @if(Auth::guard('customer')->user())
                             <li>
                                 <a class="link">
-                                    ৳ {{number_format(Auth::guard('customer')->user()->balance, 2, '.', '')}}
+                                    ৳ 
+                                    <span id="balance">
+                                        {{number_format(Auth::guard('customer')->user()->balance, 2, '.', '')}}
+                                    </span>
                                 </a>
                             </li>
                             <li>
