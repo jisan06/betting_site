@@ -198,7 +198,30 @@ Route::prefix('admin')->group(function()
 			Route::post('/deposite-request-delete','Admin\DepositeRequestController@delete')->name('depositeRequest.delete');
 			Route::any('/deposite-request-status','Admin\DepositeRequestController@status')->name('depositeRequest.status');
 
+			//Withdraw Request
+			Route::any('/withdraw-request','Admin\WithdrawRequestController@index')->name('withdrawRequest.index');
+			Route::any('/withdraw-request-edit/{id}','Admin\WithdrawRequestController@edit')->name('withdrawRequest.edit');
+			Route::any('/withdraw-request-update/{id}','Admin\WithdrawRequestController@update')->name('withdrawRequest.update');
+			Route::post('/withdraw-request-delete','Admin\WithdrawRequestController@delete')->name('withdrawRequest.delete');
+			Route::any('/withdraw-request-status','Admin\WithdrawRequestController@status')->name('withdrawRequest.status');
 
+			//Payment Method Setup
+			Route::any('/payment-method','Admin\PaymentMethodController@index')->name('payment-method.index');
+			Route::any('/payment-method-add','Admin\PaymentMethodController@create')->name('payment-method.create');
+			Route::any('/payment-method-store','Admin\PaymentMethodController@store')->name('payment-method.store');
+			Route::any('/payment-method-edit/{id}','Admin\PaymentMethodController@edit')->name('payment-method.edit');
+			Route::any('/payment-method-update/{id}','Admin\PaymentMethodController@update')->name('payment-method.update');
+			Route::post('/payment-method-delete','Admin\PaymentMethodController@delete')->name('payment-method.delete');
+			Route::any('/payment-method-status','Admin\PaymentMethodController@status')->name('payment-method.status');
+
+			//Payment Method Setup
+			Route::any('/payment-number','Admin\PaymentNumberController@index')->name('payment-number.index');
+			Route::any('/payment-number-add','Admin\PaymentNumberController@create')->name('payment-number.create');
+			Route::any('/payment-number-store','Admin\PaymentNumberController@store')->name('payment-number.store');
+			Route::any('/payment-number-edit/{id}','Admin\PaymentNumberController@edit')->name('payment-number.edit');
+			Route::any('/payment-number-update/{id}','Admin\PaymentNumberController@update')->name('payment-number.update');
+			Route::post('/payment-number-delete','Admin\PaymentNumberController@delete')->name('payment-number.delete');
+			Route::any('/payment-number-status','Admin\PaymentNumberController@status')->name('payment-number.status');
 
 		});
 	});
@@ -249,6 +272,10 @@ Route::prefix('user')->group(function(){
 			Route::any('/deposite', 'CustomerDepositeController@index')->name('user.deposite');
 			Route::any('/deposite/request', 'CustomerDepositeController@depositeRequest')->name('user.depositeRequest');
 			Route::any('/deposite/view/{id}', 'CustomerDepositeController@view')->name('user.depositeview');
+
+			Route::any('/withdraw', 'CustomerWithdrawController@index')->name('user.withdraw');
+			Route::any('/withdraw/request', 'CustomerWithdrawController@withdrawRequest')->name('user.withdrawRequest');
+			Route::any('/withdraw/view/{id}', 'CustomerWithdrawController@view')->name('user.withdrawview');
 		});
 
 	});

@@ -65,6 +65,16 @@
     			        Session::forget('msg');
     			    @endphp
 
+                    @if (Session::get('error'))
+                        <div class="alert alert-danger alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <strong>Oops ! </strong> {{ Session::get('error') }}
+                        </div>
+                         @php
+                            Session::forget('error');
+                        @endphp
+                    @endif
+
                     <div class="card">            
     			        <div class="custom-card-header">
     			            <div class="row">
