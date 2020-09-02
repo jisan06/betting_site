@@ -2,19 +2,21 @@
 
 @section('user_breadcrumb')
      <li>
-         <a href="{{ route('user.deposite') }}">My Deposit</a>
+         <a href="{{ route('user.betts') }}">My Bets</a>
      </li>
      <li>{{$title}}</li>
 @endsection
 
 @section('customer_content')
-
+@php
+    $payment_types = array(
+                            'Agent' => 'Agent',
+                            'Personal' => 'Personal',
+                          );
+@endphp
 @php
     use App\PaymentMethod;
     $payment_methods = PaymentMethod::orderBy('name','asc')->get();
-
-    use App\PaymentNumber;
-    $payment_numbers = PaymentNumber::orderBy('order_by','asc')->get();
 @endphp
     <div class="statics-result-map">
         <div class="round-set one">
@@ -31,7 +33,7 @@
                             </strong>
                         </div>
                     @endif
-                    <form action="{{ route('user.depositeRequest') }}" class="crud_from" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('user.withdrawRequest') }}" class="crud_from" method="post" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <div class="row">
                             <div class="col-lg-6 col-sm-6">
@@ -47,16 +49,15 @@
                                     </select>
                                 </div>
                             </div>
-
                             <div class="col-lg-6 col-sm-6">
                                 <div class="form-group">
-                                    <label for="name">To
+                                    <label for="name">Payment Type
                                         <span class="required">*</span>
                                     </label>
-                                    <select class="form-control" name="deposite_to" required>
-                                        <option value="">Select Number</option>
-                                        @foreach ($payment_numbers as $key => $payment_number)
-                                            <option value="{{$payment_number->id}}">{{$payment_number->number}}</option>
+                                    <select class="form-control" name="payment_type" required>
+                                        <option value="">Select Payment Type</option>
+                                        @foreach ($payment_types as $key => $value)
+                                            <option value="{{$value}}">{{$value}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -64,25 +65,33 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-lg-6">
+                            <div class="col-lg-4">
                                 <div class="form-group">
-                                    <label for="phone">Transaction No
+                                    <label for="phone">Withdraw Number
                                         <span class="required">*</span>
                                     </label>
-                                    <input type="text" name="transaction_no" class="form-control" placeholder="write your transaction no" value="{{old('transaction_no')}}" required>
+                                    <input type="text" name="withdraw_number" class="form-control" placeholder="write your number for transection" value="{{old('withdraw_number')}}" required>
                                 </div>
                             </div>
 
-                            <div class="col-lg-6 col-sm-6">
+                            <div class="col-lg-4 col-sm-6">
                                 <div class="form-group">
-                                    <label for="name">Deposite Amount
+                                    <label for="name">Withdraw Amount
                                         <span class="required">*</span>
                                     </label>
-                                    <input type="number" name="deposite_amount" class="form-control" placeholder="write your deposite amount" value="{{old('deposite_amount')}}" required>
+                                    <input type="number" name="withdraw_amount" class="form-control" placeholder="write your deposite amount" value="{{old('withdraw_amount')}}" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-sm-6">
+                                <div class="form-group">
+                                    <label for="name">Password
+                                        <span class="required">*</span>
+                                    </label>
+                                    <input type="Password" name="password" class="form-control" placeholder="Write Your Password" value="{{old('password')}}" required>
                                 </div>
                             </div>
                         </div>
-
+                        
                         <div class="row">
                             <div class="col-lg-12 text-right">
                                 <button type="submit" class="btn btn-primary">

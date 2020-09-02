@@ -37,7 +37,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link">
+                <a class="nav-link {{\URL::current() == route('user.withdraw') ? 'active' : ''}}"href="{{ route('user.withdraw') }}">
                     <span class="text">
                         Withdrawals
                     </span>

@@ -49,9 +49,10 @@ class DepositeRequestController extends Controller
             $client_info->update([
                 'balance' => $client_info->balance + $deposite->deposite_amount,
              ]);
+            return redirect(route('depositeRequest.index'))->with('msg','Deposite Request Updated');
         }
 
-        return redirect(route('depositeRequest.index'))->with('msg','Deposite Request Updated');
+        return redirect(route('depositeRequest.index'))->with('error', 'Already deposited before');
 
     }
 
