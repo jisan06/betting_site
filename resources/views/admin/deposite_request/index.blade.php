@@ -3,6 +3,8 @@
 @section('card_body')
 @php
     use App\Game;
+    use App\PaymentMethod;
+    use App\PaymentNumber;
 @endphp
 <style type="text/css">
     .addBtn{
@@ -24,6 +26,7 @@
                     <tr>
                         <th width="25px">SL</th>
                         <th width="90px">Date</th>
+                        <th width="110px">Method</th>
                         <th>From</th>
                         <th>To</th>
                         <th>Transaction No</th>
@@ -34,12 +37,15 @@
                 	@php
                         $sl = 0;
                         foreach ($customer_deposite_list as $customer_deposite) {
+                            $payment_method = PaymentMethod::find($customer_deposite->payment_method_id);
+                            $payment_to = PaymentNumber::find($customer_deposite->deposite_to);
                     @endphp
                         <tr class="row_{{$customer_deposite->id}}">
                             <td>{{++$sl}}</td>
                             <td>{{date('d M Y',strtotime($customer_deposite->created_at))}}</td>
+                            <td>{{@$payment_method->name}}</td>
                             <td>{{$customer_deposite->deposite_from}}</td>
-                            <td>{{$customer_deposite->deposite_to}}</td>
+                            <td>{{@$payment_to->number}}</td>
                             <td>{{$customer_deposite->transaction_no}}</td>
                             <td class="text-right">{{$customer_deposite->deposite_amount}}</td>
                             <td>

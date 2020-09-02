@@ -6,7 +6,13 @@
      </li>
      <li>{{$title}}</li>
 @endsection
+@php
+    use App\PaymentMethod;
+    use App\PaymentNumber;
 
+    $payment_method = PaymentMethod::find($customer_deposite_details->payment_method_id);
+    $payment_to = PaymentNumber::find($customer_deposite_details->deposite_to);
+@endphp
 @section('customer_content')
     <div class="statics-result-map">
         <div class="round-set one">
@@ -29,7 +35,7 @@
                             <th class="head_name">Transaction No</th>
                             <td>{{$customer_deposite_details->transaction_no}}</td>
                             <th class="head_name">Deposite To</th>
-                            <td>{{$customer_deposite_details->deposite_to}}</td>
+                            <td>{{$payment_to->number}} ({{@$payment_method->name}})</td>
                         </tr>
 
                         <tr>

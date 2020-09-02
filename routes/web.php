@@ -271,6 +271,7 @@ Route::prefix('user')->group(function(){
 
 			Route::any('/deposite', 'CustomerDepositeController@index')->name('user.deposite');
 			Route::any('/deposite/request', 'CustomerDepositeController@depositeRequest')->name('user.depositeRequest');
+			Route::any('/deposite/get-payment-no', 'CustomerDepositeController@getPaymentNo')->name('user.getPaymentNo');
 			Route::any('/deposite/view/{id}', 'CustomerDepositeController@view')->name('user.depositeview');
 
 			Route::any('/withdraw', 'CustomerWithdrawController@index')->name('user.withdraw');

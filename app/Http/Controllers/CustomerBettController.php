@@ -59,9 +59,9 @@ class CustomerBettController extends Controller
             'balance' => $client_info->balance - request()->betting_stack,
          ]);
 
-         return response()->json([
-                'balance'=> number_format($client_info->balance, 2, '.', ''),
+        return response()->json([
+            'balance'=> number_format($client_info->balance, 2, '.', ''),
 
-            ]);
+        ]);
     }
 }

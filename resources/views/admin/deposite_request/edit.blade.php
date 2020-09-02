@@ -1,6 +1,13 @@
 @extends('admin.layouts.master')
 
 @section('content')
+@php
+    use App\PaymentMethod;
+    use App\PaymentNumber;
+
+    $payment_method = PaymentMethod::find($customer_deposite_details->payment_method_id);
+    $payment_to = PaymentNumber::find($customer_deposite_details->deposite_to);
+@endphp
 <form class="form-horizontal" action="{{ route('depositeRequest.update',$customer_deposite_details->id) }}" id="formAddEdit" method="POST" enctype="multipart/form-data" name="form">
     {{ csrf_field() }}
     @method('PUT')
@@ -39,22 +46,28 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <label for="team_one">Deposite Date</label>
                     <div class="form-group ">
                         <input type="text" class="form-control"  value="{{date('d M Y',strtotime($customer_deposite_details->created_at))}}" readonly>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
+                    <label for="payment_method">Payment Method</label>
+                    <div class="form-group">
+                        <input type="text" class="form-control" value="{{@$payment_method->name}}" readonly>
+                    </div>
+                </div>
+                <div class="col-md-3">
                     <label for="deposite_from">Deposite From</label>
                     <div class="form-group">
                         <input type="text" class="form-control" value="{{$customer_deposite_details->deposite_from}}" readonly>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <label for="deposite_from">Deposite To</label>
                     <div class="form-group">
-                        <input type="text" class="form-control"  value="{{$customer_deposite_details->deposite_to}}" readonly>
+                        <input type="text" class="form-control"  value="{{@$payment_to->number}}" readonly>
                     </div>
                 </div>
             </div>

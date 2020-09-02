@@ -9,13 +9,6 @@
 
 @section('customer_content')
 
-@php
-    use App\PaymentMethod;
-    $payment_methods = PaymentMethod::orderBy('name','asc')->get();
-
-    use App\PaymentNumber;
-    $payment_numbers = PaymentNumber::orderBy('order_by','asc')->get();
-@endphp
     <div class="statics-result-map">
         <div class="round-set one">
             <div class="row">
@@ -35,30 +28,41 @@
                         {{ csrf_field() }}
                         <div class="row">
                             <div class="col-lg-6 col-sm-6">
-                                <div class="form-group">
-                                    <label for="name">Payment Method
-                                        <span class="required">*</span>
-                                    </label>
-                                    <select class="form-control" name="payment_method_id" required>
-                                        <option value="">Select Payment Method</option>
-                                        @foreach ($payment_methods as $key => $payment_method)
-                                            <option value="{{$payment_method->id}}">{{$payment_method->name}}</option>
-                                        @endforeach
-                                    </select>
+                                <div class="row">
+                                    <div class="col-lg-6 col-sm-6">
+                                        <div class="form-group">
+                                            <label for="payment_method_id">Payment Method
+                                                <span class="required">*</span>
+                                            </label>
+                                            <select class="form-control" id="payment_method" name="payment_method_id" required>
+                                                <option value="">Select Method</option>
+                                                @foreach ($payment_methods as $key => $payment_method)
+                                                    <option value="{{$payment_method->id}}">{{$payment_method->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-sm-6">
+                                        <div class="form-group">
+                                            <label for="deposite_to">To
+                                                <span class="required">*</span>
+                                            </label>
+                                            <select class="form-control" id="deposite_to" name="deposite_to" required>
+                                                <option value="">Select Number</option>
+                                                
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="col-lg-6 col-sm-6">
+                            <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label for="name">To
+                                    <label for="deposite_from">Deposte From
                                         <span class="required">*</span>
                                     </label>
-                                    <select class="form-control" name="deposite_to" required>
-                                        <option value="">Select Number</option>
-                                        @foreach ($payment_numbers as $key => $payment_number)
-                                            <option value="{{$payment_number->id}}">{{$payment_number->number}}</option>
-                                        @endforeach
-                                    </select>
+                                    <input type="text" name="deposite_from" class="form-control" placeholder="from" value="{{old('deposite_from')}}" required>
                                 </div>
                             </div>
                         </div>
@@ -66,7 +70,7 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label for="phone">Transaction No
+                                    <label for="transaction_no">Transaction No
                                         <span class="required">*</span>
                                     </label>
                                     <input type="text" name="transaction_no" class="form-control" placeholder="write your transaction no" value="{{old('transaction_no')}}" required>
@@ -75,7 +79,7 @@
 
                             <div class="col-lg-6 col-sm-6">
                                 <div class="form-group">
-                                    <label for="name">Deposite Amount
+                                    <label for="deposite_amount">Deposite Amount
                                         <span class="required">*</span>
                                     </label>
                                     <input type="number" name="deposite_amount" class="form-control" placeholder="write your deposite amount" value="{{old('deposite_amount')}}" required>
@@ -96,4 +100,34 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('custom_js')
+    <script type="text/javascript">
+        $('#payment_method').click(function(){
+            $.ajaxSetup({
+              headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              }
+            });
+
+            var payment_method_id = $('#payment_method').val();
+            
+             $.ajax({
+                type: "POST",
+                url : "{{ route('user.getPaymentNo') }}",
+                data : 
+                    {
+                        payment_method_id:payment_method_id,
+                    },
+                success: function(response) {
+                    var deposite_to = $("#deposite_to").html('');
+                        deposite_to.append(response.payment_number_html);
+                },
+                error: function(response) {
+                }
+            }); 
+        });
+        
+    </script>
 @endsection
