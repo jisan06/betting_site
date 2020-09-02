@@ -86,7 +86,7 @@
                     <div class="col-md-6">
                         <div class="form-group {{ $errors->has('width') ? ' has-danger' : '' }}">
                             <label for="width">Width</label>
-                            <input type="text" class="form-control" placeholder="Image Width" name="width" value="{{ old('width') }}">
+                            <input type="text" class="form-control" placeholder="Image Width" name="width" value="{{ $slider->width }}">
                             <input type="hidden" class="form-control" name="previousWidth" value="{{ $slider->width }}">
                             @if ($errors->has('width'))
                                 @foreach($errors->get('width') as $error)
@@ -100,7 +100,7 @@
                     <div class="col-md-6">
                         <div class="form-group {{ $errors->has('height') ? ' has-danger' : '' }}">
                             <label for="height">Height</label>
-                            <input type="text" class="form-control" placeholder="Image Height" name="height" value="{{ old('height') }}">
+                            <input type="text" class="form-control" placeholder="Image Height" name="height" value="{{ $slider->height}}">
                             <input type="hidden" class="form-control" name="previousHeight" value="{{ $slider->height }}">
                             @if ($errors->has('height'))
                                 @foreach($errors->get('height') as $error)

@@ -466,7 +466,7 @@
     }
     .betting .betting-table .bett-menu .nav-tabs .nav-item .nav-link .text {
         font-size: 14px;
-        display: none;
+        /*display: none;*/
     }
     .betting .betting-table .bett-menu .nav-tabs .nav-item .nav-link.active {
         border-radius: 0;

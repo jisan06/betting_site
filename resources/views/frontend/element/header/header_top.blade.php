@@ -1,7 +1,7 @@
-<div class="header-top">
+<div id="navbar" class="header-top header-bottom">
     <div class="container">
         <div class="row">
-            <div class="col-xl-6 col-lg-6 col-sm-6">
+            <div class="col-xl-5 col-lg-5 col-sm-5">
                 <div class="left-area">
                     <ul>
                         <li>
@@ -25,7 +25,21 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-xl-6 col-lg-6 col-sm-6">
+
+            <div class="col-xl-3 col-lg-3 col-sm-2 d-xl-flex d-lg-flex d-block align-items-center">
+                <div class="left-area">
+                    <ul>
+                        <li>
+                            <div class="logo">
+                                <a href="{{ url('/') }}">
+                                    <img src="{{ asset('public/frontend') }}/assets/img/logo.png" alt="logo">
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-sm-5">
                 <div class="right-area">
                     <ul>
                         @if(Auth::guard('customer')->user())
