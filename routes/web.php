@@ -205,6 +205,13 @@ Route::prefix('admin')->group(function()
 			Route::post('/withdraw-request-delete','Admin\WithdrawRequestController@delete')->name('withdrawRequest.delete');
 			Route::any('/withdraw-request-status','Admin\WithdrawRequestController@status')->name('withdrawRequest.status');
 
+			//Transfer Request
+			Route::any('/transfer-request','Admin\TransferRequestController@index')->name('transferRequest.index');
+			Route::any('/transfer-request-edit/{id}','Admin\TransferRequestController@edit')->name('transferRequest.edit');
+			Route::any('/transfer-request-update/{id}','Admin\TransferRequestController@update')->name('transferRequest.update');
+			Route::post('/transfer-request-delete','Admin\TransferRequestController@delete')->name('transferRequest.delete');
+			Route::any('/transfer-request-status','Admin\TransferRequestController@status')->name('transferRequest.status');
+
 			//Payment Method Setup
 			Route::any('/payment-method','Admin\PaymentMethodController@index')->name('payment-method.index');
 			Route::any('/payment-method-add','Admin\PaymentMethodController@create')->name('payment-method.create');
@@ -277,6 +284,10 @@ Route::prefix('user')->group(function(){
 			Route::any('/withdraw', 'CustomerWithdrawController@index')->name('user.withdraw');
 			Route::any('/withdraw/request', 'CustomerWithdrawController@withdrawRequest')->name('user.withdrawRequest');
 			Route::any('/withdraw/view/{id}', 'CustomerWithdrawController@view')->name('user.withdrawview');
+
+			Route::any('/transfer', 'CustomerTransferController@index')->name('user.transfer');
+			Route::any('/transfer/request', 'CustomerTransferController@transferRequest')->name('user.transferRequest');
+			Route::any('/transfer/view/{id}', 'CustomerTransferController@view')->name('user.transferview');
 		});
 
 	});

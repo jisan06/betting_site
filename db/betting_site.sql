@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 01, 2020 at 09:55 AM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.3
+-- Generation Time: Sep 03, 2020 at 02:39 PM
+-- Server version: 10.4.13-MariaDB
+-- PHP Version: 7.4.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -212,7 +211,7 @@ CREATE TABLE `tbl_betts` (
 INSERT INTO `tbl_betts` (`id`, `betting_category_id`, `name`, `ratio`, `result`, `created_at`, `updated_at`) VALUES
 (1, 1, 'Sahariar Updated', 520, 0, '2020-08-25 18:50:17', '2020-08-25 19:42:28'),
 (3, 3, 'Add', 4, NULL, '2020-08-25 19:43:09', '2020-08-25 19:43:09'),
-(4, 4, 'India', 2, 0, '2020-08-29 08:28:09', '2020-09-01 01:54:22'),
+(4, 4, 'India', 2, 0, '2020-08-29 08:28:09', '2020-09-02 04:46:31'),
 (5, 4, 'Pakistan', 1.5, NULL, '2020-08-29 08:29:56', '2020-08-29 08:29:56'),
 (6, 4, 'Draw', 1, NULL, '2020-08-29 12:02:09', '2020-08-29 12:02:09'),
 (7, 6, 'Barcelona', 1, NULL, '2020-08-31 00:09:31', '2020-08-31 00:09:31'),
@@ -254,7 +253,8 @@ CREATE TABLE `tbl_clients` (
 --
 
 INSERT INTO `tbl_clients` (`id`, `user_role_id`, `club_id`, `name`, `username`, `sponsor_username`, `phone`, `identification_type`, `identification_no`, `email`, `address`, `birth_date`, `image`, `balance`, `password`, `verification_code`, `token`, `status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(11, NULL, 3, 'Jisan Ahmed', 'jisan', 'jsit', '01832967276', NULL, NULL, NULL, NULL, NULL, NULL, '60', '$2y$10$EHI1qX2B7jdvn18GTXwe7.lTSKJiUAr4iNJMdI6fBlp9kJmhMcTq.', NULL, NULL, 1, NULL, '2020-08-22 05:10:12', NULL, '2020-08-31 12:16:36');
+(11, NULL, 3, 'Jisan Ahmed', 'jisan', 'jsit', '01832967276', NULL, NULL, NULL, NULL, NULL, NULL, '4300', '$2y$10$EHI1qX2B7jdvn18GTXwe7.lTSKJiUAr4iNJMdI6fBlp9kJmhMcTq.', NULL, NULL, 1, NULL, '2020-08-22 05:10:12', NULL, '2020-09-03 06:12:18'),
+(12, NULL, 1, 'Sahariar', 'sabit', 'asdfasdg', '01624911270', NULL, NULL, 'dhruv.islam7584@gmail.com', NULL, NULL, NULL, '700', '$2y$10$KHvNkbjILxlbSvnQ7PBl8eey3LykBiwIqSM2B2Qx/OpFJK0wT/P5q', NULL, NULL, 1, NULL, '2020-09-03 05:57:38', NULL, '2020-09-03 06:12:18');
 
 -- --------------------------------------------------------
 
@@ -290,8 +290,9 @@ INSERT INTO `tbl_client_betts` (`id`, `client_id`, `betting_id`, `betting_stack`
 CREATE TABLE `tbl_client_deposites` (
   `id` int(11) NOT NULL,
   `client_id` int(11) DEFAULT NULL,
+  `payment_method_id` int(11) DEFAULT NULL,
+  `deposite_to` int(11) DEFAULT NULL,
   `deposite_from` varchar(255) DEFAULT NULL,
-  `deposite_to` varchar(255) DEFAULT NULL,
   `transaction_no` varchar(255) DEFAULT NULL,
   `deposite_amount` varchar(255) DEFAULT NULL,
   `status` int(11) DEFAULT 0,
@@ -304,8 +305,70 @@ CREATE TABLE `tbl_client_deposites` (
 -- Dumping data for table `tbl_client_deposites`
 --
 
-INSERT INTO `tbl_client_deposites` (`id`, `client_id`, `deposite_from`, `deposite_to`, `transaction_no`, `deposite_amount`, `status`, `is_deposited`, `created_at`, `updated_at`) VALUES
-(5, 11, '12123123213', '01923943943', '12312323432432', '50', 1, 1, '2020-08-31 12:15:11', '2020-08-31 12:16:36');
+INSERT INTO `tbl_client_deposites` (`id`, `client_id`, `payment_method_id`, `deposite_to`, `deposite_from`, `transaction_no`, `deposite_amount`, `status`, `is_deposited`, `created_at`, `updated_at`) VALUES
+(5, 11, NULL, 1923943943, '12123123213', '12312323432432', '50', 1, 1, '2020-08-31 12:15:11', '2020-08-31 12:16:36'),
+(6, 11, 3, 5, '12123123213', '12313', '50', 0, 0, '2020-09-02 06:36:24', '2020-09-02 06:36:24');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_client_transfer`
+--
+
+CREATE TABLE `tbl_client_transfer` (
+  `id` int(11) NOT NULL,
+  `client_id` int(11) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `phone_no` varchar(255) DEFAULT NULL,
+  `to_username` varchar(255) DEFAULT NULL,
+  `to_phone_no` varchar(255) DEFAULT NULL,
+  `transfer_amount` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_client_transfer`
+--
+
+INSERT INTO `tbl_client_transfer` (`id`, `client_id`, `name`, `phone_no`, `to_username`, `to_phone_no`, `transfer_amount`, `created_at`, `updated_at`) VALUES
+(3, 11, 'Jisan Ahmed', '01832967276', 'asdgkjsagnj', '452420', 1200, '2020-09-03 05:25:49', '2020-09-03 05:25:49'),
+(4, 11, 'Jisan Ahmed', '01832967276', 'sabit', NULL, 200, '2020-09-03 06:10:55', '2020-09-03 06:10:55'),
+(5, 11, 'Jisan Ahmed', '01832967276', 'sabit', '01624911270', 500, '2020-09-03 06:12:18', '2020-09-03 06:12:18');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_client_withdraw`
+--
+
+CREATE TABLE `tbl_client_withdraw` (
+  `id` int(11) NOT NULL,
+  `client_id` int(11) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `phone_no` varchar(255) DEFAULT NULL,
+  `payment_method_id` int(11) DEFAULT NULL,
+  `payment_type` varchar(255) DEFAULT NULL,
+  `withdraw_amount` int(11) DEFAULT NULL,
+  `withdraw_number` varchar(255) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `is_withdrawed` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_client_withdraw`
+--
+
+INSERT INTO `tbl_client_withdraw` (`id`, `client_id`, `name`, `phone_no`, `payment_method_id`, `payment_type`, `withdraw_amount`, `withdraw_number`, `status`, `is_withdrawed`, `created_at`, `updated_at`) VALUES
+(3, 11, NULL, NULL, 1, 'Personal', 1000, '45343545', 1, 1, '2020-09-02 01:58:59', '2020-09-02 01:59:17'),
+(4, 11, NULL, NULL, 1, 'Personal', 200, '0098764', NULL, NULL, '2020-09-03 01:12:10', '2020-09-03 01:12:10'),
+(5, NULL, 'Jisan Ahmed', NULL, 1, 'Agent', 752, '0098764', NULL, NULL, '2020-09-03 01:13:42', '2020-09-03 01:13:42'),
+(6, NULL, 'Jisan Ahmed', NULL, 1, 'Agent', 123456, '123456', NULL, NULL, '2020-09-03 01:14:27', '2020-09-03 01:14:27'),
+(7, 11, 'Jisan Ahmed', NULL, 1, 'Agent', 1234567, '123456', NULL, NULL, '2020-09-03 01:16:33', '2020-09-03 01:16:33'),
+(8, 11, 'Jisan Ahmed', NULL, 1, 'Agent', 200, '+880', NULL, NULL, '2020-09-03 01:18:05', '2020-09-03 01:18:05'),
+(9, 11, 'Jisan Ahmed', '01832967276', 1, 'Personal', 121, '0098764', 1, 1, '2020-09-03 01:19:01', '2020-09-03 01:28:15');
 
 -- --------------------------------------------------------
 
@@ -389,8 +452,8 @@ CREATE TABLE `tbl_matches` (
 --
 
 INSERT INTO `tbl_matches` (`id`, `game_id`, `name`, `team_one`, `team_two`, `league`, `date_time`, `icon`, `order_by`, `status`, `live`, `created_at`, `updated_at`) VALUES
-(6, 2, 'India vs Pakistan', 'India', 'Pakistan', 'sdfcsdf', '2020-08-29 08:38:00', 'fgf', 1, 1, 2, '2020-08-29 03:59:17', '2020-09-01 01:53:54'),
-(7, 3, 'Barcelona VS PSG', 'Barcelona', 'PSG', 'English Premiere Leauge', '2020-09-01 01:00:00', NULL, 2, 1, 1, '2020-08-31 00:04:15', '2020-09-01 01:53:54');
+(6, 2, 'India vs Pakistan', 'India', 'Pakistan', 'sdfcsdf', '2020-08-29 08:38:00', 'fgf', 1, 1, 2, '2020-08-29 03:59:17', '2020-09-03 06:34:06'),
+(7, 3, 'Barcelona VS PSG', 'Barcelona', 'PSG', 'English Premiere Leauge', '2020-09-01 01:00:00', NULL, 2, 1, 2, '2020-08-31 00:04:15', '2020-09-03 06:34:06');
 
 -- --------------------------------------------------------
 
@@ -447,7 +510,11 @@ INSERT INTO `tbl_menus` (`id`, `parent_menu`, `menu_name`, `menu_link`, `menu_ic
 (56, NULL, 'Set Betting', 'admin.index', NULL, 6, '1', '2020-08-23 14:24:48', '2020-08-23 16:47:30'),
 (57, '56', 'Matches', 'match.index', NULL, 1, '1', '2020-08-23 16:46:20', '2020-08-23 16:46:20'),
 (58, '59', 'Deposite Request', 'depositeRequest.index', NULL, 1, '1', '2020-08-31 09:10:26', '2020-08-31 09:26:59'),
-(59, NULL, 'Transactions', 'admin.index', NULL, 6, '1', '2020-08-31 09:26:43', '2020-08-31 09:26:43');
+(59, NULL, 'Transactions', 'admin.index', NULL, 6, '1', '2020-08-31 09:26:43', '2020-08-31 09:26:43'),
+(60, '13', 'Payment Method', 'payment-method.index', NULL, 4, '1', '2020-09-01 05:16:56', '2020-09-01 05:16:56'),
+(61, '13', 'Payment Number', 'payment-number.index', NULL, 5, '1', '2020-09-01 07:30:01', '2020-09-01 07:30:01'),
+(62, '59', 'Withdraw Request', 'withdrawRequest.index', NULL, 2, '1', '2020-09-02 00:59:48', '2020-09-02 00:59:48'),
+(63, '59', 'Transfer Request', 'transferRequest.index', NULL, 3, '1', '2020-09-03 06:27:37', '2020-09-03 06:33:22');
 
 -- --------------------------------------------------------
 
@@ -547,7 +614,18 @@ INSERT INTO `tbl_menu_actions` (`id`, `parent_menu_id`, `menu_type`, `action_nam
 (154, 57, 8, 'Betting Categories', 'betting_category.index', 2, 1, '2020-08-25 15:44:01', '2020-08-29 03:33:41'),
 (155, 58, 2, 'Edit', 'depositeRequest.edit', 1, 1, '2020-08-31 09:15:03', '2020-08-31 09:15:03'),
 (156, 58, 4, 'Delete', 'depositeRequest.delete', 2, 1, '2020-08-31 09:16:10', '2020-08-31 09:16:10'),
-(157, 58, 3, 'Status', 'depositeRequest.status', 3, 1, '2020-08-31 09:39:23', '2020-08-31 09:39:23');
+(157, 58, 3, 'Status', 'depositeRequest.status', 3, 1, '2020-08-31 09:39:23', '2020-08-31 09:39:23'),
+(158, 60, 1, 'Add', 'payment-method.create', 1, 1, '2020-09-01 05:20:24', '2020-09-01 05:20:24'),
+(159, 60, 2, 'Edit', 'payment-method.edit', 2, 1, '2020-09-01 05:48:12', '2020-09-01 05:48:12'),
+(160, 60, 4, 'Delete', 'payment-method.delete', 3, 1, '2020-09-01 06:39:11', '2020-09-01 06:39:11'),
+(161, 60, 3, 'Status', 'payment-method.status', 4, 1, '2020-09-01 06:55:25', '2020-09-01 06:55:25'),
+(162, 61, 1, 'Add', 'payment-number.create', 1, 1, '2020-09-01 08:03:08', '2020-09-01 08:03:08'),
+(163, 61, 2, 'Edit', 'payment-number.edit', 2, 1, '2020-09-01 09:08:01', '2020-09-01 09:08:01'),
+(164, 61, 4, 'Delete', 'payment-number.delete', 3, 1, '2020-09-01 09:19:01', '2020-09-01 09:19:01'),
+(165, 61, 3, 'Status', 'payment-number.status', 4, 1, '2020-09-01 09:23:32', '2020-09-01 09:23:32'),
+(166, 62, 2, 'Edit', 'withdrawRequest.edit', 1, 1, '2020-09-02 01:20:50', '2020-09-02 01:20:50'),
+(167, 62, 4, 'Delete', 'withdrawRequest.delete', 2, 1, '2020-09-02 01:56:59', '2020-09-02 01:56:59'),
+(168, 63, 4, 'Delete', 'transferRequest.delete', 1, 1, '2020-09-03 06:33:38', '2020-09-03 06:33:38');
 
 -- --------------------------------------------------------
 
@@ -606,6 +684,51 @@ INSERT INTO `tbl_pages` (`id`, `frontend_menu_id`, `page_name`, `status`, `creat
 (1, 4, 'Dew Hunt', 1, 4, '2020-05-10 04:56:47', 4, '2020-05-26 18:44:44'),
 (2, 4, 'Page One', 1, 4, '2020-05-10 05:42:32', 4, '2020-05-10 06:03:53'),
 (4, 1, 'Version Page One', 1, 4, '2020-05-10 06:08:42', NULL, '2020-05-10 06:08:42');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_payment_method`
+--
+
+CREATE TABLE `tbl_payment_method` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `order_by` int(11) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_payment_method`
+--
+
+INSERT INTO `tbl_payment_method` (`id`, `name`, `order_by`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'BKash', 1, 1, '2020-09-01 05:27:57', '2020-09-01 07:09:44');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_payment_number`
+--
+
+CREATE TABLE `tbl_payment_number` (
+  `id` int(11) NOT NULL,
+  `payment_method_id` int(11) DEFAULT NULL,
+  `number` varchar(255) DEFAULT NULL,
+  `order_by` int(11) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_payment_number`
+--
+
+INSERT INTO `tbl_payment_number` (`id`, `payment_method_id`, `number`, `order_by`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, '00000000000000', 1, 1, '2020-09-01 08:43:32', '2020-09-01 10:04:09');
 
 -- --------------------------------------------------------
 
@@ -737,7 +860,7 @@ CREATE TABLE `tbl_user_roles` (
 --
 
 INSERT INTO `tbl_user_roles` (`id`, `name`, `parent_role`, `level`, `status`, `permission`, `action_permission`, `created_at`, `updated_at`) VALUES
-(2, 'Super User', NULL, 1, 1, '1,6,7,8,10,11,12,13,54,55,51,52,56,57,59,58,39,2,3,4,5,38', '28,29,30,31,32,33,39,40,41,42,43,44,45,46,47,48,49,50,51,142,143,144,145,146,147,148,149,138,139,140,141,150,154,151,152,153,155,156,157,2,3,4,5,6,11,12,13,14,15,7,8,9,10,21,23,24,25,26,108,109', '2019-04-17 00:50:05', '2020-08-31 09:40:02'),
+(2, 'Super User', NULL, 1, 1, '1,6,7,8,10,11,12,13,54,55,60,61,51,52,56,57,59,58,62,63,39,2,3,4,5,38', '28,29,30,31,32,33,39,40,41,42,43,44,45,46,47,48,49,50,51,142,143,144,145,146,147,148,149,158,159,160,161,162,163,164,165,138,139,140,141,150,154,151,152,153,155,156,157,166,167,168,2,3,4,5,6,11,12,13,14,15,7,8,9,10,21,23,24,25,26,108,109', '2019-04-17 00:50:05', '2020-09-03 06:33:51'),
 (3, 'Admin', NULL, 1, 1, '1,6,7,8,10,11,12,39,2,3,4,5,38,13,50,54', '28,29,30,31,32,33,39,40,41,42,43,44,45,46,47,48,49,50,51,2,3,4,5,6,11,12,13,14,15,7,8,9,10,21,23,24,25,26,108,109,134,135,136,137,142', '2019-04-17 00:52:54', '2020-08-20 02:48:18');
 
 -- --------------------------------------------------------
@@ -867,6 +990,18 @@ ALTER TABLE `tbl_client_deposites`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tbl_client_transfer`
+--
+ALTER TABLE `tbl_client_transfer`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl_client_withdraw`
+--
+ALTER TABLE `tbl_client_withdraw`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tbl_frontend_menu`
 --
 ALTER TABLE `tbl_frontend_menu`
@@ -906,6 +1041,18 @@ ALTER TABLE `tbl_menu_action_type`
 -- Indexes for table `tbl_pages`
 --
 ALTER TABLE `tbl_pages`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl_payment_method`
+--
+ALTER TABLE `tbl_payment_method`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl_payment_number`
+--
+ALTER TABLE `tbl_payment_number`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -995,7 +1142,7 @@ ALTER TABLE `tbl_betts`
 -- AUTO_INCREMENT for table `tbl_clients`
 --
 ALTER TABLE `tbl_clients`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `tbl_client_betts`
@@ -1007,7 +1154,19 @@ ALTER TABLE `tbl_client_betts`
 -- AUTO_INCREMENT for table `tbl_client_deposites`
 --
 ALTER TABLE `tbl_client_deposites`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `tbl_client_transfer`
+--
+ALTER TABLE `tbl_client_transfer`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `tbl_client_withdraw`
+--
+ALTER TABLE `tbl_client_withdraw`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `tbl_frontend_menu`
@@ -1031,13 +1190,13 @@ ALTER TABLE `tbl_matches`
 -- AUTO_INCREMENT for table `tbl_menus`
 --
 ALTER TABLE `tbl_menus`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT for table `tbl_menu_actions`
 --
 ALTER TABLE `tbl_menu_actions`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=158;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=169;
 
 --
 -- AUTO_INCREMENT for table `tbl_menu_action_type`
@@ -1050,6 +1209,18 @@ ALTER TABLE `tbl_menu_action_type`
 --
 ALTER TABLE `tbl_pages`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `tbl_payment_method`
+--
+ALTER TABLE `tbl_payment_method`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `tbl_payment_number`
+--
+ALTER TABLE `tbl_payment_number`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_posts`

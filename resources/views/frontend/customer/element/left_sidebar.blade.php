@@ -45,7 +45,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link">
+                <a class="nav-link {{\URL::current() == route('user.transfer') ? 'active' : ''}}"href="{{ route('user.transfer') }}">
                     <span class="text">
                         Transfers
                     </span>
