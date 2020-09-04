@@ -14,16 +14,6 @@
     <div class="statics-result-map">
         <div class="round-set one">
             <div class="row">
-                <div class="col-md-6">
-                </div>
-                <div class="col-md-6 text-right">
-                    <a style="font-size: 16px;" class="btn btn-info" href="{{ route('user.transferRequest') }}">
-                        <i class="fa fa-plus-circle"></i> Request Transfer
-                    </a>                  
-                </div>
-            </div>
-            <br>
-            <div class="row">
                 <div class="col-md-12">
                     <div class="table-responsive">
                         <table id="dataTable" class="table table-bordered table-striped custom_table">

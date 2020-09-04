@@ -2,7 +2,7 @@
     <div class="bett-menu">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
-                <a class="nav-link {{\URL::current() == route('user.dashboard') ? 'active' : ''}}" 
+                <a class="nav-link {{\URL::current() == route('user.dashboard') ? 'active' : ''}}"  
                     href="{{ route('user.dashboard') }}">
                     <span class="text">
                         Dashboard
@@ -29,7 +29,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link {{\URL::current() == route('user.deposite') ? 'active' : ''}}"href="{{ route('user.deposite') }}">
+                <a class="nav-link {{\URL::current() == route('user.deposite') ? 'active' : ''}}" href="{{ route('user.deposite') }}">
                     <span class="text">
                         Deposite
                     </span>
@@ -37,7 +37,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link {{\URL::current() == route('user.withdraw') ? 'active' : ''}}"href="{{ route('user.withdraw') }}">
+                <a class="nav-link {{\URL::current() == route('user.withdraw') ? 'active' : ''}}" href="{{ route('user.withdraw') }}">
                     <span class="text">
                         Withdrawals
                     </span>
@@ -45,7 +45,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link {{\URL::current() == route('user.transfer') ? 'active' : ''}}"href="{{ route('user.transfer') }}">
+                <a class="nav-link {{\URL::current() == route('user.transfer') ? 'active' : ''}}" href="{{ route('user.transfer') }}">
                     <span class="text">
                         Transfers
                     </span>
@@ -53,7 +53,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link">
+                <a class="nav-link {{\URL::current() == route('user.transaction') ? 'active' : ''}}" href="{{ route('user.transaction') }}">
                     <span class="text">
                         Transactions
                     </span>
