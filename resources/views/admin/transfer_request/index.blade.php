@@ -25,10 +25,8 @@
                         <th width="25px">SL</th>
                         <th width="90px">Date</th>
                         <th width="150px">Name</th>
-                        <th width="40px">Phone No.</th>
-                        <th width="100px">To</th>
-                        <th width="80px">Payment Type</th>
-                        <th width="40px">Status</th>
+                        <th width="150px">To Username</th>
+                        <th width="40px">To Phone No.</th>
                         <th width="100px" class="text-right">Amount</th>                        
                         <th width="70px" class="text-center">Action</th>
                     </tr>
@@ -36,29 +34,18 @@
                 <tbody id="">
                 	@php
                         $sl = 0;
-                        foreach ($customer_withdraw_list as $customer_withdraw) {
+                        foreach ($customer_transfer_list as $customer_transfer) {
                     @endphp
-                        <tr class="row_{{$customer_withdraw->id}}">
+                        <tr class="row_{{$customer_transfer->id}}">
                             <td>{{++$sl}}</td>
-                            <td>{{date('d M Y',strtotime($customer_withdraw->created_at))}}</td>
-                            <td>{{$customer_withdraw->name}}</td>
-                            <td>{{$customer_withdraw->phone_no}}</td>
-                            <td>{{$customer_withdraw->withdraw_number}}</td>
-                            <td>{{$customer_withdraw->payment_type}}</td>
-                            <td>
-                                @if($customer_withdraw->status == 0)
-                                    <span class="badge badge-warning">Pending</span> 
-                                @endif
-
-                                @if($customer_withdraw->status == 1)
-                                    <span class="badge badge-success">Withdrawed</span>
-                                   
-                                @endif
-                            </td>
-                            <td class="text-right">{{$customer_withdraw->withdraw_amount}}</td>
+                            <td>{{date('d M Y',strtotime($customer_transfer->created_at))}}</td>
+                            <td>{{$customer_transfer->name}}</td>
+                            <td>{{$customer_transfer->to_username}}</td>
+                            <td>{{$customer_transfer->to_phone_no}}</td>
+                            <td>{{$customer_transfer->transfer_amount}}</td>
                             <td>
                                 @php
-                                    echo \App\Link::action($customer_withdraw->id);
+                                    echo \App\Link::action($customer_transfer->id);
                                 @endphp                             
                             </td>
                         </tr>
@@ -84,7 +71,7 @@
                   }
                 });
 
-                withdraw_id = $(this).parent().data('id');
+                transfer_id = $(this).parent().data('id');
                 var tableRow = this;
                 swal({   
                     title: "Are you sure?",   
@@ -101,8 +88,8 @@
                     if (isConfirm) {
                         $.ajax({
                             type: "POST",
-                            url : "{{ route('withdrawRequest.delete') }}",
-                            data : {withdraw_id:withdraw_id},
+                            url : "{{ route('transferRequest.delete') }}",
+                            data : {transfer_id:transfer_id},
                            
                             success: function(response) {
                                 swal({
@@ -112,7 +99,7 @@
                                     timer: 1000,
                                     html: true,
                                 });
-                                $('.row_'+withdraw_id).remove();
+                                $('.row_'+transfer_id).remove();
                             },
                             error: function(response) {
                                 error = "Failed.";

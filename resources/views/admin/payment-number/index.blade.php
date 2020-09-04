@@ -25,11 +25,15 @@
                 <tbody id="">
                 	@php
                 		$sl = 1;
+                        use App\PaymentMethod;
                 	@endphp
                 	@foreach ($payment_numbers as $payment_number)
+                        @php
+                            $payment_method = PaymentMethod::find($payment_number->payment_method_id);
+                        @endphp
                 		<tr class="row_{{ $payment_number->id }}">
                 			<td>{{ $sl++ }}</td>
-                            <td>{{ $payment_number->payment_method_id }}</td>
+                            <td>{{ $payment_method->name }}</td>
                             <td>{{ $payment_number->number }}</td>
                 			<td>{{ $payment_number->order_by }}</td>
                 			<td>

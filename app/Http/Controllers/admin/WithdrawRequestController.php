@@ -35,22 +35,27 @@ class WithdrawRequestController extends Controller
         $withdraw = CustomerWithdraw::find($id);
         $client_info = Client::find($withdraw->client_id);
 
-        $withdraw->update([
-            'withdraw_amount' => request()->withdraw_amount,
-            'status' => request()->status,
-        ]);
+        if ($client_info->balance - $withdraw->withdraw_amount < 0 ) {
+                return redirect()->back()->withErrors(['error' => 'Client does not have sufficient balance']);
 
-         if($withdraw->is_withdrawed == 0 && $withdraw->status == 1){
-            $withdraw->update([
-                'is_withdrawed' => 1,
-            ]);
+	    }else{   
+	    	$withdraw->update([
+	            'withdraw_amount' => request()->withdraw_amount,
+	            'status' => request()->status,
+	        ]);
 
-            $client_info->update([
-                'balance' => $client_info->balance - $withdraw->withdraw_amount,
-             ]);
+	        if($withdraw->is_withdrawed == 0 && $withdraw->status == 1){
+	            $withdraw->update([
+	                'is_withdrawed' => 1,
+	            ]);
 
-            return redirect(route('withdrawRequest.index'))->with('msg','Withdraw Request Updated');
-        }
+	            $client_info->update([
+	                'balance' => $client_info->balance - $withdraw->withdraw_amount,
+	             ]);
+
+	            return redirect(route('withdrawRequest.index'))->with('msg','Withdraw Request Updated');
+	        }
+    	}
 
         return redirect(route('withdrawRequest.index'))->with('error','You have already sent money before');
 

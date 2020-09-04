@@ -9,7 +9,7 @@ class CustomerWithdraw extends Model
     protected $table = "tbl_client_withdraw";
 
     protected $fillable = [
-        'client_id','payment_method_id','payment_type','withdraw_amount','withdraw_number','status','is_withdrawed'
+        'client_id','name','phone_no','payment_method_id','payment_type','withdraw_amount','withdraw_number','status','is_withdrawed'
     ];
 
 	protected $hidden = [

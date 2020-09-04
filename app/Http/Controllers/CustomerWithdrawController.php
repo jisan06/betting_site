@@ -36,12 +36,18 @@ class CustomerWithdrawController extends Controller
 
             $withdraw = new CustomerWithdraw();
             $userPassword = Auth::guard('customer')->user()->password;
+            $name = Auth::guard('customer')->user()->name;
+            $phone = Auth::guard('customer')->user()->phone;
 
             if(!Hash::check(request()->password, $userPassword)){
-            	return redirect()->back()->withErrors(['error' => 'Your password is wrong',]);
+            	return redirect()->back()->withErrors(['error' => 'Your password is wrong']);
+            }elseif (Auth::guard('customer')->user()->balance - request()->withdraw_amount < 0 ) {
+                return redirect()->back()->withErrors(['error' => 'Your do not have sufficient balance']);
             }else{
             	$withdraw->create([
 	                'client_id' => \Auth::guard('customer')->user()->id,
+                    'name' => $name,
+                    'phone_no' => $phone,
 	                'payment_method_id' => request()->payment_method_id,
 	                'payment_type' => request()->payment_type,
 	                'withdraw_amount' => request()->withdraw_amount,
