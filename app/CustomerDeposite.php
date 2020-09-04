@@ -9,7 +9,7 @@ class CustomerDeposite extends Model
     protected $table = "tbl_client_deposites";
 
     protected $fillable = [
-        'client_id','payment_method_id','deposite_to','deposite_from','transaction_no','deposite_amount','status','is_deposited'
+        'client_id','payment_method_id','deposite_to','deposite_from','transaction_no','deposite_amount','status','is_deposited','type'
     ];
 
 	protected $hidden = [

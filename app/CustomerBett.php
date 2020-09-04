@@ -9,7 +9,7 @@ class CustomerBett extends Model
     protected $table = "tbl_client_betts";
 
     protected $fillable = [
-        'client_id','betting_id','betting_stack','wining_amount','winning_status'
+        'client_id','betting_id','betting_stack','wining_amount','winning_status','type'
     ];
 
 	protected $hidden = [
