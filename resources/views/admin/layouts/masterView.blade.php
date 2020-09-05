@@ -100,9 +100,9 @@
             <!-- End Page wrapper  -->
 
             <!-- footer -->
-            <footer class="footer">
+            {{-- <footer class="footer">
                 © {{ date('Y') }} Developed by <a target="_blank" href="{{ $adminInformation->developer_website_link }}">{{ $adminInformation->developed_by }}</a>
-            </footer>
+            </footer> --}}
             <!-- End footer -->
 
         </div>
