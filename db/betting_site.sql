@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 03, 2020 at 02:39 PM
--- Server version: 10.4.13-MariaDB
--- PHP Version: 7.4.8
+-- Generation Time: Sep 05, 2020 at 04:54 PM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -29,18 +30,18 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `admins` (
   `id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `email` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `username` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(191) NOT NULL,
+  `phone` varchar(255) DEFAULT NULL,
+  `email` varchar(191) DEFAULT NULL,
+  `username` text DEFAULT NULL,
   `role` int(11) DEFAULT NULL,
   `club_id` int(11) NOT NULL,
-  `password` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(191) DEFAULT NULL,
   `status` int(11) NOT NULL DEFAULT 1,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `remember_token` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `admins`
@@ -61,12 +62,12 @@ INSERT INTO `admins` (`id`, `name`, `phone`, `email`, `username`, `role`, `club_
 
 CREATE TABLE `clubs` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(191) NOT NULL,
   `order_by` int(11) NOT NULL,
   `status` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `clubs`
@@ -84,12 +85,12 @@ INSERT INTO `clubs` (`id`, `name`, `order_by`, `status`, `created_at`, `updated_
 
 CREATE TABLE `failed_jobs` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text NOT NULL,
+  `queue` text NOT NULL,
+  `payload` longtext NOT NULL,
+  `exception` longtext NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -99,9 +100,9 @@ CREATE TABLE `failed_jobs` (
 
 CREATE TABLE `migrations` (
   `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `migration` varchar(255) NOT NULL,
   `batch` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `migrations`
@@ -120,10 +121,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 --
 
 CREATE TABLE `password_resets` (
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `token` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -133,18 +134,18 @@ CREATE TABLE `password_resets` (
 
 CREATE TABLE `tbl_admin_panel_information` (
   `id` int(11) NOT NULL,
-  `website_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `prefix_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `website_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `developed_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `developer_website_link` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `logo_one` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `website_name` varchar(255) DEFAULT NULL,
+  `prefix_title` varchar(255) DEFAULT NULL,
+  `website_title` varchar(255) DEFAULT NULL,
+  `developed_by` varchar(255) DEFAULT NULL,
+  `developer_website_link` varchar(255) DEFAULT NULL,
+  `logo_one` text DEFAULT NULL,
   `logo_one_width` int(11) DEFAULT NULL,
   `logo_one_height` int(11) DEFAULT NULL,
-  `logo_two` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `logo_two` text DEFAULT NULL,
   `logo_two_width` int(11) DEFAULT NULL,
   `logo_two_height` int(11) DEFAULT NULL,
-  `fav_icon` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `fav_icon` text DEFAULT NULL,
   `fav_icon_width` int(11) DEFAULT NULL,
   `fav_icon_height` int(11) DEFAULT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 1,
@@ -152,7 +153,7 @@ CREATE TABLE `tbl_admin_panel_information` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_admin_panel_information`
@@ -200,6 +201,7 @@ CREATE TABLE `tbl_betts` (
   `name` varchar(255) DEFAULT NULL,
   `ratio` float DEFAULT NULL,
   `result` int(11) DEFAULT NULL,
+  `is_published` int(11) DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -208,14 +210,14 @@ CREATE TABLE `tbl_betts` (
 -- Dumping data for table `tbl_betts`
 --
 
-INSERT INTO `tbl_betts` (`id`, `betting_category_id`, `name`, `ratio`, `result`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Sahariar Updated', 520, 0, '2020-08-25 18:50:17', '2020-08-25 19:42:28'),
-(3, 3, 'Add', 4, NULL, '2020-08-25 19:43:09', '2020-08-25 19:43:09'),
-(4, 4, 'India', 2, 0, '2020-08-29 08:28:09', '2020-09-02 04:46:31'),
-(5, 4, 'Pakistan', 1.5, NULL, '2020-08-29 08:29:56', '2020-08-29 08:29:56'),
-(6, 4, 'Draw', 1, NULL, '2020-08-29 12:02:09', '2020-08-29 12:02:09'),
-(7, 6, 'Barcelona', 1, NULL, '2020-08-31 00:09:31', '2020-08-31 00:09:31'),
-(8, 6, 'PSG', 2, NULL, '2020-08-31 00:09:47', '2020-08-31 00:09:47');
+INSERT INTO `tbl_betts` (`id`, `betting_category_id`, `name`, `ratio`, `result`, `is_published`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Sahariar Updated', 520, 0, 0, '2020-08-25 18:50:17', '2020-08-25 19:42:28'),
+(3, 3, 'Add', 4, NULL, 0, '2020-08-25 19:43:09', '2020-08-25 19:43:09'),
+(4, 4, 'India', 2, 0, 0, '2020-08-29 08:28:09', '2020-09-02 04:46:31'),
+(5, 4, 'Pakistan', 1.5, 1, 1, '2020-08-29 08:29:56', '2020-09-05 07:17:02'),
+(6, 4, 'Draw', 1, 1, 0, '2020-08-29 12:02:09', '2020-09-05 06:58:14'),
+(7, 6, 'Barcelona', 1, NULL, 0, '2020-08-31 00:09:31', '2020-08-31 00:09:31'),
+(8, 6, 'PSG', 2, NULL, 0, '2020-08-31 00:09:47', '2020-08-31 00:09:47');
 
 -- --------------------------------------------------------
 
@@ -227,33 +229,33 @@ CREATE TABLE `tbl_clients` (
   `id` int(11) NOT NULL,
   `user_role_id` int(11) DEFAULT NULL,
   `club_id` int(11) DEFAULT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `username` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `sponsor_username` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `identification_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `identification_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `address` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `username` varchar(255) DEFAULT NULL,
+  `sponsor_username` varchar(255) DEFAULT NULL,
+  `phone` varchar(255) DEFAULT NULL,
+  `identification_type` varchar(255) DEFAULT NULL,
+  `identification_no` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `address` text DEFAULT NULL,
   `birth_date` date DEFAULT NULL,
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `balance` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `verification_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `balance` longtext DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `verification_code` varchar(255) DEFAULT NULL,
+  `token` varchar(255) DEFAULT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `created_by` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_clients`
 --
 
 INSERT INTO `tbl_clients` (`id`, `user_role_id`, `club_id`, `name`, `username`, `sponsor_username`, `phone`, `identification_type`, `identification_no`, `email`, `address`, `birth_date`, `image`, `balance`, `password`, `verification_code`, `token`, `status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(11, NULL, 3, 'Jisan Ahmed', 'jisan', 'jsit', '01832967276', NULL, NULL, NULL, NULL, NULL, NULL, '4300', '$2y$10$EHI1qX2B7jdvn18GTXwe7.lTSKJiUAr4iNJMdI6fBlp9kJmhMcTq.', NULL, NULL, 1, NULL, '2020-08-22 05:10:12', NULL, '2020-09-03 06:12:18'),
+(11, NULL, 3, 'Jisan Ahmed', 'jisan', 'jsit', '01832967276', NULL, NULL, NULL, NULL, NULL, NULL, '4725', '$2y$10$EHI1qX2B7jdvn18GTXwe7.lTSKJiUAr4iNJMdI6fBlp9kJmhMcTq.', NULL, NULL, 1, NULL, '2020-08-22 05:10:12', NULL, '2020-09-05 07:17:02'),
 (12, NULL, 1, 'Sahariar', 'sabit', 'asdfasdg', '01624911270', NULL, NULL, 'dhruv.islam7584@gmail.com', NULL, NULL, NULL, '700', '$2y$10$KHvNkbjILxlbSvnQ7PBl8eey3LykBiwIqSM2B2Qx/OpFJK0wT/P5q', NULL, NULL, 1, NULL, '2020-09-03 05:57:38', NULL, '2020-09-03 06:12:18');
 
 -- --------------------------------------------------------
@@ -266,20 +268,21 @@ CREATE TABLE `tbl_client_betts` (
   `id` int(11) NOT NULL,
   `client_id` int(11) DEFAULT NULL,
   `betting_id` int(11) DEFAULT NULL,
-  `betting_stack` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `wining_amount` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `betting_stack` varchar(255) DEFAULT NULL,
+  `wining_amount` varchar(255) DEFAULT NULL,
   `winning_status` int(11) DEFAULT NULL,
+  `type` varchar(255) NOT NULL DEFAULT 'Bet',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_client_betts`
 --
 
-INSERT INTO `tbl_client_betts` (`id`, `client_id`, `betting_id`, `betting_stack`, `wining_amount`, `winning_status`, `created_at`, `updated_at`) VALUES
-(1, 11, 4, '200', '400.00', NULL, '2020-08-30 11:15:48', '2020-08-30 11:15:48'),
-(2, 11, 5, '150', '225.00', NULL, '2020-08-30 23:40:24', '2020-08-30 23:40:24');
+INSERT INTO `tbl_client_betts` (`id`, `client_id`, `betting_id`, `betting_stack`, `wining_amount`, `winning_status`, `type`, `created_at`, `updated_at`) VALUES
+(1, 11, 4, '200', '400.00', NULL, 'Bet', '2020-08-30 11:15:48', '2020-08-30 11:15:48'),
+(2, 11, 5, '150', '225.00', 1, 'Bet', '2020-08-30 23:40:24', '2020-09-05 07:17:02');
 
 -- --------------------------------------------------------
 
@@ -295,7 +298,9 @@ CREATE TABLE `tbl_client_deposites` (
   `deposite_from` varchar(255) DEFAULT NULL,
   `transaction_no` varchar(255) DEFAULT NULL,
   `deposite_amount` varchar(255) DEFAULT NULL,
+  `current_balance` varchar(255) DEFAULT NULL,
   `status` int(11) DEFAULT 0,
+  `type` varchar(255) NOT NULL DEFAULT 'Deposit',
   `is_deposited` int(11) DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -305,9 +310,10 @@ CREATE TABLE `tbl_client_deposites` (
 -- Dumping data for table `tbl_client_deposites`
 --
 
-INSERT INTO `tbl_client_deposites` (`id`, `client_id`, `payment_method_id`, `deposite_to`, `deposite_from`, `transaction_no`, `deposite_amount`, `status`, `is_deposited`, `created_at`, `updated_at`) VALUES
-(5, 11, NULL, 1923943943, '12123123213', '12312323432432', '50', 1, 1, '2020-08-31 12:15:11', '2020-08-31 12:16:36'),
-(6, 11, 3, 5, '12123123213', '12313', '50', 0, 0, '2020-09-02 06:36:24', '2020-09-02 06:36:24');
+INSERT INTO `tbl_client_deposites` (`id`, `client_id`, `payment_method_id`, `deposite_to`, `deposite_from`, `transaction_no`, `deposite_amount`, `current_balance`, `status`, `type`, `is_deposited`, `created_at`, `updated_at`) VALUES
+(5, 11, NULL, 1923943943, '12123123213', '12312323432432', '50', NULL, 1, 'Deposit', 1, '2020-08-31 12:15:11', '2020-08-31 12:16:36'),
+(6, 11, 3, 5, '12123123213', '12313', '50', NULL, 0, 'Deposit', 0, '2020-09-02 06:36:24', '2020-09-02 06:36:24'),
+(7, 11, 1, 1, '019392483', '384237423642', '200', '4500', 1, 'Deposit', 1, '2020-09-05 02:47:09', '2020-09-05 02:50:29');
 
 -- --------------------------------------------------------
 
@@ -323,6 +329,8 @@ CREATE TABLE `tbl_client_transfer` (
   `to_username` varchar(255) DEFAULT NULL,
   `to_phone_no` varchar(255) DEFAULT NULL,
   `transfer_amount` int(11) DEFAULT NULL,
+  `current_balance` varchar(255) DEFAULT NULL,
+  `type` varchar(255) NOT NULL DEFAULT 'Transfer',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -331,10 +339,10 @@ CREATE TABLE `tbl_client_transfer` (
 -- Dumping data for table `tbl_client_transfer`
 --
 
-INSERT INTO `tbl_client_transfer` (`id`, `client_id`, `name`, `phone_no`, `to_username`, `to_phone_no`, `transfer_amount`, `created_at`, `updated_at`) VALUES
-(3, 11, 'Jisan Ahmed', '01832967276', 'asdgkjsagnj', '452420', 1200, '2020-09-03 05:25:49', '2020-09-03 05:25:49'),
-(4, 11, 'Jisan Ahmed', '01832967276', 'sabit', NULL, 200, '2020-09-03 06:10:55', '2020-09-03 06:10:55'),
-(5, 11, 'Jisan Ahmed', '01832967276', 'sabit', '01624911270', 500, '2020-09-03 06:12:18', '2020-09-03 06:12:18');
+INSERT INTO `tbl_client_transfer` (`id`, `client_id`, `name`, `phone_no`, `to_username`, `to_phone_no`, `transfer_amount`, `current_balance`, `type`, `created_at`, `updated_at`) VALUES
+(3, 11, 'Jisan Ahmed', '01832967276', 'asdgkjsagnj', '452420', 1200, NULL, 'Transfer', '2020-09-03 05:25:49', '2020-09-03 05:25:49'),
+(4, 11, 'Jisan Ahmed', '01832967276', 'sabit', NULL, 200, NULL, 'Transfer', '2020-09-03 06:10:55', '2020-09-03 06:10:55'),
+(5, 11, 'Jisan Ahmed', '01832967276', 'sabit', '01624911270', 500, NULL, 'Transfer', '2020-09-03 06:12:18', '2020-09-03 06:12:18');
 
 -- --------------------------------------------------------
 
@@ -351,8 +359,10 @@ CREATE TABLE `tbl_client_withdraw` (
   `payment_type` varchar(255) DEFAULT NULL,
   `withdraw_amount` int(11) DEFAULT NULL,
   `withdraw_number` varchar(255) DEFAULT NULL,
+  `current_balance` varchar(255) DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
   `is_withdrawed` int(11) DEFAULT NULL,
+  `type` varchar(255) DEFAULT 'Withdraw',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -361,14 +371,14 @@ CREATE TABLE `tbl_client_withdraw` (
 -- Dumping data for table `tbl_client_withdraw`
 --
 
-INSERT INTO `tbl_client_withdraw` (`id`, `client_id`, `name`, `phone_no`, `payment_method_id`, `payment_type`, `withdraw_amount`, `withdraw_number`, `status`, `is_withdrawed`, `created_at`, `updated_at`) VALUES
-(3, 11, NULL, NULL, 1, 'Personal', 1000, '45343545', 1, 1, '2020-09-02 01:58:59', '2020-09-02 01:59:17'),
-(4, 11, NULL, NULL, 1, 'Personal', 200, '0098764', NULL, NULL, '2020-09-03 01:12:10', '2020-09-03 01:12:10'),
-(5, NULL, 'Jisan Ahmed', NULL, 1, 'Agent', 752, '0098764', NULL, NULL, '2020-09-03 01:13:42', '2020-09-03 01:13:42'),
-(6, NULL, 'Jisan Ahmed', NULL, 1, 'Agent', 123456, '123456', NULL, NULL, '2020-09-03 01:14:27', '2020-09-03 01:14:27'),
-(7, 11, 'Jisan Ahmed', NULL, 1, 'Agent', 1234567, '123456', NULL, NULL, '2020-09-03 01:16:33', '2020-09-03 01:16:33'),
-(8, 11, 'Jisan Ahmed', NULL, 1, 'Agent', 200, '+880', NULL, NULL, '2020-09-03 01:18:05', '2020-09-03 01:18:05'),
-(9, 11, 'Jisan Ahmed', '01832967276', 1, 'Personal', 121, '0098764', 1, 1, '2020-09-03 01:19:01', '2020-09-03 01:28:15');
+INSERT INTO `tbl_client_withdraw` (`id`, `client_id`, `name`, `phone_no`, `payment_method_id`, `payment_type`, `withdraw_amount`, `withdraw_number`, `current_balance`, `status`, `is_withdrawed`, `type`, `created_at`, `updated_at`) VALUES
+(3, 11, NULL, NULL, 1, 'Personal', 1000, '45343545', NULL, 1, 1, 'Withdraw', '2020-09-02 01:58:59', '2020-09-02 01:59:17'),
+(4, 11, NULL, NULL, 1, 'Personal', 200, '0098764', NULL, NULL, NULL, 'Withdraw', '2020-09-03 01:12:10', '2020-09-03 01:12:10'),
+(5, NULL, 'Jisan Ahmed', NULL, 1, 'Agent', 752, '0098764', NULL, NULL, NULL, 'Withdraw', '2020-09-03 01:13:42', '2020-09-03 01:13:42'),
+(6, NULL, 'Jisan Ahmed', NULL, 1, 'Agent', 123456, '123456', NULL, NULL, NULL, 'Withdraw', '2020-09-03 01:14:27', '2020-09-03 01:14:27'),
+(7, 11, 'Jisan Ahmed', NULL, 1, 'Agent', 1234567, '123456', NULL, NULL, NULL, 'Withdraw', '2020-09-03 01:16:33', '2020-09-03 01:16:33'),
+(8, 11, 'Jisan Ahmed', NULL, 1, 'Agent', 200, '+880', NULL, NULL, NULL, 'Withdraw', '2020-09-03 01:18:05', '2020-09-03 01:18:05'),
+(9, 11, 'Jisan Ahmed', '01832967276', 1, 'Personal', 121, '0098764', NULL, 1, 1, 'Withdraw', '2020-09-03 01:19:01', '2020-09-03 01:28:15');
 
 -- --------------------------------------------------------
 
@@ -379,8 +389,8 @@ INSERT INTO `tbl_client_withdraw` (`id`, `client_id`, `name`, `phone_no`, `payme
 CREATE TABLE `tbl_frontend_menu` (
   `id` int(11) NOT NULL,
   `parent_menu` int(11) DEFAULT NULL,
-  `menu_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `menu_link` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `menu_name` varchar(255) DEFAULT NULL,
+  `menu_link` varchar(255) DEFAULT NULL,
   `order_by` int(11) DEFAULT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `menu_status` tinyint(4) NOT NULL DEFAULT 1,
@@ -389,7 +399,7 @@ CREATE TABLE `tbl_frontend_menu` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_frontend_menu`
@@ -452,8 +462,8 @@ CREATE TABLE `tbl_matches` (
 --
 
 INSERT INTO `tbl_matches` (`id`, `game_id`, `name`, `team_one`, `team_two`, `league`, `date_time`, `icon`, `order_by`, `status`, `live`, `created_at`, `updated_at`) VALUES
-(6, 2, 'India vs Pakistan', 'India', 'Pakistan', 'sdfcsdf', '2020-08-29 08:38:00', 'fgf', 1, 1, 2, '2020-08-29 03:59:17', '2020-09-03 06:34:06'),
-(7, 3, 'Barcelona VS PSG', 'Barcelona', 'PSG', 'English Premiere Leauge', '2020-09-01 01:00:00', NULL, 2, 1, 2, '2020-08-31 00:04:15', '2020-09-03 06:34:06');
+(6, 2, 'India vs Pakistan', 'India', 'Pakistan', 'sdfcsdf', '2020-08-29 08:38:00', 'fgf', 1, 1, 2, '2020-08-29 03:59:17', '2020-09-05 08:53:46'),
+(7, 3, 'Barcelona VS PSG', 'Barcelona', 'PSG', 'English Premiere Leauge', '2020-09-01 01:00:00', NULL, 2, 1, 2, '2020-08-31 00:04:15', '2020-09-05 08:53:46');
 
 -- --------------------------------------------------------
 
@@ -463,15 +473,15 @@ INSERT INTO `tbl_matches` (`id`, `game_id`, `name`, `team_one`, `team_two`, `lea
 
 CREATE TABLE `tbl_menus` (
   `id` int(10) UNSIGNED NOT NULL,
-  `parent_menu` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `menu_name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `menu_link` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `menu_icon` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `parent_menu` varchar(100) DEFAULT NULL,
+  `menu_name` varchar(100) DEFAULT NULL,
+  `menu_link` text DEFAULT NULL,
+  `menu_icon` varchar(100) DEFAULT NULL,
   `order_by` int(11) DEFAULT NULL,
-  `status` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT '1',
+  `status` varchar(100) DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_menus`
@@ -514,7 +524,9 @@ INSERT INTO `tbl_menus` (`id`, `parent_menu`, `menu_name`, `menu_link`, `menu_ic
 (60, '13', 'Payment Method', 'payment-method.index', NULL, 4, '1', '2020-09-01 05:16:56', '2020-09-01 05:16:56'),
 (61, '13', 'Payment Number', 'payment-number.index', NULL, 5, '1', '2020-09-01 07:30:01', '2020-09-01 07:30:01'),
 (62, '59', 'Withdraw Request', 'withdrawRequest.index', NULL, 2, '1', '2020-09-02 00:59:48', '2020-09-02 00:59:48'),
-(63, '59', 'Transfer Request', 'transferRequest.index', NULL, 3, '1', '2020-09-03 06:27:37', '2020-09-03 06:33:22');
+(63, '59', 'Transfer Request', 'transferRequest.index', NULL, 3, '1', '2020-09-03 06:27:37', '2020-09-03 06:33:22'),
+(64, '59', 'All Transactions', 'transaction.index', 'fa fa-caret-right', 4, '1', '2020-09-05 02:26:04', '2020-09-05 02:26:04'),
+(65, '51', 'Client Bets', 'clientBet.index', 'fa fa-caret-right', 2, '1', '2020-09-05 04:13:36', '2020-09-05 04:13:36');
 
 -- --------------------------------------------------------
 
@@ -526,13 +538,13 @@ CREATE TABLE `tbl_menu_actions` (
   `id` int(10) UNSIGNED NOT NULL,
   `parent_menu_id` int(11) DEFAULT NULL,
   `menu_type` int(11) DEFAULT NULL,
-  `action_name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `action_link` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `action_name` varchar(100) DEFAULT NULL,
+  `action_link` varchar(100) DEFAULT NULL,
   `order_by` int(11) DEFAULT NULL,
   `status` int(11) DEFAULT 1,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_menu_actions`
@@ -625,7 +637,8 @@ INSERT INTO `tbl_menu_actions` (`id`, `parent_menu_id`, `menu_type`, `action_nam
 (165, 61, 3, 'Status', 'payment-number.status', 4, 1, '2020-09-01 09:23:32', '2020-09-01 09:23:32'),
 (166, 62, 2, 'Edit', 'withdrawRequest.edit', 1, 1, '2020-09-02 01:20:50', '2020-09-02 01:20:50'),
 (167, 62, 4, 'Delete', 'withdrawRequest.delete', 2, 1, '2020-09-02 01:56:59', '2020-09-02 01:56:59'),
-(168, 63, 4, 'Delete', 'transferRequest.delete', 1, 1, '2020-09-03 06:33:38', '2020-09-03 06:33:38');
+(168, 63, 4, 'Delete', 'transferRequest.delete', 1, 1, '2020-09-03 06:33:38', '2020-09-03 06:33:38'),
+(169, 65, 8, 'View', 'clientBet.view', 1, 1, '2020-09-05 04:34:35', '2020-09-05 04:34:35');
 
 -- --------------------------------------------------------
 
@@ -635,12 +648,12 @@ INSERT INTO `tbl_menu_actions` (`id`, `parent_menu_id`, `menu_type`, `action_nam
 
 CREATE TABLE `tbl_menu_action_type` (
   `id` int(11) NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
   `action_id` int(11) DEFAULT NULL,
   `status` tinyint(4) DEFAULT 1,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_menu_action_type`
@@ -668,13 +681,13 @@ INSERT INTO `tbl_menu_action_type` (`id`, `name`, `action_id`, `status`, `create
 CREATE TABLE `tbl_pages` (
   `id` int(11) NOT NULL,
   `frontend_menu_id` int(11) DEFAULT NULL,
-  `page_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `page_name` varchar(255) DEFAULT NULL,
   `status` tinyint(4) DEFAULT 1,
   `created_by` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_pages`
@@ -739,28 +752,28 @@ INSERT INTO `tbl_payment_number` (`id`, `payment_method_id`, `number`, `order_by
 CREATE TABLE `tbl_posts` (
   `id` int(11) NOT NULL,
   `page_id` int(11) DEFAULT NULL,
-  `post_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `title` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `inner_title` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `url_link` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `icon` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `image` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `post_name` varchar(255) DEFAULT NULL,
+  `title` text DEFAULT NULL,
+  `inner_title` text DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `url_link` text DEFAULT NULL,
+  `icon` text DEFAULT NULL,
+  `image` text DEFAULT NULL,
   `width` int(11) DEFAULT NULL,
   `height` int(11) DEFAULT NULL,
-  `inner_image` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `inner_image` text DEFAULT NULL,
   `inner_width` int(11) DEFAULT NULL,
   `inner_height` int(11) DEFAULT NULL,
-  `meta_title` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `meta_keyword` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `meta_description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `meta_title` text DEFAULT NULL,
+  `meta_keyword` text DEFAULT NULL,
+  `meta_description` text DEFAULT NULL,
   `order_by` int(11) DEFAULT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `created_by` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_posts`
@@ -779,24 +792,24 @@ INSERT INTO `tbl_posts` (`id`, `page_id`, `post_name`, `title`, `inner_title`, `
 
 CREATE TABLE `tbl_sliders` (
   `id` int(11) NOT NULL,
-  `first_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `second_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `third_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `image` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `first_title` varchar(255) DEFAULT NULL,
+  `second_title` varchar(255) DEFAULT NULL,
+  `third_title` varchar(255) DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `image` text DEFAULT NULL,
   `width` int(11) DEFAULT NULL,
   `height` int(11) DEFAULT NULL,
-  `link` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `meta_title` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `meta_keyword` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `meta_description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `link` text DEFAULT NULL,
+  `meta_title` text DEFAULT NULL,
+  `meta_keyword` text DEFAULT NULL,
+  `meta_description` text DEFAULT NULL,
   `order_by` int(11) DEFAULT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `created_by` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_sliders`
@@ -814,16 +827,16 @@ INSERT INTO `tbl_sliders` (`id`, `first_title`, `second_title`, `third_title`, `
 
 CREATE TABLE `tbl_social_links` (
   `id` int(11) UNSIGNED NOT NULL,
-  `name` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `icon` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `link` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` text DEFAULT NULL,
+  `icon` text DEFAULT NULL,
+  `link` text DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
   `order_by` int(11) DEFAULT NULL,
   `created_by` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_social_links`
@@ -845,22 +858,22 @@ INSERT INTO `tbl_social_links` (`id`, `name`, `icon`, `link`, `status`, `order_b
 
 CREATE TABLE `tbl_user_roles` (
   `id` int(10) UNSIGNED NOT NULL,
-  `name` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` text DEFAULT NULL,
   `parent_role` int(11) DEFAULT NULL,
   `level` int(11) DEFAULT NULL,
   `status` int(11) DEFAULT 1,
-  `permission` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `action_permission` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `permission` text DEFAULT NULL,
+  `action_permission` text DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_user_roles`
 --
 
 INSERT INTO `tbl_user_roles` (`id`, `name`, `parent_role`, `level`, `status`, `permission`, `action_permission`, `created_at`, `updated_at`) VALUES
-(2, 'Super User', NULL, 1, 1, '1,6,7,8,10,11,12,13,54,55,60,61,51,52,56,57,59,58,62,63,39,2,3,4,5,38', '28,29,30,31,32,33,39,40,41,42,43,44,45,46,47,48,49,50,51,142,143,144,145,146,147,148,149,158,159,160,161,162,163,164,165,138,139,140,141,150,154,151,152,153,155,156,157,166,167,168,2,3,4,5,6,11,12,13,14,15,7,8,9,10,21,23,24,25,26,108,109', '2019-04-17 00:50:05', '2020-09-03 06:33:51'),
+(2, 'Super User', NULL, 1, 1, '1,6,7,8,10,11,12,13,54,55,60,61,51,52,65,56,57,59,58,62,63,64,39,2,3,4,5,38', '28,29,30,31,32,33,39,40,41,42,43,44,45,46,47,48,49,50,51,142,143,144,145,146,147,148,149,158,159,160,161,162,163,164,165,138,139,140,141,169,150,154,151,152,153,155,156,157,166,167,168,2,3,4,5,6,11,12,13,14,15,7,8,9,10,21,23,24,25,26,108,109', '2019-04-17 00:50:05', '2020-09-05 04:35:10'),
 (3, 'Admin', NULL, 1, 1, '1,6,7,8,10,11,12,39,2,3,4,5,38,13,50,54', '28,29,30,31,32,33,39,40,41,42,43,44,45,46,47,48,49,50,51,2,3,4,5,6,11,12,13,14,15,7,8,9,10,21,23,24,25,26,108,109,134,135,136,137,142', '2019-04-17 00:52:54', '2020-08-20 02:48:18');
 
 -- --------------------------------------------------------
@@ -871,27 +884,27 @@ INSERT INTO `tbl_user_roles` (`id`, `name`, `parent_role`, `level`, `status`, `p
 
 CREATE TABLE `tbl_website_information` (
   `id` int(11) NOT NULL,
-  `website_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `prefix_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `website_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `website_link` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `developed_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `developer_website_link` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `phone_one` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `phone_two` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `phone_three` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `logo_one` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `logo_two` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `fav_icon` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `meta_title` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `meta_keyword` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `meta_description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `website_name` varchar(255) DEFAULT NULL,
+  `prefix_title` varchar(255) DEFAULT NULL,
+  `website_title` varchar(255) DEFAULT NULL,
+  `website_link` varchar(255) DEFAULT NULL,
+  `developed_by` varchar(255) DEFAULT NULL,
+  `developer_website_link` varchar(255) DEFAULT NULL,
+  `phone_one` varchar(255) DEFAULT NULL,
+  `phone_two` varchar(255) DEFAULT NULL,
+  `phone_three` varchar(255) DEFAULT NULL,
+  `logo_one` text DEFAULT NULL,
+  `logo_two` text DEFAULT NULL,
+  `fav_icon` text DEFAULT NULL,
+  `meta_title` text DEFAULT NULL,
+  `meta_keyword` text DEFAULT NULL,
+  `meta_description` text DEFAULT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `created_by` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_website_information`
@@ -908,14 +921,40 @@ INSERT INTO `tbl_website_information` (`id`, `website_name`, `prefix_title`, `we
 
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) NOT NULL,
+  `remember_token` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `view_transaction`
+-- (See below for the actual view)
+--
+CREATE TABLE `view_transaction` (
+`id` int(11)
+,`client_id` int(11)
+,`date_time` timestamp
+,`transaction_for` varchar(255)
+,`debit` int(11)
+,`credit` varchar(255)
+,`is_transaction` int(11)
+,`current_balance` varchar(255)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `view_transaction`
+--
+DROP TABLE IF EXISTS `view_transaction`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_transaction`  AS  select `tbl_client_deposites`.`id` AS `id`,`tbl_client_deposites`.`client_id` AS `client_id`,`tbl_client_deposites`.`created_at` AS `date_time`,`tbl_client_deposites`.`type` AS `transaction_for`,0 AS `debit`,`tbl_client_deposites`.`deposite_amount` AS `credit`,`tbl_client_deposites`.`is_deposited` AS `is_transaction`,`tbl_client_deposites`.`current_balance` AS `current_balance` from `tbl_client_deposites` union select `tbl_client_withdraw`.`id` AS `id`,`tbl_client_withdraw`.`client_id` AS `client_id`,`tbl_client_withdraw`.`created_at` AS `date_time`,`tbl_client_withdraw`.`type` AS `transaction_for`,`tbl_client_withdraw`.`withdraw_amount` AS `debit`,0 AS `credit`,`tbl_client_withdraw`.`is_withdrawed` AS `is_transaction`,`tbl_client_withdraw`.`current_balance` AS `current_balance` from `tbl_client_withdraw` union select `tbl_client_transfer`.`id` AS `id`,`tbl_client_transfer`.`client_id` AS `client_id`,`tbl_client_transfer`.`created_at` AS `date_time`,`tbl_client_transfer`.`type` AS `transaction_for`,`tbl_client_transfer`.`transfer_amount` AS `debit`,0 AS `credit`,1 AS `is_transaction`,`tbl_client_transfer`.`current_balance` AS `current_balance` from `tbl_client_transfer` ;
 
 --
 -- Indexes for dumped tables
@@ -1154,7 +1193,7 @@ ALTER TABLE `tbl_client_betts`
 -- AUTO_INCREMENT for table `tbl_client_deposites`
 --
 ALTER TABLE `tbl_client_deposites`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tbl_client_transfer`
@@ -1190,13 +1229,13 @@ ALTER TABLE `tbl_matches`
 -- AUTO_INCREMENT for table `tbl_menus`
 --
 ALTER TABLE `tbl_menus`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT for table `tbl_menu_actions`
 --
 ALTER TABLE `tbl_menu_actions`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=169;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=170;
 
 --
 -- AUTO_INCREMENT for table `tbl_menu_action_type`

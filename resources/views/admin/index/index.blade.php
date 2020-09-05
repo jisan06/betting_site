@@ -80,8 +80,8 @@
 		        <div class="card-body">
 		        	<div class="row">
 		        		<h3>
-		        			<a href="" style="font-size: unset;color: unset;">
-		        				<i class="fa fa-plus"></i>
+		        			<a href="{{ route('depositeRequest.index') }}" style="font-size: unset;color: unset;">
+		        				<i class="fa fa-money"></i>
 		        			</a>
 		        		</h3>
 		        	</div>
@@ -89,8 +89,8 @@
 		                <div class="col-md-10">
 		                    <div class="d-flex no-block align-items-center">
 		                        <div>
-		                            <a href="" style="font-size: unset;">
-		                            	<p>New Order</p>
+		                            <a href="{{ route('depositeRequest.index') }}" style="font-size: unset;color: unset;">
+		                            	<p>New Deposit Request</p>
 		                            </a>
 		                        </div>
 		                    </div>
@@ -99,7 +99,7 @@
 		                <div class="col-md-2">
 		                	<div class="d-flex no-block align-items-center">
 		                        <div class="ml-auto">
-		                            <h3 class="counter text-primary"><a href=""></a></h3>
+		                            <h3 class="counter text-primary"><a href="{{ route('depositeRequest.index') }}">{{count($new_deposit_request)}}</a></h3>
 		                        </div>
 		                    </div>
 		                </div>
@@ -112,14 +112,20 @@
 			<div class="card top_card">
 		        <div class="card-body">
 		        	<div class="row">
-		        		<h3><i class="fa fa-refresh"></i></h3>
+		        		<h3>
+		        			<a href="{{ route('withdrawRequest.index') }}" style="font-size: unset;color: unset;">
+		        				<i class="fa fa-money"></i>
+		        			</a>
+		        			
+		        		</h3>
 		        	</div>
 		            <div class="row second_block_title">
 		                <div class="col-md-10">
 		                    <div class="d-flex no-block align-items-center">
 		                        <div>
-		                            <p>Current Order</p>
-		                            <p>Processing Order</p>
+		                        	<a href="{{ route('withdrawRequest.index') }}" style="font-size: unset;color: unset;">
+			                            <p>New Withdraw Request</p>
+			                        </a>
 		                        </div>
 		                    </div>
 		                </div>
@@ -127,8 +133,7 @@
 		                <div class="col-md-2">
 		                	<div class="d-flex no-block align-items-center">
 		                        <div class="ml-auto">
-		                            <h3 class="counter text-primary"><a href="javascript:0"></a></h3>
-		                            <h3 class="counter text-primary"><a href="javascript:0"></a></h3>
+		                            <h3 class="counter text-primary"><a href="javascript:0">{{count($new_withdraw_request)}}</a></h3>
 		                        </div>
 		                    </div>
 		                </div>
@@ -141,14 +146,15 @@
 			<div class="card top_card">
 		        <div class="card-body">
 		        	<div class="row">
-		        		<h3><i class="fa fa-toggle-on" aria-hidden="true"></i></i></h3>
+		        		<h3>
+		        			<i class="fa fa-money" aria-hidden="true"></i></i>
+		        		</h3>
 		        	</div>
 		            <div class="row third_block_title">
 		                <div class="col-md-10">
 		                    <div class="d-flex no-block align-items-center">
 		                        <div>
-		                            <p>Complete Order</p>
-		                            <p>Canceled Order</p>
+		                            <p>Total Balance Transfer</p>
 		                        </div>
 		                    </div>
 		                </div>
@@ -157,8 +163,7 @@
 		                	<div class="d-flex no-block align-items-center">
 		                        <div class="ml-auto">
 		                            <h3 class="counter text-primary">
-		                            	<a href="javascript:0"></a>
-		                            	<a href="javascript:0">0</a>
+		                            	<a href="javascript:0">{{$total_transfer}}</a>
 		                            </h3>
 		                        </div>
 		                    </div>
@@ -172,14 +177,19 @@
 			<div class="card top_card">
 		        <div class="card-body">
 		        	<div class="row">
-		        		<h3><i class="fa fa-money"></i></h3>
+		        		<h3>
+		        			<a href="{{ route('clientBet.index') }}" style="font-size: unset;color: unset;">
+			        			<i class="fa fa-user"></i>
+			        		</a>
+		        		</h3>
 		        	</div>
 		            <div class="row fourth_block_title">
 		                <div class="col-md-10">
 		                    <div class="d-flex no-block align-items-center">
 		                        <div>
-		                            <p>Total Amount</p>
-		                            <p>Due Amount</p>
+		                        	<a href="{{ route('clientBet.index') }}" style="font-size: unset;color: unset;">
+		                            	<p>Total Client Bet</p>
+		                            </a>
 		                        </div>
 		                    </div>
 		                </div>
@@ -187,8 +197,7 @@
 		                <div class="col-md-2">
 		                	<div class="d-flex no-block align-items-center">
 		                        <div class="ml-auto">
-		                            <h3 class="counter text-primary"><a href="javascript:0"></a></h3>
-		                            <h3 class="counter text-primary"><a href="javascript:0">0</a></h3>
+		                            <h3 class="counter text-primary"><a href="javascript:0">{{count($customer_bets_list)}}</a></h3>
 		                        </div>
 		                    </div>
 		                </div>

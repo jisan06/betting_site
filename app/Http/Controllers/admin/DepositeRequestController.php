@@ -15,7 +15,7 @@ class DepositeRequestController extends Controller
     {
         $title = "Manage All Deposite Request";
 
-        $customer_deposite_list = CustomerDeposite::orderBy('id','desc')->get();
+        $customer_deposite_list = CustomerDeposite::orderBy('is_deposited','asc')->get();
 
         return view('admin.deposite_request.index')->with(compact('title','customer_deposite_list'));
     }
@@ -41,15 +41,18 @@ class DepositeRequestController extends Controller
             'status' => request()->status,
         ]);
 
-         if($deposite->is_deposited == 0 && $deposite->status == 1){
-            $deposite->update([
-                'is_deposited' => 1,
-            ]);
-
+        if($deposite->is_deposited == 0 && $deposite->status == 1){
             $client_info->update([
                 'balance' => $client_info->balance + $deposite->deposite_amount,
-             ]);
-            return redirect(route('depositeRequest.index'))->with('msg','Deposite Request Updated');
+            ]);
+
+            $deposite->update([
+                'is_deposited' => 1,
+                'current_balance' => $client_info->balance,
+            ]);
+            return redirect(route('depositeRequest.index'))->with('msg','Deposite request approved');
+        }elseif($deposite->is_deposited == 0 && $deposite->status == 0){
+            return redirect(route('depositeRequest.index'))->with('error', 'Deposite request not approve');
         }
 
         return redirect(route('depositeRequest.index'))->with('error', 'Already deposited before');

@@ -24,6 +24,7 @@
                             <th>Bets</th>
                             <th width="90px" class="text-right">Rate</th>
                             <th width="120px" class="text-right">Amount</th>
+                            <th width="70px">Status</th>
                             <th width="90px" class="text-center">Action</th>
                         </tr>
                     </thead>
@@ -44,6 +45,15 @@
                                 <td>{{$betting_category->name}} ({{$bet->name}})</td>
                                 <td class="text-right">{{$customer_bets->betting_stack}}</td>
                                 <td class="text-right">{{$customer_bets->wining_amount}}</td>
+                                <td>
+                                    @if($customer_bets->winning_status == 0 && $customer_bets->winning_status != NULL )
+                                        Loss
+                                    @elseif($customer_bets->winning_status == 1 && $customer_bets->winning_status != NULL )
+                                        Win
+                                    @else
+                                        Pending
+                                    @endif
+                                </td>
                                 <td class="text-right">
                                     <a href="{{ route('user.bettsView',$customer_bets->id) }}" class="text-primary ">
                                         <i class="fa fa-eye"></i> View

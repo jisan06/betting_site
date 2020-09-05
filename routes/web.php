@@ -191,6 +191,10 @@ Route::prefix('admin')->group(function()
 			Route::post('/client-status','Admin\ClientController@status')->name('client.status');
 			Route::post('/client-delete','Admin\ClientController@delete')->name('client.delete');
 
+			// Client Bets
+			Route::get('/client-bets','Admin\ClientBetController@index')->name('clientBet.index');
+			Route::get('/client-bets/view/{id}','Admin\ClientBetController@view')->name('clientBet.view');
+
 			//Deposite Request
 			Route::any('/deposite-request','Admin\DepositeRequestController@index')->name('depositeRequest.index');
 			Route::any('/deposite-request-edit/{id}','Admin\DepositeRequestController@edit')->name('depositeRequest.edit');
@@ -211,6 +215,9 @@ Route::prefix('admin')->group(function()
 			Route::any('/transfer-request-update/{id}','Admin\TransferRequestController@update')->name('transferRequest.update');
 			Route::post('/transfer-request-delete','Admin\TransferRequestController@delete')->name('transferRequest.delete');
 			Route::any('/transfer-request-status','Admin\TransferRequestController@status')->name('transferRequest.status');
+
+			//All Transaction
+			Route::any('/transaction','Admin\TransactionController@index')->name('transaction.index');
 
 			//Payment Method Setup
 			Route::any('/payment-method','Admin\PaymentMethodController@index')->name('payment-method.index');

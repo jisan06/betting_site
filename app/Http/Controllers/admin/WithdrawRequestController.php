@@ -45,13 +45,14 @@ class WithdrawRequestController extends Controller
 	        ]);
 
 	        if($withdraw->is_withdrawed == 0 && $withdraw->status == 1){
-	            $withdraw->update([
-	                'is_withdrawed' => 1,
-	            ]);
-
 	            $client_info->update([
 	                'balance' => $client_info->balance - $withdraw->withdraw_amount,
-	             ]);
+	           ]);
+
+                $withdraw->update([
+                    'is_withdrawed' => 1,
+                    'current_balance' => $client_info->balance,
+                ]);
 
 	            return redirect(route('withdrawRequest.index'))->with('msg','Withdraw Request Updated');
 	        }

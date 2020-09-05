@@ -1,6 +1,13 @@
 @extends('admin.layouts.master')
 
 @section('content')
+@php
+    use App\Game;
+    use App\Bett;
+    use App\BettingCategory;
+    use App\Match;
+    use App\Client;
+@endphp
     <div class="card">            
         <div class="custom-card-header">
             <div class="row">
@@ -26,10 +33,12 @@
 	                <thead>
 	                    <tr>
 	                        <th width="20px">SL</th>
-	                        <th width="70px">Name</th>
-	                        <th width="70px">Betting Category</th>
+                            <th>Game</th>
+                            <th>Match</th>
+                            <th>Betting Category</th>
+	                        <th>Name</th>
 	                        <th width="20px">Ratio</th>
-	                        <th width="20px">result</th>
+	                        <th width="90px">result</th>
 	                        <th width="40px">Action</th>
 	                    </tr>
 	                </thead>
@@ -38,16 +47,27 @@
 	                		$sl = 1;
 	                	@endphp
 	                	@foreach ($bettings as $bett)
+                        @php
+                            $betting_category = BettingCategory::find($bett->betting_category_id);
+                            $match = Match::find($betting_category->match_id);
+                            $game = Game::find($match->game_id);
+                        @endphp
 	                		<tr class="row_{{ $bett->id }}">
 	                			<td>{{ $sl++ }}</td>
-	                			<td>{{ $bett->name }}</td>
+                                <td>{{ $game->name }}</td>
+                                <td>{{ $match->name }}</td>
 	                			<td>{{ $bett->betting_category_name }}</td>
+                                <td>{{ $bett->name }}</td>
 	                            <td>{{ $bett->ratio }}</td>
 	                			<td>
-                                    <span class="switchery-demo m-b-30" onclick="resultChange({{ $bett->id }})">
-                                        <input type="checkbox" {{ $bett->result ? 'checked':'' }} class="js-switch" data-color="#00c292" data-switchery="true" style="display: none;" >
-                                    </span>
-	                			</td>
+                                    @if($bett->result == 0 && $bett->result != NULL )
+                                        Not Win
+                                    @elseif($bett->result == 1 && $bett->result != NULL)
+                                        Win
+                                    @else
+                                        Not Published
+                                    @endif
+                                </td>
 	                			<td>
                                     <a href="{{ route('bett.edit',$bett->id) }}" data-toggle="tooltip" data-original-title="Edit" data-id="{{ $bett->id }}"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
 

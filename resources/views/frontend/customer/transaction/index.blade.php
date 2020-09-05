@@ -20,29 +20,25 @@
                             <thead>
                                 <tr>
                                     <th width="25px">SL</th>
-                                    <th width="100px">Date</th>
-                                    <th>Transfer To</th>
-                                    <th>Phone Number</th>
-                                    <th width="150px" class="text-right">Amount</th>
-                                    <th width="100px" class="text-center">Action</th>
+                                    <th width="100px">Time</th>
+                                    <th>For</th>
+                                    <th class="text-right">Debit(Out)</th>
+                                    <th class="text-right">Credit(In)</th>
+                                    <th class="text-right">Balance</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @php
                                     $sl = 0;
-                                    foreach ($customer_transfer_list as $customer_transfer) {
+                                    foreach ($customer_transaction_list as $customer_transaction) {
                                 @endphp
                                     <tr>
                                         <td>{{++$sl}}</td>
-                                        <td>{{date('d M Y',strtotime($customer_transfer->created_at))}}</td>
-                                        <td>{{$customer_transfer->to_username}}</td>
-                                        <td>{{$customer_transfer->to_phone_no}}</td>
-                                        <td class="text-right">{{$customer_transfer->transfer_amount}}</td>
-                                        <td class="text-right">
-                                            <a href="{{ route('user.transferview',$customer_transfer->id) }}" class="text-primary ">
-                                                <i class="fa fa-eye"></i> View
-                                            </a>
-                                        </td>
+                                        <td>{{date('d M Y',strtotime($customer_transaction->date_time))}}</td>
+                                        <td>{{$customer_transaction->transaction_for}}</td>
+                                        <td class="text-right">{{$customer_transaction->debit}}</td>
+                                        <td class="text-right">{{$customer_transaction->credit}}</td>
+                                        <td class="text-right">{{$customer_transaction->current_balance}}</td>
                                     </tr>
                                 @php
                                     }

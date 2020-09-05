@@ -30,7 +30,9 @@
                         <th>From</th>
                         <th>To</th>
                         <th>Transaction No</th>
-                        <th width="100px" class="text-right">Amount</th>                        <th width="70px" class="text-center">Action</th>
+                        <th width="100px" class="text-right">Amount</th> 
+                        <th width="100px">Satus</th> 
+                        <th width="70px" class="text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody id="">
@@ -39,8 +41,13 @@
                         foreach ($customer_deposite_list as $customer_deposite) {
                             $payment_method = PaymentMethod::find($customer_deposite->payment_method_id);
                             $payment_to = PaymentNumber::find($customer_deposite->deposite_to);
+                            if($customer_deposite->is_deposited == 0){
+                                $color = "red";
+                            }elseif($customer_deposite->is_deposited == 1){
+                                $color = "green";
+                            }
                     @endphp
-                        <tr class="row_{{$customer_deposite->id}}">
+                        <tr class="row_{{$customer_deposite->id}}" style="color:{{$color}}">
                             <td>{{++$sl}}</td>
                             <td>{{date('d M Y',strtotime($customer_deposite->created_at))}}</td>
                             <td>{{@$payment_method->name}}</td>
@@ -48,6 +55,13 @@
                             <td>{{@$payment_to->number}}</td>
                             <td>{{$customer_deposite->transaction_no}}</td>
                             <td class="text-right">{{$customer_deposite->deposite_amount}}</td>
+                            <td>
+                                @if($customer_deposite->is_deposited == 0)
+                                    Pending
+                                @elseif($customer_deposite->is_deposited == 1)
+                                    Deposited
+                                @endif
+                            </td>
                             <td>
                                 @php
                                     echo \App\Link::action($customer_deposite->id);

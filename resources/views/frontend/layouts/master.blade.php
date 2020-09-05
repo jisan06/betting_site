@@ -39,8 +39,10 @@
         	@include('frontend.element.header.header_top')
         	@include('frontend.element.header.header_menu')
         </div>
-
-        @yield('content')
+        <div class="main_content">
+        	@yield('content')
+        </div>
+        
 
         @include('frontend.element.footer.footer_bottom')
         @include('frontend.element.footer.footer_asset')

@@ -6,12 +6,25 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Client;
 use App\Club;
+use App\CustomerDeposite;
+use App\CustomerWithdraw;
+use App\CustomerBett;
+use App\CustomerTransfer;
 
 class CustomerController extends Controller
 {  
     public function dashboard(){
         $title = "Dashboard";
-        return view('frontend.customer.dashboard.index')->with(compact('title'));
+        $new_deposit_request = CustomerDeposite::where('client_id',\Auth::guard('customer')->user()->id)
+                            ->where('is_deposited',0)
+                            ->orWhere('is_deposited',NULL)
+                            ->get();
+        $new_withdraw_request = CustomerWithdraw::where('client_id',\Auth::guard('customer')->user()->id)
+                            ->where('is_withdrawed',0)
+                            ->orWhere('is_withdrawed',NULL)
+                            ->get();
+        $total_transfer = CustomerTransfer::where('client_id',\Auth::guard('customer')->user()->id)->sum('transfer_amount');
+        return view('frontend.customer.dashboard.index')->with(compact('title','new_deposit_request','new_withdraw_request','total_transfer'));
     }
 
     public function profile(){

@@ -2720,7 +2720,7 @@ ul {
           background: #f81b64; }
   .statics-page .single-game {
     border: 1px solid #ddd;
-    padding: 22px 30px 21px;
+    padding: 15px 10px 20px;
     border-radius: 5px;
     background-color: #fff;
     position: relative;
@@ -2730,14 +2730,14 @@ ul {
     transition: all 0.3s ease-in; }
     .statics-page .single-game:hover {
       border-color: #f81b64; }
-    .statics-page .single-game:after {
+    /*.statics-page .single-game:after {
       position: absolute;
       content: '';
       left: 50%;
       top: 100%;
       height: 40px;
       width: 1px;
-      background: #f81b64; }
+      background: #f81b64; }*/
     .statics-page .single-game ul li {
       display: -webkit-box;
       display: -ms-flexbox;
@@ -2752,9 +2752,9 @@ ul {
       line-height: 26px; }
       .statics-page .single-game ul li span {
         display: block;
-        color: #2a2a2a; }
+        color: #000000; }
         .statics-page .single-game ul li span.player-name {
-          font-size: 15px;
+          font-size: 13px;
           font-weight: 400;
           text-transform: uppercase; }
         .statics-page .single-game ul li span.point {

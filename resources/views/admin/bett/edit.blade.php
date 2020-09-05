@@ -1,6 +1,16 @@
 @extends('admin.layouts.master')
 
 @section('content')
+@php
+    use App\Game;
+    use App\Bett;
+    use App\BettingCategory;
+    use App\Match;
+
+        $betting_category = BettingCategory::find($bett->betting_category_id);
+        $match = Match::find($betting_category->match_id);
+        $game = Game::find($match->game_id);
+@endphp
     <form class="form-horizontal" action="{{ route($formLink) }}" id="formAddEdit" method="POST" enctype="multipart/form-data" name="form">
         {{ csrf_field() }}
 
@@ -28,7 +38,30 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
+                        <label for="name">Game</label>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-danger" value="{{ $game->name }}" readonly>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="name">Match</label>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-danger" value="{{ $match->name }}" readonly>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="name">Betting Category</label>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-danger" value="{{ $betting_category->name }}" readonly>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
                         <label for="name">Name</label>
                         <div class="form-group {{ $errors->has('name') ? ' has-danger' : '' }}">
                             <input type="text" class="form-control form-control-danger" placeholder="Add" name="name" value="{{ $bett->name }}" required>
@@ -40,7 +73,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <label for="ratio">Ratio</label>
                         <div class="form-group {{ $errors->has('ratio') ? ' has-danger' : '' }}">
                             <input type="text" min="0" class="form-control form-control-danger" placeholder="ratio" name="ratio" value="{{ $bett->ratio }}" required>
@@ -50,6 +83,25 @@
                                 @endforeach
                             @endif
                         </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="result">Result ?</label>
+                            <div class="form-group" style="height: 15px; line-height: 40px;">
+                                <div class="form-check-inline">
+                                    <label class="form-check-label">
+                                        <input type="radio" id="win" name="result" class="form-check-input" value="1">Win
+                                    </label>
+                                </div>
+                                <div class="form-check-inline">
+                                    <label class="form-check-label">
+                                        <input type="radio" id="not_win" name="result" class="form-check-input" value="0">Not Win
+                                    </label>
+                                </div>                       
+                            </div>
+                            <span style="color: red">
+                                /* Note: Please select carefully . When you update and select this it's connected with all user balance which are bet for this game */
+                            </span>  
                     </div>
                 </div>
             </div>
@@ -63,4 +115,8 @@
             </div>
         </div>
     </form>
+
+    <script type="text/javascript">
+        document.forms['form'].elements['result'].value = "{{$bett->result}}";
+    </script>
 @endsection

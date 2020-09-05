@@ -49,15 +49,7 @@ class CustomerTransferController extends Controller
             }elseif(!@$receiver){
             	return redirect()->back()->withErrors(['error' => 'Username is not found']);
             }else{
-            	$transfer->create([
-	                'client_id' => \Auth::guard('customer')->user()->id,
-                    'name' => $name,
-                    'phone_no' => $phone,
-	                'to_username' => $receiver->username,
-	                'to_phone_no' => $receiver->phone,
-	                'transfer_amount' => request()->transfer_amount,
-	        	]);
-
+            	
 	        	$client->update([
 	                'balance' => $client->balance - request()->transfer_amount,
 	            ]);
@@ -65,6 +57,16 @@ class CustomerTransferController extends Controller
 	            $receiver->update([
 	                'balance' => $receiver->balance + request()->transfer_amount,
 	            ]);
+
+                $transfer->create([
+                    'client_id' => \Auth::guard('customer')->user()->id,
+                    'name' => $name,
+                    'phone_no' => $phone,
+                    'to_username' => $receiver->username,
+                    'to_phone_no' => $receiver->phone,
+                    'transfer_amount' => request()->transfer_amount,
+                    'current_balance' => $client->balance,
+                ]);
 
 	        	return redirect(route('user.transfer'))->with('success_message', 'Your transfer request succesfull');
             }

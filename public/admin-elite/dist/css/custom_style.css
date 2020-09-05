@@ -21,3 +21,7 @@
 .glyphicon-arrow-right:before {
     content: "\2192";
 }
+
+.head_name{
+    font-weight: bold !important;
+}

@@ -31,7 +31,7 @@
             <li class="nav-item">
                 <a class="nav-link {{\URL::current() == route('user.deposite') ? 'active' : ''}}" href="{{ route('user.deposite') }}">
                     <span class="text">
-                        Deposite
+                        Deposit
                     </span>
                 </a>
             </li>

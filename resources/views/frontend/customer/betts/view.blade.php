@@ -54,7 +54,13 @@
                          <tr>
                             <th class="head_name">Win/Loss</th>
                             <td>
-                                Win
+                                @if($customer_bets_details->winning_status == 0 && $customer_bets_details->winning_status != NULL )
+                                    Loss
+                                @elseif($customer_bets_details->winning_status == 1 && $customer_bets_details->winning_status != NULL )
+                                    Win
+                                @else
+                                    Pending
+                                @endif
                             </td>
                             <th class="head_name">Amount</th>
                             <td>{{$customer_bets_details->wining_amount}}</td>

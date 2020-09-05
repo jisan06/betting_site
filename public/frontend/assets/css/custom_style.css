@@ -5,6 +5,10 @@
 
 }
 
+.main_content{
+  min-height: 100vh;
+}
+
 .single-form select{
   height: 49px;
 }

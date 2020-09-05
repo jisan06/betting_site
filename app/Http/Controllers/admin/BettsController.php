@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 
 use App\Bett;
 use App\BettingCategory;
+use App\Client;
+use App\CustomerBett;
 
 class BettsController extends Controller
 {
@@ -18,6 +20,7 @@ class BettsController extends Controller
             ->leftJoin('tbl_betting_categories','tbl_betting_categories.id','tbl_betts.betting_category_id')
             ->where('tbl_betts.betting_category_id',$betting_category_id)
             ->orderBy('tbl_betting_categories.order_by','asc')
+            ->orderBy('tbl_betts.result','asc')
             ->get();
 
         $betting_category = BettingCategory::where('id',$betting_category_id)->first();
@@ -63,7 +66,7 @@ class BettsController extends Controller
         $betting_category = BettingCategory::where('id',$bett->betting_category_id)->first();
 
         
-        $title = "Add Bett ( ".$betting_category->name." )";
+        $title = "Edit Bett ( ".$betting_category->name." )";
         $formLink = "bett.update";
         $buttonName = "Update";
 
@@ -75,7 +78,6 @@ class BettsController extends Controller
         // dd($request->all());
         
         $bett = Bett::find($request->bett_id);
-
         $this->validate($request,[
             'betting_category_id'=>'required',
             'name'=>'required',
@@ -85,8 +87,30 @@ class BettsController extends Controller
         $bett->update([
             'betting_category_id' => $request->betting_category_id,
             'name' => $request->name,
-            'ratio' => $request->ratio
+            'ratio' => $request->ratio,
+            'result' => $request->result,
         ]);
+
+        if($bett->is_published == 0 && $bett->result == 1){
+            $customer_bet = CustomerBett::where('betting_id',$bett->id)
+                                ->update([
+                                    'winning_status' => 1,
+                                ]);
+
+            $customer_winning_bet_list = CustomerBett::where('betting_id',$bett->id)
+                                        ->where('winning_status',1)
+                                        ->get();
+            foreach ($customer_winning_bet_list as $customer_winning_bet) {
+               $client = Client::find($customer_winning_bet->client_id);
+               $client->update([
+                'balance' => $client->balance + $customer_winning_bet->wining_amount,
+               ]);
+            }
+
+            $bett->update([
+                'is_published' => 1
+            ]);
+        }
 
         return redirect(route('bett.index',$request->betting_category_id))->with('msg','Bett Updated Successfully');
                 

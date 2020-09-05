@@ -2,7 +2,7 @@
 
 @section('card_body')
 @php
-    use App\Game;
+    use App\Client;
 @endphp
 <style type="text/css">
     .addBtn{
@@ -10,9 +10,6 @@
     }
 </style>
     <div class="card-body">
-        {{-- <div align='center'>
-            <font size='7' text-align='center' color='green' face='Comic sans MS'>This Page Is Now Under Construction</font>
-        </div> --}}
 
         <div class="table-responsive">
             @php
@@ -23,31 +20,30 @@
                 <thead>
                     <tr>
                         <th width="25px">SL</th>
-                        <th width="90px">Date</th>
-                        <th width="150px">Name</th>
-                        <th width="150px">To Username</th>
-                        <th width="40px">To Phone No.</th>
-                        <th width="100px" class="text-right">Amount</th>                        
-                        <th width="40px" class="text-center">Action</th>
+                        <th width="100px">Time</th>
+                        <th>Customer Name</th>
+                        <th>Phone No</th>
+                        <th>For</th>
+                        <th class="text-right">Debit(Out)</th>
+                        <th class="text-right">Credit(In)</th>
+                        <th class="text-right">Balance</th>
                     </tr>
                 </thead>
                 <tbody id="">
                 	@php
                         $sl = 0;
-                        foreach ($customer_transfer_list as $customer_transfer) {
+                        foreach ($customer_transaction_list as $customer_transaction) {
+                            $client_info = Client::find($customer_transaction->client_id);
                     @endphp
-                        <tr class="row_{{$customer_transfer->id}}">
+                        <tr>
                             <td>{{++$sl}}</td>
-                            <td>{{date('d M Y',strtotime($customer_transfer->created_at))}}</td>
-                            <td>{{$customer_transfer->name}}</td>
-                            <td>{{$customer_transfer->to_username}}</td>
-                            <td>{{$customer_transfer->to_phone_no}}</td>
-                            <td class="text-right">{{$customer_transfer->transfer_amount}}</td>
-                            <td class="text-center">
-                                @php
-                                    echo \App\Link::action($customer_transfer->id);
-                                @endphp                             
-                            </td>
+                            <td>{{date('d M Y',strtotime($customer_transaction->date_time))}}</td>
+                            <td>{{@$client_info->name}}</td>
+                            <td>{{@$client_info->phone}}</td>
+                            <td>{{$customer_transaction->transaction_for}}</td>
+                            <td class="text-right">{{$customer_transaction->debit}}</td>
+                            <td class="text-right">{{$customer_transaction->credit}}</td>
+                            <td class="text-right">{{$customer_transaction->current_balance}}</td>
                         </tr>
                     @php
                         }

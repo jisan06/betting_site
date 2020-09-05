@@ -9,7 +9,8 @@
     `tbl_client_deposites`.`type` AS `transaction_for`,
     0 AS `debit`,
     `tbl_client_deposites`.`deposite_amount` AS `credit`,
-    `tbl_client_deposites`.`is_deposited` AS `is_transaction`
+    `tbl_client_deposites`.`is_deposited` AS `is_transaction`,
+    `tbl_client_deposites`.`current_balance` AS `current_balance`
 
     From `tbl_client_deposites`
 
@@ -22,7 +23,8 @@
     `tbl_client_withdraw`.`type` AS `transaction_for`,
     `tbl_client_withdraw`.`withdraw_amount` AS `debit`,
     0 AS `credit`,
-    `tbl_client_withdraw`.`is_withdrawed` AS `is_transaction`
+    `tbl_client_withdraw`.`is_withdrawed` AS `is_transaction`,
+    `tbl_client_withdraw`.`current_balance` AS `current_balance`
 
     From `tbl_client_withdraw`
 
@@ -35,11 +37,12 @@
     `tbl_client_transfer`.`type` AS `transaction_for`,
     `tbl_client_transfer`.`transfer_amount` AS `debit`,
     0 AS `credit`,
-    1 AS `is_transaction`
+    1 AS `is_transaction`,
+    `tbl_client_transfer`.`current_balance` AS `current_balance`
 
     From `tbl_client_transfer`
 
-    union
+    /*union
 
     SELECT 
     `tbl_client_betts`.`id` AS `id`,
@@ -50,6 +53,6 @@
     `tbl_client_betts`.`wining_amount` AS `credit`,
     1 AS `is_transaction`
 
-    From `tbl_client_betts`
+    From `tbl_client_betts`*/
     ";
 ?>

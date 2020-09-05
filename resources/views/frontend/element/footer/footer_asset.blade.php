@@ -55,3 +55,19 @@
         $('.alert-success').fadeIn().delay(7000).fadeOut();
   });
 </script>
+
+<script type="text/javascript">
+    window.onscroll = function() {scrollFunction()};
+    function scrollFunction() {
+        if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {
+            navbar.classList.add('fadeInDown');
+            navbar.classList.add('navbar-fixed');
+            navbar.classList.add('animated');
+          } else {
+            navbar.classList.remove('fadeInDown');
+            navbar.classList.remove('navbar-fixed');
+            navbar.classList.remove('animated');
+          }
+    }
+    
+</script>
