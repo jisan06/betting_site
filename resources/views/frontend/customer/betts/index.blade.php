@@ -22,8 +22,9 @@
                             <th width="140px">Game</th>
                             <th class="text-center">Match</th>
                             <th>Bets</th>
-                            <th width="90px" class="text-right">Rate</th>
-                            <th width="120px" class="text-right">Amount</th>
+                            <th width="90px" class="text-right">Bid Amount</th>
+                            <th width="90px" class="text-right">Ratio</th>
+                            <th width="120px" class="text-right">Wining Amount</th>
                             <th width="70px">Status</th>
                             <th width="90px" class="text-center">Action</th>
                         </tr>
@@ -44,6 +45,7 @@
                                 <td>{{$match->name}}</td>
                                 <td>{{$betting_category->name}} ({{$bet->name}})</td>
                                 <td class="text-right">{{$customer_bets->betting_stack}}</td>
+                                <td class="text-right">{{$bet->ratio}}</td>
                                 <td class="text-right">{{$customer_bets->wining_amount}}</td>
                                 <td>
                                     @if($customer_bets->winning_status == 0 && $customer_bets->winning_status != NULL )

@@ -21,7 +21,7 @@ class FrontendController extends Controller
        		'slider',
        		'game_list',
           'live_match_list',
-       		'upcomming_match_list',
+       		'upcomming_match_list'
        	)); 
     }
 }

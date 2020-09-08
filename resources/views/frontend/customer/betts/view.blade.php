@@ -47,8 +47,8 @@
                         <tr>
                             <th class="head_name">Bets</th>
                             <td>{{$betting_category->name}} ({{$bet->name}})</td>
-                            <th class="head_name">Rate</th>
-                            <td>{{$customer_bets_details->betting_stack}}</td>
+                            <th class="head_name">Bid Amount</th>
+                            <td>{{$customer_bets_details->betting_stack}} * {{$bet->ratio}} (Ratio)</td>
                         </tr>
 
                          <tr>
@@ -62,7 +62,7 @@
                                     Pending
                                 @endif
                             </td>
-                            <th class="head_name">Amount</th>
+                            <th class="head_name">Wining Amount</th>
                             <td>{{$customer_bets_details->wining_amount}}</td>
                         </tr>
                     </tbody>
