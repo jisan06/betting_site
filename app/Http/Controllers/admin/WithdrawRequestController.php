@@ -35,7 +35,7 @@ class WithdrawRequestController extends Controller
         $withdraw = CustomerWithdraw::find($id);
         $client_info = Client::find($withdraw->client_id);
 
-        if ($client_info->balance - $withdraw->withdraw_amount < 0 ) {
+        if (@$client_info->balance - $withdraw->withdraw_amount < 0 ) {
                 return redirect()->back()->withErrors(['error' => 'Client does not have sufficient balance']);
 
 	    }else{   

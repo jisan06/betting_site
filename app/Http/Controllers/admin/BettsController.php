@@ -45,7 +45,7 @@ class BettsController extends Controller
 
         $this->validate($request,[
             'betting_category_id'=>'required',
-            'name'=>'required|unique:tbl_betts',
+            'name'=>'required',
             'ratio'=>'required',
         ]);
         

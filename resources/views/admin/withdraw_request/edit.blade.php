@@ -22,19 +22,19 @@
                 <div class="col-md-4">
                     <label for="name">Client Name</label>
                     <div class="form-group ">
-                        <input type="text" class="form-control" value="{{$customer_details->name}}" readonly>
+                        <input type="text" class="form-control" value="{{@$customer_details->name}}" readonly>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <label for="phone">Phone No</label>
                     <div class="form-group ">
-                        <input type="text" class="form-control" value="{{$customer_details->phone}}" readonly>
+                        <input type="text" class="form-control" value="{{@$customer_details->phone}}" readonly>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <label for="email">Email Address</label>
                     <div class="form-group ">
-                        <input type="text" class="form-control" value="{{$customer_details->email}}" readonly>
+                        <input type="text" class="form-control" value="{{@$customer_details->email}}" readonly>
                     </div>
                 </div>
             </div>

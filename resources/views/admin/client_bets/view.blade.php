@@ -35,10 +35,10 @@
                 <tbody>
                     <tr>
                         <td class="head_name">Client Name</td>
-                        <td>{{$client->name}}</td>
+                        <td>{{@$client->name}}</td>
 
                         <td class="head_name">Phone No</td>
-                        <td>{{$client->phone}}</td>
+                        <td>{{@$client->phone}}</td>
                     </tr>
 
                     <tr>

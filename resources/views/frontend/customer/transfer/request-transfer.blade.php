@@ -32,7 +32,7 @@
                                     <label for="name">Receiver's Username
                                         <span class="required">*</span>
                                     </label>
-                                    <input type="text" name="to_username" class="form-control" placeholder="Receivers username" value="{{old('to_name')}}" required>
+                                    <input type="text" name="to_username" class="form-control" placeholder="Receivers username" value="{{old('to_username')}}" required>
                                 </div>
                             </div>
                             <div class="col-lg-6">

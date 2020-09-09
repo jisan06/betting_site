@@ -25,6 +25,7 @@
                     <tr>
                         <th width="25px">SL</th>
                         <th>Client Name</th>
+                        <th>User Name</th>
                         <th>Phone</th>
                         <th>Game</th>
                         <th>Match</th>
@@ -48,6 +49,7 @@
                         <tr class="row_{{$customer_bets->id}}">
                             <td>{{++$sl}}</td>
                             <td>{{@$client->name}}</td>
+                            <td>{{@$client->username}}</td>
                             <td>{{@$client->phone}}</td>
                             <td>{{$game->name}}</td>
                             <td>{{$match->name}}</td>

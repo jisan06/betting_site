@@ -3,6 +3,7 @@
 @section('card_body')
 @php
     use App\Game;
+    use App\Client;
 @endphp
 <style type="text/css">
     .addBtn{
@@ -25,6 +26,7 @@
                         <th width="25px">SL</th>
                         <th width="90px">Date</th>
                         <th width="150px">Name</th>
+                        <th>User Name</th>
                         <th width="40px">Phone No.</th>
                         <th width="100px">To</th>
                         <th width="80px">Payment Type</th>
@@ -37,11 +39,13 @@
                 	@php
                         $sl = 0;
                         foreach ($customer_withdraw_list as $customer_withdraw) {
+                            $client = Client::find($customer_withdraw->client_id);
                     @endphp
                         <tr class="row_{{$customer_withdraw->id}}">
                             <td>{{++$sl}}</td>
                             <td>{{date('d M Y',strtotime($customer_withdraw->created_at))}}</td>
                             <td>{{$customer_withdraw->name}}</td>
+                            <td>{{@$client->username}}</td>
                             <td>{{$customer_withdraw->phone_no}}</td>
                             <td>{{$customer_withdraw->withdraw_number}}</td>
                             <td>{{$customer_withdraw->payment_type}}</td>

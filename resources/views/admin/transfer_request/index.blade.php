@@ -3,6 +3,7 @@
 @section('card_body')
 @php
     use App\Game;
+    use App\Client;
 @endphp
 <style type="text/css">
     .addBtn{
@@ -25,6 +26,7 @@
                         <th width="25px">SL</th>
                         <th width="90px">Date</th>
                         <th width="150px">Name</th>
+                        <th width="150px">User Name</th>
                         <th width="150px">To Username</th>
                         <th width="40px">To Phone No.</th>
                         <th width="100px" class="text-right">Amount</th>                        
@@ -35,11 +37,13 @@
                 	@php
                         $sl = 0;
                         foreach ($customer_transfer_list as $customer_transfer) {
+                            $client = Client::find($customer_transfer->client_id);
                     @endphp
                         <tr class="row_{{$customer_transfer->id}}">
                             <td>{{++$sl}}</td>
                             <td>{{date('d M Y',strtotime($customer_transfer->created_at))}}</td>
                             <td>{{$customer_transfer->name}}</td>
+                            <td>{{@$client->username}}</td>
                             <td>{{$customer_transfer->to_username}}</td>
                             <td>{{$customer_transfer->to_phone_no}}</td>
                             <td class="text-right">{{$customer_transfer->transfer_amount}}</td>

@@ -42,12 +42,17 @@ class CustomerTransferController extends Controller
             $phone = Auth::guard('customer')->user()->phone;
             $receiver = Client::where('username',request()->to_username)->first();
 
-            if(!Hash::check(request()->password, $userPassword)){
-            	return redirect()->back()->withErrors(['error' => 'Your password is wrong']);
+            if(!@$receiver){
+                return redirect()->back()->withErrors(['error' => 'Username is not found'])->withInput();
+
+            }elseif($client->club_owner_id == NULL && $receiver->club_owner_id == NULL || $client->club_id != $receiver->club_owner_id || $client->club_owner_id != $receiver->club_id){
+                return redirect()->back()->withErrors(['error' => 'Receiver users club not matched with your club'])->withInput();
+
+            }elseif(!Hash::check(request()->password, $userPassword)){
+                return redirect()->back()->withErrors(['error' => 'Your password is wrong'])->withInput();
+
             }elseif (Auth::guard('customer')->user()->balance - request()->transfer_amount < 0 ) {
-                return redirect()->back()->withErrors(['error' => 'Your do not have sufficient balance']);
-            }elseif(!@$receiver){
-            	return redirect()->back()->withErrors(['error' => 'Username is not found']);
+                return redirect()->back()->withErrors(['error' => 'You do not have sufficient balance'])->withInput();
             }else{
             	
 	        	$client->update([

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 05, 2020 at 04:54 PM
+-- Generation Time: Sep 09, 2020 at 02:24 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -75,7 +75,11 @@ CREATE TABLE `clubs` (
 
 INSERT INTO `clubs` (`id`, `name`, `order_by`, `status`, `created_at`, `updated_at`) VALUES
 (1, 'Barcelona', 1, 1, '2020-08-20 04:08:27', '2020-08-20 09:31:05'),
-(3, 'India Club', 2, 1, '2020-08-22 03:27:43', '2020-08-22 03:27:43');
+(3, 'India Club', 2, 1, '2020-08-22 03:27:43', '2020-08-22 03:27:43'),
+(4, 'Green Club', 3, 1, '2020-09-08 18:36:19', '2020-09-08 18:36:19'),
+(5, 'Chittagong Club', 4, 1, '2020-09-08 18:36:47', '2020-09-08 18:36:47'),
+(6, 'BSL Club', 5, 1, '2020-09-08 18:37:19', '2020-09-08 18:37:19'),
+(7, 'King Club', 6, 1, '2020-09-08 18:37:47', '2020-09-08 18:37:47');
 
 -- --------------------------------------------------------
 
@@ -185,9 +189,10 @@ CREATE TABLE `tbl_betting_categories` (
 INSERT INTO `tbl_betting_categories` (`id`, `match_id`, `name`, `order_by`, `status`, `created_at`, `updated_at`) VALUES
 (1, 4, 'sdafsdaf Updated', 12, 1, '2020-08-25 16:18:40', '2020-08-25 18:51:59'),
 (3, 1, 'omarfaruk.mh686@gmail.com', 1, 1, '2020-08-25 19:42:48', '2020-08-25 19:42:48'),
-(4, 6, 'To Win The Match .. ?', 1, 1, '2020-08-29 08:27:09', '2020-08-29 08:27:09'),
+(4, 6, 'To Win The Match .. ?', 1, 1, '2020-08-29 08:27:09', '2020-09-08 12:10:51'),
 (5, 6, 'Total Score', 2, 1, '2020-08-29 08:27:30', '2020-08-29 08:27:30'),
-(6, 7, 'To Win The Match .. ?', 1, 1, '2020-08-31 00:08:56', '2020-08-31 00:08:56');
+(6, 7, 'To Win The Match .. ?', 1, 1, '2020-08-31 00:08:56', '2020-08-31 00:08:56'),
+(7, 9, 'Full Time Result', 1, 1, '2020-09-08 06:38:28', '2020-09-08 06:51:47');
 
 -- --------------------------------------------------------
 
@@ -217,7 +222,9 @@ INSERT INTO `tbl_betts` (`id`, `betting_category_id`, `name`, `ratio`, `result`,
 (5, 4, 'Pakistan', 1.5, 1, 1, '2020-08-29 08:29:56', '2020-09-05 07:17:02'),
 (6, 4, 'Draw', 1, 1, 0, '2020-08-29 12:02:09', '2020-09-05 06:58:14'),
 (7, 6, 'Barcelona', 1, NULL, 0, '2020-08-31 00:09:31', '2020-08-31 00:09:31'),
-(8, 6, 'PSG', 2, NULL, 0, '2020-08-31 00:09:47', '2020-08-31 00:09:47');
+(8, 6, 'PSG', 2, NULL, 0, '2020-08-31 00:09:47', '2020-08-31 00:09:47'),
+(9, 7, 'Chelsea', 2.9, NULL, 0, '2020-09-08 06:41:20', '2020-09-08 06:43:07'),
+(10, 7, 'Run in 11th over odd', 1.5, NULL, 0, '2020-09-08 06:48:45', '2020-09-08 06:48:45');
 
 -- --------------------------------------------------------
 
@@ -229,6 +236,7 @@ CREATE TABLE `tbl_clients` (
   `id` int(11) NOT NULL,
   `user_role_id` int(11) DEFAULT NULL,
   `club_id` int(11) DEFAULT NULL,
+  `club_owner_id` int(11) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
   `username` varchar(255) DEFAULT NULL,
   `sponsor_username` varchar(255) DEFAULT NULL,
@@ -239,7 +247,7 @@ CREATE TABLE `tbl_clients` (
   `address` text DEFAULT NULL,
   `birth_date` date DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
-  `balance` longtext DEFAULT NULL,
+  `balance` longtext DEFAULT '0',
   `password` varchar(255) DEFAULT NULL,
   `verification_code` varchar(255) DEFAULT NULL,
   `token` varchar(255) DEFAULT NULL,
@@ -254,9 +262,14 @@ CREATE TABLE `tbl_clients` (
 -- Dumping data for table `tbl_clients`
 --
 
-INSERT INTO `tbl_clients` (`id`, `user_role_id`, `club_id`, `name`, `username`, `sponsor_username`, `phone`, `identification_type`, `identification_no`, `email`, `address`, `birth_date`, `image`, `balance`, `password`, `verification_code`, `token`, `status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(11, NULL, 3, 'Jisan Ahmed', 'jisan', 'jsit', '01832967276', NULL, NULL, NULL, NULL, NULL, NULL, '4725', '$2y$10$EHI1qX2B7jdvn18GTXwe7.lTSKJiUAr4iNJMdI6fBlp9kJmhMcTq.', NULL, NULL, 1, NULL, '2020-08-22 05:10:12', NULL, '2020-09-05 07:17:02'),
-(12, NULL, 1, 'Sahariar', 'sabit', 'asdfasdg', '01624911270', NULL, NULL, 'dhruv.islam7584@gmail.com', NULL, NULL, NULL, '700', '$2y$10$KHvNkbjILxlbSvnQ7PBl8eey3LykBiwIqSM2B2Qx/OpFJK0wT/P5q', NULL, NULL, 1, NULL, '2020-09-03 05:57:38', NULL, '2020-09-03 06:12:18');
+INSERT INTO `tbl_clients` (`id`, `user_role_id`, `club_id`, `club_owner_id`, `name`, `username`, `sponsor_username`, `phone`, `identification_type`, `identification_no`, `email`, `address`, `birth_date`, `image`, `balance`, `password`, `verification_code`, `token`, `status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
+(12, NULL, 1, NULL, 'Sahariar', 'sabit', 'asdfasdg', '01624911270', NULL, NULL, 'dhruv.islam7584@gmail.com', NULL, NULL, NULL, '700', '$2y$10$KHvNkbjILxlbSvnQ7PBl8eey3LykBiwIqSM2B2Qx/OpFJK0wT/P5q', NULL, NULL, 1, NULL, '2020-09-03 05:57:38', NULL, '2020-09-03 06:12:18'),
+(13, NULL, 1, NULL, 'Arafat', 'Arafat618796', 'Shishirsb', '01838691091', NULL, NULL, 'Arafat.adm@gmail.com', NULL, NULL, NULL, '0', '$2y$10$GKdYTNyU.pIHHLAzxqMDH.a/EEcnSsD4fkkHiLDVJbApNUvzpo9Sa', NULL, NULL, 1, NULL, '2020-09-08 00:39:52', NULL, '2020-09-08 00:39:52'),
+(14, NULL, 1, NULL, 'Shishir Ahmed', 'Shishirsb', 'shishir', '01638674433', NULL, NULL, 'shishirsb12343@gmail.com', NULL, NULL, NULL, '0', '$2y$10$ZKMN2O872YCJF4MntXxlT.u4s6wxb9kCensw0LW5gJn5RJwN9jKbm', NULL, NULL, 1, NULL, '2020-09-08 02:02:06', NULL, '2020-09-08 22:24:15'),
+(15, NULL, 1, NULL, 'Shojib ahmed', 'Shojibahmed', 'Ssss', '01634445834', NULL, NULL, NULL, NULL, NULL, NULL, '0', '$2y$10$CEUfVwnexnPRHVKlnMBoNeOzibV03xyLs2jsj7tk.3UE7wNK7SNTq', NULL, NULL, 1, NULL, '2020-09-08 06:25:02', NULL, '2020-09-08 06:25:02'),
+(16, NULL, 1, 1, 'Jisan AHmed', 'jisan', NULL, '01832967276', NULL, NULL, NULL, NULL, NULL, NULL, '0', '$2y$10$y60C8CAscfnOay3Q/K/BGuV.aZg7fZTY46egMV2Ieb0NVoQ06SsOm', NULL, NULL, 1, NULL, '2020-09-08 07:52:16', NULL, '2020-09-09 06:15:50'),
+(17, NULL, 1, 1, 'Ab xafor', 'Xafor71', NULL, '01910222871', NULL, NULL, 'shihabahmed518@gmail.com', NULL, NULL, NULL, '0', '$2y$10$mWnTt2zQMOxQk7HQlYama..lEfLCbJQ/A90v.uk7AtGpGwSfZqoYS', NULL, NULL, 1, NULL, '2020-09-08 08:43:32', NULL, '2020-09-09 06:21:58'),
+(18, NULL, 1, NULL, 'Sahariar', 'sabit007', 'asdfasdg', '01909642730', NULL, NULL, 'superadmin@gmail.com', NULL, NULL, NULL, '1877', '$2y$10$5b.K25c.NGL0AjZH2mG/JOXJJokzQu6xWs0UUkN.HnyAEdqmyp09O', NULL, NULL, 1, NULL, '2020-09-08 11:28:16', NULL, '2020-09-08 12:00:13');
 
 -- --------------------------------------------------------
 
@@ -313,7 +326,9 @@ CREATE TABLE `tbl_client_deposites` (
 INSERT INTO `tbl_client_deposites` (`id`, `client_id`, `payment_method_id`, `deposite_to`, `deposite_from`, `transaction_no`, `deposite_amount`, `current_balance`, `status`, `type`, `is_deposited`, `created_at`, `updated_at`) VALUES
 (5, 11, NULL, 1923943943, '12123123213', '12312323432432', '50', NULL, 1, 'Deposit', 1, '2020-08-31 12:15:11', '2020-08-31 12:16:36'),
 (6, 11, 3, 5, '12123123213', '12313', '50', NULL, 0, 'Deposit', 0, '2020-09-02 06:36:24', '2020-09-02 06:36:24'),
-(7, 11, 1, 1, '019392483', '384237423642', '200', '4500', 1, 'Deposit', 1, '2020-09-05 02:47:09', '2020-09-05 02:50:29');
+(7, 11, 1, 1, '019392483', '384237423642', '200', '4500', 1, 'Deposit', 1, '2020-09-05 02:47:09', '2020-09-05 02:50:29'),
+(9, 18, 3, 3, '654535165464', '6565465464', '2000', '2000', 1, 'Deposit', 1, '2020-09-08 11:29:07', '2020-09-08 11:58:22'),
+(10, 14, 3, 1, '01638674433', '01638674433', '5000', '5000', 0, 'Deposit', 1, '2020-09-08 22:20:14', '2020-09-08 22:22:07');
 
 -- --------------------------------------------------------
 
@@ -373,12 +388,13 @@ CREATE TABLE `tbl_client_withdraw` (
 
 INSERT INTO `tbl_client_withdraw` (`id`, `client_id`, `name`, `phone_no`, `payment_method_id`, `payment_type`, `withdraw_amount`, `withdraw_number`, `current_balance`, `status`, `is_withdrawed`, `type`, `created_at`, `updated_at`) VALUES
 (3, 11, NULL, NULL, 1, 'Personal', 1000, '45343545', NULL, 1, 1, 'Withdraw', '2020-09-02 01:58:59', '2020-09-02 01:59:17'),
-(4, 11, NULL, NULL, 1, 'Personal', 200, '0098764', NULL, NULL, NULL, 'Withdraw', '2020-09-03 01:12:10', '2020-09-03 01:12:10'),
 (5, NULL, 'Jisan Ahmed', NULL, 1, 'Agent', 752, '0098764', NULL, NULL, NULL, 'Withdraw', '2020-09-03 01:13:42', '2020-09-03 01:13:42'),
 (6, NULL, 'Jisan Ahmed', NULL, 1, 'Agent', 123456, '123456', NULL, NULL, NULL, 'Withdraw', '2020-09-03 01:14:27', '2020-09-03 01:14:27'),
 (7, 11, 'Jisan Ahmed', NULL, 1, 'Agent', 1234567, '123456', NULL, NULL, NULL, 'Withdraw', '2020-09-03 01:16:33', '2020-09-03 01:16:33'),
 (8, 11, 'Jisan Ahmed', NULL, 1, 'Agent', 200, '+880', NULL, NULL, NULL, 'Withdraw', '2020-09-03 01:18:05', '2020-09-03 01:18:05'),
-(9, 11, 'Jisan Ahmed', '01832967276', 1, 'Personal', 121, '0098764', NULL, 1, 1, 'Withdraw', '2020-09-03 01:19:01', '2020-09-03 01:28:15');
+(9, 11, 'Jisan Ahmed', '01832967276', 1, 'Personal', 121, '0098764', NULL, 1, 1, 'Withdraw', '2020-09-03 01:19:01', '2020-09-03 01:28:15'),
+(10, 18, 'Sahariar', '01909642730', 1, 'Agent', 123, '871841', '1877', 1, 1, 'Withdraw', '2020-09-08 11:59:52', '2020-09-08 12:00:13'),
+(11, 14, 'Shishir Ahmed', '01638674433', 1, 'Personal', 5000, '01638674433', '0', 1, 1, 'Withdraw', '2020-09-08 22:23:44', '2020-09-08 22:24:15');
 
 -- --------------------------------------------------------
 
@@ -433,7 +449,13 @@ CREATE TABLE `tbl_games` (
 INSERT INTO `tbl_games` (`id`, `name`, `icon`, `order_by`, `status`, `created_at`, `updated_at`) VALUES
 (2, 'Cricket', 'fa fa-cricket', 2, 1, '2020-08-23 13:50:23', '2020-08-29 10:30:33'),
 (3, 'Football', 'add_circle_outline', 3, 1, '2020-08-23 13:56:16', '2020-08-23 14:46:05'),
-(4, 'Tennis', 'fa fa-credit-card-alt', 3, 1, '2020-08-29 03:32:30', '2020-08-29 03:32:30');
+(4, 'Tennis', 'fa fa-credit-card-alt', 3, 1, '2020-08-29 03:32:30', '2020-08-29 03:32:30'),
+(5, 'Basket Ball', 'B', 4, 1, '2020-09-08 18:39:03', '2020-09-08 18:39:03'),
+(6, 'Badminton', 'B', 5, 1, '2020-09-08 18:39:25', '2020-09-08 18:39:25'),
+(7, 'Volley Ball', 'V', 6, 1, '2020-09-08 18:40:07', '2020-09-08 18:40:07'),
+(8, 'Hand Ball', 'H', 7, 1, '2020-09-08 18:40:34', '2020-09-08 18:40:34'),
+(9, 'Hockey', 'H', 8, 1, '2020-09-08 18:41:00', '2020-09-08 18:41:00'),
+(10, 'Table Tennis', 'T', 8, 1, '2020-09-08 18:41:49', '2020-09-08 18:41:49');
 
 -- --------------------------------------------------------
 
@@ -462,8 +484,9 @@ CREATE TABLE `tbl_matches` (
 --
 
 INSERT INTO `tbl_matches` (`id`, `game_id`, `name`, `team_one`, `team_two`, `league`, `date_time`, `icon`, `order_by`, `status`, `live`, `created_at`, `updated_at`) VALUES
-(6, 2, 'India vs Pakistan', 'India', 'Pakistan', 'sdfcsdf', '2020-08-29 08:38:00', 'fgf', 1, 1, 2, '2020-08-29 03:59:17', '2020-09-05 08:53:46'),
-(7, 3, 'Barcelona VS PSG', 'Barcelona', 'PSG', 'English Premiere Leauge', '2020-09-01 01:00:00', NULL, 2, 1, 2, '2020-08-31 00:04:15', '2020-09-05 08:53:46');
+(6, 2, 'India vs Pakistan', 'India', 'Pakistan', 'sdfcsdf', '2020-08-29 08:38:00', 'fgf', 1, 1, 2, '2020-08-29 03:59:17', '2020-09-09 06:23:46'),
+(7, 3, 'Barcelona VS PSG', 'Barcelona', 'PSG', 'English Premiere Leauge', '2020-09-01 01:00:00', NULL, 2, 1, 2, '2020-08-31 00:04:15', '2020-09-09 06:23:46'),
+(10, 2, 'Knight Riders Vs Lucia Zouks', 'Lucia Zouks', 'Knight riders', 'CPL', '2020-09-10 08:00:00', 'CPL', 1, 1, 0, '2020-09-08 18:47:51', '2020-09-09 06:23:46');
 
 -- --------------------------------------------------------
 
@@ -495,10 +518,10 @@ INSERT INTO `tbl_menus` (`id`, `parent_menu`, `menu_name`, `menu_link`, `menu_ic
 (5, '39', 'User', 'user.index', 'fa fa-bars', 3, '1', '2020-03-14 02:06:15', '2020-03-15 06:02:33'),
 (6, NULL, 'Front-End Management', 'admin.index', 'fa fa-bars', 3, '1', '2020-04-16 09:54:08', '2020-07-08 21:10:03'),
 (7, '6', 'Website Information', 'websiteInformation.index', 'fa fa-caret', 1, '1', '2020-04-16 10:43:15', '2020-04-16 10:43:15'),
-(8, '6', 'Menus', 'frontEndMenu.index', NULL, 2, '1', '2020-04-18 08:17:03', '2020-04-18 08:17:03'),
-(10, '6', 'Social Links', 'socialLink.index', 'fa fa-caret', 3, '1', '2020-04-18 10:14:20', '2020-04-18 10:14:20'),
+(8, '6', 'Menus', 'frontEndMenu.index', NULL, 2, '0', '2020-04-18 08:17:03', '2020-09-08 00:33:11'),
+(10, '6', 'Social Links', 'socialLink.index', 'fa fa-caret', 3, '0', '2020-04-18 10:14:20', '2020-09-08 00:33:16'),
 (11, '6', 'Sliders', 'sliders.index', 'fa fa-bars', 4, '1', '2020-04-19 08:19:58', '2020-04-19 08:19:58'),
-(12, '6', 'Pages', 'page.index', 'fa fa-caret', 5, '1', '2020-05-10 05:09:10', '2020-05-10 05:09:10'),
+(12, '6', 'Pages', 'page.index', 'fa fa-caret', 5, '0', '2020-05-10 05:09:10', '2020-09-08 00:33:23'),
 (13, NULL, 'Basic Setup', 'admin.index', 'fa fa-bars', 4, '1', '2020-06-10 04:33:14', '2020-07-08 21:10:09'),
 (23, '21', 'Sender Order', 'senderOrder.index', 'fa fa-bars', 2, '1', '2020-06-18 05:14:55', '2020-06-18 05:14:55'),
 (24, '21', 'Receiver Order', 'receiverOrder.index', 'fa fa-bars', 3, '1', '2020-06-18 05:15:39', '2020-06-18 05:15:39'),
@@ -718,7 +741,9 @@ CREATE TABLE `tbl_payment_method` (
 --
 
 INSERT INTO `tbl_payment_method` (`id`, `name`, `order_by`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'BKash', 1, 1, '2020-09-01 05:27:57', '2020-09-01 07:09:44');
+(1, 'BKash', 1, 1, '2020-09-01 05:27:57', '2020-09-01 07:09:44'),
+(3, 'Rocket', 2, 1, '2020-09-08 06:06:32', '2020-09-08 06:06:32'),
+(4, 'NAGAD', 3, 1, '2020-09-08 18:43:31', '2020-09-08 18:43:31');
 
 -- --------------------------------------------------------
 
@@ -741,7 +766,8 @@ CREATE TABLE `tbl_payment_number` (
 --
 
 INSERT INTO `tbl_payment_number` (`id`, `payment_method_id`, `number`, `order_by`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, '00000000000000', 1, 1, '2020-09-01 08:43:32', '2020-09-01 10:04:09');
+(1, 1, '01810476919', 1, 1, '2020-09-01 08:43:32', '2020-09-08 22:17:51'),
+(3, 4, '01638674433', 2, 1, '2020-09-08 06:09:02', '2020-09-08 18:44:39');
 
 -- --------------------------------------------------------
 
@@ -816,8 +842,7 @@ CREATE TABLE `tbl_sliders` (
 --
 
 INSERT INTO `tbl_sliders` (`id`, `first_title`, `second_title`, `third_title`, `description`, `image`, `width`, `height`, `link`, `meta_title`, `meta_keyword`, `meta_description`, `order_by`, `status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(1, NULL, NULL, NULL, '<p><br></p>', 'public/uploads/slider_image/110308787_326745651685749_2438157101155051618_n_79010521183_40926670408.jpg', NULL, NULL, 'link', 'meta title', 'meta,keyword', 'meta description.', 1, 1, 4, '2020-04-23 10:49:57', NULL, '2020-07-21 23:50:17'),
-(3, NULL, NULL, NULL, NULL, 'public/uploads/slider_image/108437927_624749504820936_8498197300372270697_n_97739421904_48007392676.jpg', NULL, NULL, NULL, NULL, NULL, NULL, 2, 0, 4, '2020-07-21 23:49:37', NULL, '2020-07-21 23:52:58');
+(1, NULL, NULL, NULL, '<p><br></p>', 'public/uploads/slider_image/banner-2_37043683518.jpg', NULL, NULL, 'link', 'meta title', 'meta,keyword', 'meta description.', 1, 1, 4, '2020-04-23 10:49:57', NULL, '2020-09-08 00:34:39');
 
 -- --------------------------------------------------------
 
@@ -874,7 +899,8 @@ CREATE TABLE `tbl_user_roles` (
 
 INSERT INTO `tbl_user_roles` (`id`, `name`, `parent_role`, `level`, `status`, `permission`, `action_permission`, `created_at`, `updated_at`) VALUES
 (2, 'Super User', NULL, 1, 1, '1,6,7,8,10,11,12,13,54,55,60,61,51,52,65,56,57,59,58,62,63,64,39,2,3,4,5,38', '28,29,30,31,32,33,39,40,41,42,43,44,45,46,47,48,49,50,51,142,143,144,145,146,147,148,149,158,159,160,161,162,163,164,165,138,139,140,141,169,150,154,151,152,153,155,156,157,166,167,168,2,3,4,5,6,11,12,13,14,15,7,8,9,10,21,23,24,25,26,108,109', '2019-04-17 00:50:05', '2020-09-05 04:35:10'),
-(3, 'Admin', NULL, 1, 1, '1,6,7,8,10,11,12,39,2,3,4,5,38,13,50,54', '28,29,30,31,32,33,39,40,41,42,43,44,45,46,47,48,49,50,51,2,3,4,5,6,11,12,13,14,15,7,8,9,10,21,23,24,25,26,108,109,134,135,136,137,142', '2019-04-17 00:52:54', '2020-08-20 02:48:18');
+(3, 'Admin', NULL, 1, 1, '1,6,7,8,10,11,12,39,2,3,4,5,38,13,50,54', '28,29,30,31,32,33,39,40,41,42,43,44,45,46,47,48,49,50,51,2,3,4,5,6,11,12,13,14,15,7,8,9,10,21,23,24,25,26,108,109,134,135,136,137,142', '2019-04-17 00:52:54', '2020-08-20 02:48:18'),
+(15, 'Club Holder', 2, 2, 1, NULL, NULL, '2020-09-08 07:18:44', '2020-09-08 07:18:44');
 
 -- --------------------------------------------------------
 
@@ -954,7 +980,7 @@ CREATE TABLE `view_transaction` (
 --
 DROP TABLE IF EXISTS `view_transaction`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_transaction`  AS  select `tbl_client_deposites`.`id` AS `id`,`tbl_client_deposites`.`client_id` AS `client_id`,`tbl_client_deposites`.`created_at` AS `date_time`,`tbl_client_deposites`.`type` AS `transaction_for`,0 AS `debit`,`tbl_client_deposites`.`deposite_amount` AS `credit`,`tbl_client_deposites`.`is_deposited` AS `is_transaction`,`tbl_client_deposites`.`current_balance` AS `current_balance` from `tbl_client_deposites` union select `tbl_client_withdraw`.`id` AS `id`,`tbl_client_withdraw`.`client_id` AS `client_id`,`tbl_client_withdraw`.`created_at` AS `date_time`,`tbl_client_withdraw`.`type` AS `transaction_for`,`tbl_client_withdraw`.`withdraw_amount` AS `debit`,0 AS `credit`,`tbl_client_withdraw`.`is_withdrawed` AS `is_transaction`,`tbl_client_withdraw`.`current_balance` AS `current_balance` from `tbl_client_withdraw` union select `tbl_client_transfer`.`id` AS `id`,`tbl_client_transfer`.`client_id` AS `client_id`,`tbl_client_transfer`.`created_at` AS `date_time`,`tbl_client_transfer`.`type` AS `transaction_for`,`tbl_client_transfer`.`transfer_amount` AS `debit`,0 AS `credit`,1 AS `is_transaction`,`tbl_client_transfer`.`current_balance` AS `current_balance` from `tbl_client_transfer` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`bslcom`@`localhost` SQL SECURITY DEFINER VIEW `view_transaction`  AS  select `tbl_client_deposites`.`id` AS `id`,`tbl_client_deposites`.`client_id` AS `client_id`,`tbl_client_deposites`.`created_at` AS `date_time`,`tbl_client_deposites`.`type` AS `transaction_for`,0 AS `debit`,`tbl_client_deposites`.`deposite_amount` AS `credit`,`tbl_client_deposites`.`is_deposited` AS `is_transaction`,`tbl_client_deposites`.`current_balance` AS `current_balance` from `tbl_client_deposites` union select `tbl_client_withdraw`.`id` AS `id`,`tbl_client_withdraw`.`client_id` AS `client_id`,`tbl_client_withdraw`.`created_at` AS `date_time`,`tbl_client_withdraw`.`type` AS `transaction_for`,`tbl_client_withdraw`.`withdraw_amount` AS `debit`,0 AS `credit`,`tbl_client_withdraw`.`is_withdrawed` AS `is_transaction`,`tbl_client_withdraw`.`current_balance` AS `current_balance` from `tbl_client_withdraw` union select `tbl_client_transfer`.`id` AS `id`,`tbl_client_transfer`.`client_id` AS `client_id`,`tbl_client_transfer`.`created_at` AS `date_time`,`tbl_client_transfer`.`type` AS `transaction_for`,`tbl_client_transfer`.`transfer_amount` AS `debit`,0 AS `credit`,1 AS `is_transaction`,`tbl_client_transfer`.`current_balance` AS `current_balance` from `tbl_client_transfer` ;
 
 --
 -- Indexes for dumped tables
@@ -1145,7 +1171,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `clubs`
 --
 ALTER TABLE `clubs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -1169,19 +1195,19 @@ ALTER TABLE `tbl_admin_panel_information`
 -- AUTO_INCREMENT for table `tbl_betting_categories`
 --
 ALTER TABLE `tbl_betting_categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `tbl_betts`
 --
 ALTER TABLE `tbl_betts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `tbl_clients`
 --
 ALTER TABLE `tbl_clients`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `tbl_client_betts`
@@ -1193,7 +1219,7 @@ ALTER TABLE `tbl_client_betts`
 -- AUTO_INCREMENT for table `tbl_client_deposites`
 --
 ALTER TABLE `tbl_client_deposites`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `tbl_client_transfer`
@@ -1205,7 +1231,7 @@ ALTER TABLE `tbl_client_transfer`
 -- AUTO_INCREMENT for table `tbl_client_withdraw`
 --
 ALTER TABLE `tbl_client_withdraw`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `tbl_frontend_menu`
@@ -1217,13 +1243,13 @@ ALTER TABLE `tbl_frontend_menu`
 -- AUTO_INCREMENT for table `tbl_games`
 --
 ALTER TABLE `tbl_games`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `tbl_matches`
 --
 ALTER TABLE `tbl_matches`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `tbl_menus`
@@ -1253,13 +1279,13 @@ ALTER TABLE `tbl_pages`
 -- AUTO_INCREMENT for table `tbl_payment_method`
 --
 ALTER TABLE `tbl_payment_method`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tbl_payment_number`
 --
 ALTER TABLE `tbl_payment_number`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_posts`
@@ -1283,7 +1309,7 @@ ALTER TABLE `tbl_social_links`
 -- AUTO_INCREMENT for table `tbl_user_roles`
 --
 ALTER TABLE `tbl_user_roles`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `tbl_website_information`

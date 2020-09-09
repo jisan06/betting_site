@@ -1,6 +1,14 @@
 @extends('admin.layouts.masterIndex')
 
 @section('card_body')
+@php
+    use App\Club;
+@endphp
+    <style type="text/css">
+        .addBtn{
+            display: none;
+        }
+    </style>
     <div class="card-body">
         {{-- <div align='center'>
             <font size='7' text-align='center' color='green' face='Comic sans MS'>This Page Is Now Under Construction</font>
@@ -16,9 +24,11 @@
                     <tr>
                         <th width="20px">SL</th>
                         <th>Name</th>
+                        <th>User Name</th>
                         <th width="100px">Phone</th>
                         <th width="200px">Email</th>
-                        <th width="200px">Address</th>
+                        <th width="130px">Club</th>
+                        <th width="130px">Balance</th>
                         <th width="20px">Status</th>
                         <th width="80px">Action</th>
                     </tr>
@@ -28,12 +38,17 @@
                 		$sl = 1;
                 	@endphp
                 	@foreach ($clients as $client)
+                    @php
+                        $club = Club::find($client->club_id);
+                    @endphp
                 		<tr class="row_{{ $client->id }}">
                 			<td>{{ $sl++ }}</td>
-                			<td>{{ $client->name }}</td>
+                            <td>{{ $client->name }}</td>
+                			<td>{{ $client->username }}</td>
                 			<td>{{ $client->phone }}</td>
                             <td>{{ $client->email }}</td>
-                            <td>{{ $client->address }}</td>
+                            <td>{{ @$club->name }}</td>
+                            <td>৳ {{number_format($client->balance,2,'.','') }}</td>
                 			<td>
                                 @php
                                     echo \App\Link::status($client->id,$client->status);
