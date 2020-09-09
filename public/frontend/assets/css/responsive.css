@@ -781,8 +781,8 @@
         margin-right: 6px;
     }
     .betting .betting-table .bett-menu .nav-tabs .nav-item .nav-link .text {
-        font-size: 14px;
-        display: none;
+        font-size: 12px;
+        /*display: none;*/
     }
     .betting .betting-table .bett-menu .nav-tabs .nav-item .nav-link.active {
         border-radius: 0;
@@ -1179,7 +1179,7 @@
         margin-right: 6px;
     }
     .betting .betting-table .bett-menu .nav-tabs .nav-item .nav-link .text {
-        font-size: 14px;
+        font-size: 10px;
     }
     .betting .betting-table .bett-menu .nav-tabs .nav-item .nav-link.active {
         border-radius: 0;
@@ -1440,7 +1440,7 @@
 
     /* betting section */
     .betting .betting-table .bett-menu .nav-tabs .nav-item .nav-link .text {
-        display: none;
+        /*display: none;*/
     }
     .betting .betting-table .bett-menu .nav-tabs .nav-item .nav-link i {
         margin-right: 0;
