@@ -59,7 +59,7 @@
                         <th class="head_name">Leauge</th>
                         <td>{{$match->league}}</td>
                         <th class="head_name">Time</th>
-                        <td>{{ date('d M Y H:i a',strtotime($match->date_time)) }}</td>
+                        <td>{{ date('d M Y h:i a',strtotime($match->date_time)) }}</td>
                     </tr>
 
                     <tr>

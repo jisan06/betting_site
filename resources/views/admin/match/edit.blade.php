@@ -103,7 +103,7 @@
                 <div class="col-md-6">
                     <label for="date_time">Date & Time</label>
                     <div class="form-group {{ $errors->has('date_time') ? ' has-danger' : '' }}">
-                        <input type="text" class="form-control date_timepicker" placeholder="Date of The Match" name="date_time" value="{{ date('d-m-Y H:i a',strtotime($match->date_time)) }}" readonly required>
+                        <input type="text" class="form-control date_timepicker" placeholder="Date of The Match" name="date_time" value="{{ date('d-m-Y h:i a',strtotime($match->date_time)) }}" readonly required>
                         @if ($errors->has('date_time'))
                             @foreach($errors->get('date_time') as $error)
                                 <div class="form-control-feedback">{{ $error }}</div>

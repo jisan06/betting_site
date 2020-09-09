@@ -43,7 +43,7 @@
                             <td>{{ $match->name }}</td>
                             <td>{{ $match->team_one }}</td>
                             <td>{{ $match->team_two }}</td>
-                            <td>{{ date('d-m-Y H:i a',strtotime($match->date_time)) }}</td>
+                            <td>{{ date('d-m-Y h:i a',strtotime($match->date_time)) }}</td>
                             <td>{{ $match->live }}</td>
                             <td class="text-center">{{ $match->order_by }}</td>
                 			<td>
