@@ -59,7 +59,7 @@
                                         {{$match->team_one}} VS {{$match->team_two}}
                                         <br>
                                         <span class="leauge_name">{{$match->league}}</span> ||
-                                        <span class="duration">{{ date('d M Y H:i a',strtotime($match->date_time)) }}</span> 
+                                        <span class="duration">{{ date('d M Y h:i a',strtotime($match->date_time)) }}</span> 
                                     </h4>
                                     @php
                                         foreach ($betting_category_list as $betting_category) {
@@ -80,7 +80,7 @@
 
                                                         <span class="match_leauge" style="display: none;">
                                                             <span class="leauge_name">{{$match->league}}</span> ||
-                                                            <span class="duration">{{ date('d M Y H:i a',strtotime($match->date_time)) }}</span> 
+                                                            <span class="duration">{{ date('d M Y h:i a',strtotime($match->date_time)) }}</span> 
                                                         </span>
 
                                                         <span class="team-name betting_category">
@@ -153,7 +153,7 @@
                                             {{$match->team_one}} VS {{$match->team_two}}
                                             <br>
                                             <span class="leauge_name">{{$match->league}}</span> ||
-                                            <span class="duration">{{ date('d M Y H:i a',strtotime($match->date_time)) }}</span> 
+                                            <span class="duration">{{ date('d M Y h:i a',strtotime($match->date_time)) }}</span> 
                                         </h4>
                                         @php
                                             foreach ($betting_category_list as $betting_category) {
@@ -174,7 +174,7 @@
 
                                                             <span class="match_leauge" style="display: none;">
                                                                 <span class="leauge_name">{{$match->league}}</span> ||
-                                                                <span class="duration">{{ date('d M Y H:i a',strtotime($match->date_time)) }}</span> 
+                                                                <span class="duration">{{ date('d M Y h:i a',strtotime($match->date_time)) }}</span> 
                                                             </span>
 
                                                             <span class="team-name betting_category">

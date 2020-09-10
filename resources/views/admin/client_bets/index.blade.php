@@ -24,13 +24,13 @@
                 <thead>
                     <tr>
                         <th width="25px">SL</th>
-                        <th>Client Name</th>
                         <th>User Name</th>
                         <th>Phone</th>
                         <th>Game</th>
                         <th>Match</th>
                         <th>Bets</th>
-                        <th width="100px" class="text-right">Rate</th>
+                        <th width="100px" class="text-right">Bid Amount</th>
+                        <th width="40px" class="text-right">Ratio</th>
                         <th width="100px" class="text-right">Amount</th>
                         <th width="100px">status</th>
                         <th width="70px" class="text-center">Action</th>
@@ -48,13 +48,13 @@
                     @endphp
                         <tr class="row_{{$customer_bets->id}}">
                             <td>{{++$sl}}</td>
-                            <td>{{@$client->name}}</td>
                             <td>{{@$client->username}}</td>
                             <td>{{@$client->phone}}</td>
                             <td>{{$game->name}}</td>
                             <td>{{$match->name}}</td>
                             <td>{{$betting_category->name}} ({{$bet->name}})</td>
                             <td class="text-right">{{$customer_bets->betting_stack}}</td>
+                            <td class="text-right">{{$bet->ratio}}</td>
                             <td class="text-right">{{$customer_bets->wining_amount}}</td>
                             <td>
                                 @if($customer_bets->winning_status == 0 && $customer_bets->winning_status != NULL )

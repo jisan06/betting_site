@@ -87,7 +87,7 @@
                 <div class="form-group {{ $errors->has('siteLogo1') ? ' has-danger' : '' }}">
                     <input type="hidden" class="form-control" id="previousSiteLogo1" name="previousSiteLogo1" value="{{ $websiteInformation->logo_one }}">
                     <input type="file" class="form-control" id="siteLogo1" aria-describedby="fileHelp" name="siteLogo1">
-                    <span class="imageSizeInfo">Standard Image Size : 195px * 55px</span>
+                    <span class="imageSizeInfo">Standard Image Size : 225px * 50px</span>
                     @if ($errors->has('siteLogo1'))
                         @foreach($errors->get('siteLogo1') as $error)
                             <div class="form-control-feedback">{{ $error }}</div>
@@ -101,7 +101,7 @@
                 <div class="form-group {{ $errors->has('siteLogo2') ? ' has-danger' : '' }}">
                     <input type="hidden" class="form-control" id="previousSiteLogo2" name="previousSiteLogo2" value="{{ $websiteInformation->logo_two }}">
                     <input type="file" class="form-control" id="siteLogo2" aria-describedby="fileHelp" name="siteLogo2">
-                    <span class="imageSizeInfo">Standard Image Size : 273px * 97px</span>
+                    <span class="imageSizeInfo">Standard Image Size : 225px * 50px</span>
                     @if ($errors->has('siteLogo2'))
                         @foreach($errors->get('siteLogo2') as $error)
                             <div class="form-control-feedback">{{ $error }}</div>

@@ -59,14 +59,14 @@
                         <th class="head_name">Leauge</th>
                         <td>{{$match->league}}</td>
                         <th class="head_name">Time</th>
-                        <td>{{ date('d M Y H:i a',strtotime($match->date_time)) }}</td>
+                        <td>{{ date('d M Y h:i a',strtotime($match->date_time)) }}</td>
                     </tr>
 
                     <tr>
                         <th class="head_name">Bets</th>
                         <td>{{$betting_category->name}} ({{$bet->name}})</td>
-                        <th class="head_name">Rate</th>
-                        <td>{{$customer_bets_details->betting_stack}}</td>
+                        <th class="head_name">Bid Amount</th>
+                        <td>{{$customer_bets_details->betting_stack}} * {{$bet->ratio}} (Ratio)</td>
                     </tr>
 
                      <tr>

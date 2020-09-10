@@ -6,13 +6,44 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Match;
 use App\Game;
+use Carbon\Carbon;
+use App\Bett;
+use App\BettingCategory;
+use App\CustomerBett;
+use App\Client;
 
 class MatchesController extends Controller
 {
     public function index()
     {
         $title = "Manage All Matches";
+      
+        Match::whereDate('date_time','>', Carbon::today())
+            ->update([
+                'live' => 0
+            ]);
 
+        //change status for which match are live today
+        Match::whereDate('date_time', Carbon::today())
+        ->update([
+            'live' => 1
+        ]);
+
+        //change status for which match are continuous long time manual
+        Match::whereDate('date_time','<', Carbon::today())
+            ->where('continuing_status',1)
+            ->update([
+                'live' => 1
+            ]);
+
+        //change status for which match are closed
+        Match::whereDate('date_time','<', Carbon::today())
+            ->where(function($query){
+                $query->where('continuing_status',0)->orWhere('continuing_status',NULL);
+            })
+            ->update([
+                'live' => 2
+            ]);
         $matches = Match::orderBy('id','desc')->get();
 
         return view('admin.match.index')->with(compact('title','matches'));
@@ -41,7 +72,7 @@ class MatchesController extends Controller
             'status'=>'required'
         ]);
 
-        $request->date_time = date('Y-m-d h:i:s',strtotime($request->date_time));
+        $request->date_time = date('Y-m-d H:i:s',strtotime($request->date_time));
         Match::create([
             'game_id' => $request->game_id,
             'name' => $request->name,
@@ -51,6 +82,7 @@ class MatchesController extends Controller
             'date_time' => $request->date_time,
             'icon' => $request->icon,
             'order_by' => $request->order_by,
+            'continuing_status' => $request->continuing_status,
             'status' => $request->status,
         ]);
 
@@ -84,8 +116,7 @@ class MatchesController extends Controller
             'order_by'=>'required',
             'status'=>'required'
         ]);
-
-        $request->date_time = date('Y-m-d h:i:s',strtotime($request->date_time));
+        $request->date_time = date('Y-m-d H:i:s',strtotime($request->date_time));
         $match->update([
             'game_id' => $request->game_id,
             'name' => $request->name,
@@ -95,16 +126,12 @@ class MatchesController extends Controller
             'date_time' => $request->date_time,
             'icon' => $request->icon,
             'order_by' => $request->order_by,
+            'continuing_status' => $request->continuing_status,
             'status' => $request->status,
         ]);
 
         return redirect(route('match.index'))->with('msg','Match Updated Successfully');
 
-    }
-
-    public function delete(Request $request)
-    {
-        Match::where('id',$request->matchId)->delete();
     }
 
     public function status(Request $request)
@@ -125,5 +152,29 @@ class MatchesController extends Controller
                 'status' => 1                
             ]);
         }
+    }
+
+    public function delete(Request $request)
+    {   $match = Match::find($request->matchId);
+        if($match->live == 0 || $match->live == 1){
+            $client_betting_list = \DB::table('tbl_clients')
+                            ->select('tbl_clients.id','tbl_client_betts.client_id','tbl_client_betts.betting_id','tbl_client_betts.betting_stack','tbl_betts.id as bet_id','tbl_betts.betting_category_id','tbl_betting_categories.id as category_id','tbl_betting_categories.match_id')
+                            ->join('tbl_client_betts','tbl_client_betts.client_id','tbl_clients.id')
+                            ->join('tbl_betts','tbl_client_betts.betting_id','tbl_betts.id')
+                            ->join('tbl_betting_categories','tbl_betting_categories.id','tbl_betts.betting_category_id')
+                            ->where('tbl_betting_categories.match_id',$match->id)
+                            ->get();
+            foreach ($client_betting_list as $client_betting) {
+                $client = Client::find($client_betting->client_id);
+                $client->update([
+                    'balance' => $client->balance + $client_betting->betting_stack,
+                ]);
+
+                CustomerBett::where('betting_id',$client_betting->betting_id)->delete();
+                Bett::where('betting_category_id',$client_betting->betting_category_id)->delete();
+            }
+        }
+        BettingCategory::where('match_id',$request->matchId)->delete();
+        Match::where('id',$request->matchId)->delete();
     }
 }

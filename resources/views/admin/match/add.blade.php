@@ -81,41 +81,62 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-4">
-            <label for="icon">Icon</label>
-            <div class="form-group {{ $errors->has('icon') ? ' has-danger' : '' }}">
-                <input type="text" class="form-control" placeholder="Icon of The Match" name="icon" value="{{ old('icon') }}">
-                @if ($errors->has('icon'))
-                    @foreach($errors->get('icon') as $error)
-                        <div class="form-control-feedback">{{ $error }}</div>
-                    @endforeach
-                @endif
-            </div>
-        </div>
-        <div class="col-md-4">
-            <label for="order_by">Order By</label>
-            <div class="form-group {{ $errors->has('order_by') ? ' has-danger' : '' }}">
-                <input type="number" min="0" class="form-control" placeholder="Order By" name="order_by" value="{{ old('order_by') }}" required>
-                @if ($errors->has('order_by'))
-                    @foreach($errors->get('order_by') as $error)
-                        <div class="form-control-feedback">{{ $error }}</div>
-                    @endforeach
-                @endif
-            </div>
-        </div>
-        <div class="col-md-4">
-            <label for="publication-status">Publication Status</label>
-            <div class="form-group {{ $errors->has('status') ? ' has-danger' : '' }}" style="height: 40px; line-height: 40px;">
-                <div class="form-check-inline">
-                    <label class="form-check-label">
-                        <input type="radio" id="published" name="status" class="form-check-input" checked="" value="1" required>Published
-                    </label>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="icon">Icon</label>
+                    <div class="form-group {{ $errors->has('icon') ? ' has-danger' : '' }}">
+                        <input type="text" class="form-control" placeholder="Icon of The Match" name="icon" value="{{ old('icon') }}">
+                        @if ($errors->has('icon'))
+                            @foreach($errors->get('icon') as $error)
+                                <div class="form-control-feedback">{{ $error }}</div>
+                            @endforeach
+                        @endif
+                    </div>
                 </div>
-                <div class="form-check-inline">
-                    <label class="form-check-label">
-                        <input type="radio" id="unpublished" name="status" class="form-check-input" value="0">Unpublished
-                    </label>
-                </div>                          
+
+                <div class="col-md-6">
+                    <label for="continuing_status">Continuing/Closed</label>
+                    <div class="form-group {{ $errors->has('continuing_status') ? ' has-danger' : '' }}" style="height: 40px; line-height: 40px;">
+                        <select class="form-control" name="continuing_status">
+                            <option value="">Select One</option>
+                            <option value="1">Continuing</option>
+                            <option value="2">Closed</option>
+                        </select>                         
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="order_by">Order By</label>
+                    <div class="form-group {{ $errors->has('order_by') ? ' has-danger' : '' }}">
+                        <input type="number" min="0" class="form-control" placeholder="Order By" name="order_by" value="{{ old('order_by') }}" required>
+                        @if ($errors->has('order_by'))
+                            @foreach($errors->get('order_by') as $error)
+                                <div class="form-control-feedback">{{ $error }}</div>
+                            @endforeach
+                        @endif
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <label for="publication-status">Publication Status</label>
+                    <div class="form-group {{ $errors->has('status') ? ' has-danger' : '' }}" style="height: 40px; line-height: 40px;">
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                                <input type="radio" id="published" name="status" class="form-check-input" checked="" value="1" required>Published
+                            </label>
+                        </div>
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                                <input type="radio" id="unpublished" name="status" class="form-check-input" value="0">Unpublished
+                            </label>
+                        </div>                          
+                    </div>
+                </div>
             </div>
         </div>
         
