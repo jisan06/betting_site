@@ -13,7 +13,7 @@ class MatchesController extends Controller
     {
         $title = "Manage All Matches";
 
-        $matches = Match::orderBy('id','asc')->get();
+        $matches = Match::orderBy('id','desc')->get();
 
         return view('admin.match.index')->with(compact('title','matches'));
     }

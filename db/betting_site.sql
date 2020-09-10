@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 09, 2020 at 02:24 PM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.3
+-- Generation Time: Sep 10, 2020 at 09:03 AM
+-- Server version: 10.4.13-MariaDB
+-- PHP Version: 7.4.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -206,6 +205,7 @@ CREATE TABLE `tbl_betts` (
   `name` varchar(255) DEFAULT NULL,
   `ratio` float DEFAULT NULL,
   `result` int(11) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
   `is_published` int(11) DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -215,16 +215,16 @@ CREATE TABLE `tbl_betts` (
 -- Dumping data for table `tbl_betts`
 --
 
-INSERT INTO `tbl_betts` (`id`, `betting_category_id`, `name`, `ratio`, `result`, `is_published`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Sahariar Updated', 520, 0, 0, '2020-08-25 18:50:17', '2020-08-25 19:42:28'),
-(3, 3, 'Add', 4, NULL, 0, '2020-08-25 19:43:09', '2020-08-25 19:43:09'),
-(4, 4, 'India', 2, 0, 0, '2020-08-29 08:28:09', '2020-09-02 04:46:31'),
-(5, 4, 'Pakistan', 1.5, 1, 1, '2020-08-29 08:29:56', '2020-09-05 07:17:02'),
-(6, 4, 'Draw', 1, 1, 0, '2020-08-29 12:02:09', '2020-09-05 06:58:14'),
-(7, 6, 'Barcelona', 1, NULL, 0, '2020-08-31 00:09:31', '2020-08-31 00:09:31'),
-(8, 6, 'PSG', 2, NULL, 0, '2020-08-31 00:09:47', '2020-08-31 00:09:47'),
-(9, 7, 'Chelsea', 2.9, NULL, 0, '2020-09-08 06:41:20', '2020-09-08 06:43:07'),
-(10, 7, 'Run in 11th over odd', 1.5, NULL, 0, '2020-09-08 06:48:45', '2020-09-08 06:48:45');
+INSERT INTO `tbl_betts` (`id`, `betting_category_id`, `name`, `ratio`, `result`, `status`, `is_published`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Sahariar Updated', 520, 0, NULL, 0, '2020-08-25 18:50:17', '2020-08-25 19:42:28'),
+(3, 3, 'Add', 4, NULL, NULL, 0, '2020-08-25 19:43:09', '2020-08-25 19:43:09'),
+(4, 4, 'India', 2, 0, NULL, 0, '2020-08-29 08:28:09', '2020-09-02 04:46:31'),
+(5, 4, 'Pakistan', 1.5, 1, NULL, 1, '2020-08-29 08:29:56', '2020-09-05 07:17:02'),
+(6, 4, 'Draw', 1, 1, NULL, 0, '2020-08-29 12:02:09', '2020-09-05 06:58:14'),
+(7, 6, 'Barcelona', 1, NULL, 0, 0, '2020-08-31 00:09:31', '2020-09-09 14:13:46'),
+(8, 6, 'PSG', 2, NULL, NULL, 0, '2020-08-31 00:09:47', '2020-08-31 00:09:47'),
+(9, 7, 'Chelsea', 2.9, NULL, NULL, 0, '2020-09-08 06:41:20', '2020-09-08 06:43:07'),
+(10, 7, 'Run in 11th over odd', 1.5, NULL, NULL, 0, '2020-09-08 06:48:45', '2020-09-08 06:48:45');
 
 -- --------------------------------------------------------
 
@@ -269,7 +269,7 @@ INSERT INTO `tbl_clients` (`id`, `user_role_id`, `club_id`, `club_owner_id`, `na
 (15, NULL, 1, NULL, 'Shojib ahmed', 'Shojibahmed', 'Ssss', '01634445834', NULL, NULL, NULL, NULL, NULL, NULL, '0', '$2y$10$CEUfVwnexnPRHVKlnMBoNeOzibV03xyLs2jsj7tk.3UE7wNK7SNTq', NULL, NULL, 1, NULL, '2020-09-08 06:25:02', NULL, '2020-09-08 06:25:02'),
 (16, NULL, 1, 1, 'Jisan AHmed', 'jisan', NULL, '01832967276', NULL, NULL, NULL, NULL, NULL, NULL, '0', '$2y$10$y60C8CAscfnOay3Q/K/BGuV.aZg7fZTY46egMV2Ieb0NVoQ06SsOm', NULL, NULL, 1, NULL, '2020-09-08 07:52:16', NULL, '2020-09-09 06:15:50'),
 (17, NULL, 1, 1, 'Ab xafor', 'Xafor71', NULL, '01910222871', NULL, NULL, 'shihabahmed518@gmail.com', NULL, NULL, NULL, '0', '$2y$10$mWnTt2zQMOxQk7HQlYama..lEfLCbJQ/A90v.uk7AtGpGwSfZqoYS', NULL, NULL, 1, NULL, '2020-09-08 08:43:32', NULL, '2020-09-09 06:21:58'),
-(18, NULL, 1, NULL, 'Sahariar', 'sabit007', 'asdfasdg', '01909642730', NULL, NULL, 'superadmin@gmail.com', NULL, NULL, NULL, '1877', '$2y$10$5b.K25c.NGL0AjZH2mG/JOXJJokzQu6xWs0UUkN.HnyAEdqmyp09O', NULL, NULL, 1, NULL, '2020-09-08 11:28:16', NULL, '2020-09-08 12:00:13');
+(18, NULL, 1, NULL, 'Sahariar', 'sabit007', 'asdfasdg', '01909642730', NULL, NULL, 'superadmin@gmail.com', NULL, NULL, NULL, '1677', '$2y$10$5b.K25c.NGL0AjZH2mG/JOXJJokzQu6xWs0UUkN.HnyAEdqmyp09O', NULL, NULL, 1, NULL, '2020-09-08 11:28:16', NULL, '2020-09-09 14:02:15');
 
 -- --------------------------------------------------------
 
@@ -394,7 +394,14 @@ INSERT INTO `tbl_client_withdraw` (`id`, `client_id`, `name`, `phone_no`, `payme
 (8, 11, 'Jisan Ahmed', NULL, 1, 'Agent', 200, '+880', NULL, NULL, NULL, 'Withdraw', '2020-09-03 01:18:05', '2020-09-03 01:18:05'),
 (9, 11, 'Jisan Ahmed', '01832967276', 1, 'Personal', 121, '0098764', NULL, 1, 1, 'Withdraw', '2020-09-03 01:19:01', '2020-09-03 01:28:15'),
 (10, 18, 'Sahariar', '01909642730', 1, 'Agent', 123, '871841', '1877', 1, 1, 'Withdraw', '2020-09-08 11:59:52', '2020-09-08 12:00:13'),
-(11, 14, 'Shishir Ahmed', '01638674433', 1, 'Personal', 5000, '01638674433', '0', 1, 1, 'Withdraw', '2020-09-08 22:23:44', '2020-09-08 22:24:15');
+(11, 14, 'Shishir Ahmed', '01638674433', 1, 'Personal', 5000, '01638674433', '0', 1, 1, 'Withdraw', '2020-09-08 22:23:44', '2020-09-08 22:24:15'),
+(12, 18, 'Sahariar', '01909642730', 1, 'Agent', 200, '0098764', NULL, NULL, NULL, 'Withdraw', '2020-09-09 13:53:06', '2020-09-09 13:53:06'),
+(13, 18, 'Sahariar', '01909642730', 1, 'Agent', 200, '0098764', NULL, NULL, NULL, 'Withdraw', '2020-09-09 13:54:32', '2020-09-09 13:54:32'),
+(14, 18, 'Sahariar', '01909642730', 1, 'Agent', 200, '0098764', NULL, NULL, NULL, 'Withdraw', '2020-09-09 13:54:50', '2020-09-09 13:54:50'),
+(15, 18, 'Sahariar', '01909642730', 1, 'Agent', 200, '45343545', NULL, NULL, NULL, 'Withdraw', '2020-09-09 13:59:23', '2020-09-09 13:59:23'),
+(16, 18, 'Sahariar', '01909642730', 1, 'Agent', 200, '45343545', NULL, NULL, NULL, 'Withdraw', '2020-09-09 14:00:36', '2020-09-09 14:00:36'),
+(17, 18, 'Sahariar', '01909642730', 1, 'Personal', 200, '000000000000', NULL, NULL, NULL, 'Withdraw', '2020-09-09 14:00:58', '2020-09-09 14:00:58'),
+(18, 18, 'Sahariar', '01909642730', 1, 'Agent', 200, '1111111111111111', '1677', 1, 1, 'Withdraw', '2020-09-09 14:02:15', '2020-09-09 14:02:34');
 
 -- --------------------------------------------------------
 
@@ -484,9 +491,9 @@ CREATE TABLE `tbl_matches` (
 --
 
 INSERT INTO `tbl_matches` (`id`, `game_id`, `name`, `team_one`, `team_two`, `league`, `date_time`, `icon`, `order_by`, `status`, `live`, `created_at`, `updated_at`) VALUES
-(6, 2, 'India vs Pakistan', 'India', 'Pakistan', 'sdfcsdf', '2020-08-29 08:38:00', 'fgf', 1, 1, 2, '2020-08-29 03:59:17', '2020-09-09 06:23:46'),
-(7, 3, 'Barcelona VS PSG', 'Barcelona', 'PSG', 'English Premiere Leauge', '2020-09-01 01:00:00', NULL, 2, 1, 2, '2020-08-31 00:04:15', '2020-09-09 06:23:46'),
-(10, 2, 'Knight Riders Vs Lucia Zouks', 'Lucia Zouks', 'Knight riders', 'CPL', '2020-09-10 08:00:00', 'CPL', 1, 1, 0, '2020-09-08 18:47:51', '2020-09-09 06:23:46');
+(6, 2, 'India vs Pakistan', 'India', 'Pakistan', 'sdfcsdf', '2020-08-29 08:38:00', 'fgf', 1, 1, 2, '2020-08-29 03:59:17', '2020-09-09 14:13:37'),
+(7, 3, 'Barcelona VS PSG', 'Barcelona', 'PSG', 'English Premiere Leauge', '2020-09-01 01:00:00', NULL, 2, 1, 2, '2020-08-31 00:04:15', '2020-09-09 14:13:37'),
+(10, 2, 'Knight Riders Vs Lucia Zouks', 'Lucia Zouks', 'Knight riders', 'CPL', '2020-09-10 08:00:00', 'CPL', 1, 1, 0, '2020-09-08 18:47:51', '2020-09-09 14:13:37');
 
 -- --------------------------------------------------------
 
@@ -1231,7 +1238,7 @@ ALTER TABLE `tbl_client_transfer`
 -- AUTO_INCREMENT for table `tbl_client_withdraw`
 --
 ALTER TABLE `tbl_client_withdraw`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `tbl_frontend_menu`

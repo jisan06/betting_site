@@ -29,7 +29,7 @@
                         <div class="row">
                             <div class="col-lg-6 col-sm-6">
                                 <div class="form-group">
-                                    <label for="name">Receiver's Username
+                                    <label for="name">To
                                         <span class="required">*</span>
                                     </label>
                                     <input type="text" name="to_username" class="form-control" placeholder="Receivers username" value="{{old('to_username')}}" required>
