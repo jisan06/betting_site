@@ -61,7 +61,7 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <label for="name">Name</label>
                         <div class="form-group {{ $errors->has('name') ? ' has-danger' : '' }}">
                             <input type="text" class="form-control form-control-danger" placeholder="Add" name="name" value="{{ $bett->name }}" required>
@@ -73,7 +73,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <label for="ratio">Ratio</label>
                         <div class="form-group {{ $errors->has('ratio') ? ' has-danger' : '' }}">
                             <input type="text" min="0" class="form-control form-control-danger" placeholder="ratio" name="ratio" value="{{ $bett->ratio }}" required>
@@ -84,8 +84,22 @@
                             @endif
                         </div>
                     </div>
-
-                    <div class="col-md-4">
+                    <div class="col-md-3">
+                            <label for="publication-status">Publication Status</label>
+                            <div class="form-group {{ $errors->has('status') ? ' has-danger' : '' }}" style="height: 40px; line-height: 40px;">
+                                <div class="form-check-inline">
+                                    <label class="form-check-label">
+                                        <input type="radio" id="published" name="status" class="form-check-input" value="1" required>Published
+                                    </label>
+                                </div>
+                                <div class="form-check-inline">
+                                    <label class="form-check-label">
+                                        <input type="radio" id="unpublished" name="status" class="form-check-input" value="0">Unpublished
+                                    </label>
+                                </div>                          
+                            </div>
+                        </div>
+                    <div class="col-md-3">
                         <label for="result">Result ?</label>
                             <div class="form-group" style="height: 15px; line-height: 40px;">
                                 <div class="form-check-inline">
@@ -118,5 +132,6 @@
 
     <script type="text/javascript">
         document.forms['form'].elements['result'].value = "{{$bett->result}}";
+        document.forms['form'].elements['status'].value = "{{$bett->status}}";
     </script>
 @endsection

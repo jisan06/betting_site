@@ -78,7 +78,7 @@
                     <div class="form-group {{ $errors->has('status') ? ' has-danger' : '' }}" style="height: 40px; line-height: 40px;">
                         <div class="form-check-inline">
                             <label class="form-check-label">
-                                <input type="radio" id="published" name="status" class="form-check-input" checked="" value="1" required>Published
+                                <input type="radio" id="published" name="status" class="form-check-input" value="1" required>Published
                             </label>
                         </div>
                         <div class="form-check-inline">
@@ -100,4 +100,8 @@
         </div>
     </div>
 </form>
+
+<script type="text/javascript">
+    document.forms['form'].elements['status'].value = "{{$payment_number->status}}";
+</script>
 @endsection

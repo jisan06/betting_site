@@ -47,12 +47,14 @@ class BettsController extends Controller
             'betting_category_id'=>'required',
             'name'=>'required',
             'ratio'=>'required',
+            'status'=>'required',
         ]);
         
         Bett::create([
             'betting_category_id' => $request->betting_category_id,
             'name' => $request->name,
-            'ratio' => $request->ratio
+            'ratio' => $request->ratio,
+            'status' => $request->status
         ]);
 
         return redirect(route('bett.index',$request->betting_category_id))->with('msg','Bett Added Successfully');
@@ -82,6 +84,7 @@ class BettsController extends Controller
             'betting_category_id'=>'required',
             'name'=>'required',
             'ratio'=>'required',
+            'status'=>'required',
         ]);
 
         $bett->update([
@@ -89,6 +92,7 @@ class BettsController extends Controller
             'name' => $request->name,
             'ratio' => $request->ratio,
             'result' => $request->result,
+            'status' => $request->status,
         ]);
 
         if($bett->is_published == 0 && $bett->result == 1){
