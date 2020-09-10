@@ -297,7 +297,8 @@ Route::prefix('user')->group(function(){
 			Route::any('/transfer/view/{id}', 'CustomerTransferController@view')->name('user.transferview');
 
 			Route::any('/transaction', 'CustomerTransactionController@index')->name('user.transaction');
-			Route::any('/transaction/view/{id}', 'CustomerTransactionController@view')->name('user.transactionview');
+			Route::any('/club-user', 'ClubUserController@index')->name('user.clubUser');
+			Route::any('/club-user/view/{id}', 'ClubUserController@view')->name('user.clubUserView');
 		});
 
 	});

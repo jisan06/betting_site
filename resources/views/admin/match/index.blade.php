@@ -23,8 +23,8 @@
                         <th>Team One</th>
                         <th>Team Two</th>
                         <th width="140px">Date & Time</th>
-                        <th width="20px">Live</th>
-                        <th width="40px">Order</th>
+                        <th width="110px" class="text-center">Match Status</th>
+                        <th width="40px" class="text-center">Order</th>
                         <th width="20px">Status</th>
                         <th width="20px">Action</th>
                     </tr>
@@ -44,7 +44,15 @@
                             <td>{{ $match->team_one }}</td>
                             <td>{{ $match->team_two }}</td>
                             <td>{{ date('d-m-Y h:i a',strtotime($match->date_time)) }}</td>
-                            <td>{{ $match->live }}</td>
+                            <td class="text-center">
+                                @if($match->live == 0)
+                                    Upcoming
+                                @elseif($match->live == 1)
+                                    Live
+                                @elseif($match->live == 2)
+                                    Closed
+                                @endif
+                            </td>
                             <td class="text-center">{{ $match->order_by }}</td>
                 			<td>
                                 @php

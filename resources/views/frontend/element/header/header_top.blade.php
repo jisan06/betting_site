@@ -32,7 +32,7 @@
                         <li>
                             <div class="logo">
                                 <a href="{{ url('/') }}">
-                                    <img src="{{ asset('public/frontend') }}/assets/img/logo.png" alt="logo">
+                                    <img src="{{ asset(@$website_information->logo_one) }}" alt="logo">
                                 </a>
                             </div>
                         </li>

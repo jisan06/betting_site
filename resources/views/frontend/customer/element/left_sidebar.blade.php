@@ -59,6 +59,16 @@
                     </span>
                 </a>
             </li>
+
+            @if(Auth::guard('customer')->user()->club_owner_id != NULL)
+                <li class="nav-item">
+                    <a class="nav-link {{\URL::current() == route('user.clubUser') ? 'active' : ''}}" href="{{ route('user.clubUser') }}">
+                        <span class="text">
+                            Club User
+                        </span>
+                    </a>
+                </li>
+            @endif
         </ul>
     </div>
 </div>

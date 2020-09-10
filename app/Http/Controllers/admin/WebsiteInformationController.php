@@ -40,15 +40,15 @@ class WebsiteInformationController extends Controller
 
        if($request->siteLogo1)
        {
-            $width = '195';
-            $height = '55';
+            $width = '225';
+            $height = '50';
             $logoOne = \App\HelperClass::UploadImage($request->siteLogo1,'tbl_website_information','public/uploads/site_logo/logo1/',@$width,@$height);
         }
 
        if($request->siteLogo2)
        {
-            $width = '273';
-            $height = '97';
+            $width = '225';
+            $height = '50';
             $logoTwo = \App\HelperClass::UploadImage($request->siteLogo2,'tbl_website_information','public/uploads/site_logo/logo2/',@$width,@$height);
         }
 
@@ -102,8 +102,8 @@ class WebsiteInformationController extends Controller
 
         if($request->siteLogo1)
         {
-        	$width = '195';
-        	$height = '55';
+        	$width = '225';
+            $height = '50';
         	$logoOne = \App\HelperClass::UploadImage($request->siteLogo1,'tbl_website_information','public/uploads/site_logo/logo1/',@$width,@$height);
         }
         else
@@ -113,8 +113,8 @@ class WebsiteInformationController extends Controller
 
         if($request->siteLogo2)
         {
-        	$width = '273';
-        	$height = '97';
+            $width = '225';
+            $height = '50';
         	$logoTwo = \App\HelperClass::UploadImage($request->siteLogo2,'tbl_website_information','public/uploads/site_logo/logo2/',@$width,@$height);
         }
         else

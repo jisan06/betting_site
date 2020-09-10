@@ -103,11 +103,21 @@ class AppServiceProvider extends ServiceProvider
                 'live' => 1
             ]);
 
+            //change status for which match are continuous long time manual
+            Match::whereDate('date_time','<', Carbon::today())
+                ->where('continuing_status',1)
+                ->update([
+                    'live' => 1
+                ]);
+
             //change status for which match are closed
             Match::whereDate('date_time','<', Carbon::today())
-            ->update([
-                'live' => 2
-            ]);
+                ->where(function($query){
+                    $query->where('continuing_status',0)->orWhere('continuing_status',NULL);
+                })
+                ->update([
+                    'live' => 2
+                ]);
         });
     }
 
