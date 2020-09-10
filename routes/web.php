@@ -180,6 +180,7 @@ Route::prefix('admin')->group(function()
 			Route::get('/bett-edit/{betting_category_id}','Admin\BettsController@edit')->name('bett.edit');
 			Route::post('/bett-update','Admin\BettsController@update')->name('bett.update');
 			Route::post('/bett-result','Admin\BettsController@result')->name('bett.result');
+			Route::post('/bett-status','Admin\BettsController@status')->name('bett.status');
 			Route::post('/bett/delete','Admin\BettsController@delete')->name('bett.delete');
 
 			// Client 

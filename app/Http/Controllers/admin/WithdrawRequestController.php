@@ -14,7 +14,7 @@ class WithdrawRequestController extends Controller
     {
         $title = "Manage All Withdraw Request";
 
-        $customer_withdraw_list = CustomerWithdraw::orderBy('id','desc')->get();
+        $customer_withdraw_list = CustomerWithdraw::orderBy('is_withdrawed','asc')->orderBy('id','desc')->get();
 
         return view('admin.withdraw_request.index')->with(compact('title','customer_withdraw_list'));
     }
@@ -45,15 +45,11 @@ class WithdrawRequestController extends Controller
 	        ]);
 
 	        if($withdraw->is_withdrawed == 0 && $withdraw->status == 1){
-	            $client_info->update([
-	                'balance' => $client_info->balance - $withdraw->withdraw_amount,
-	           ]);
-
+	            
                 $withdraw->update([
                     'is_withdrawed' => 1,
                     'current_balance' => $client_info->balance,
                 ]);
-
 	            return redirect(route('withdrawRequest.index'))->with('msg','Withdraw Request Updated');
 	        }
     	}

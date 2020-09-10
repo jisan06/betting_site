@@ -39,6 +39,7 @@
 	                        <th>Name</th>
 	                        <th width="20px">Ratio</th>
 	                        <th width="90px">result</th>
+                            <th width="90px">status</th>
 	                        <th width="40px">Action</th>
 	                    </tr>
 	                </thead>
@@ -67,6 +68,11 @@
                                     @else
                                         Not Published
                                     @endif
+                                </td>
+                                <td>
+                                    <span class="switchery-demo m-b-30" onclick="statusChange({{ $bett->id }})">
+                                        <input type="checkbox" {{ $bett->status ? 'checked':'' }} class="js-switch" data-color="#00c292" data-switchery="true" style="display: none;" >
+                                    </span>
                                 </td>
 	                			<td>
                                     <a href="{{ route('bett.edit',$bett->id) }}" data-toggle="tooltip" data-original-title="Edit" data-id="{{ $bett->id }}"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
@@ -152,13 +158,13 @@
         });
                 
         // ajax status change code
-        function resultChange(bett_id) {
+        function statusChange(bett_id) {
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 type: "post",
-                url: "{{ route('bett.result') }}",
+                url: "{{ route('bett.status') }}",
                 data: {bett_id:bett_id},
                 success: function(response) {
                     swal({

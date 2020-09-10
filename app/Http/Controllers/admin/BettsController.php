@@ -138,6 +138,23 @@ class BettsController extends Controller
             ]);
         }
     }
+    public function status(Request $request)
+    {
+        $bett = Bett::find($request->bett_id);
+
+        if ($bett->status == 1)
+        {
+            $bett->update( [               
+                'status' => 0                
+            ]);
+        }
+        else
+        {
+            $bett->update( [               
+                'status' => 1                
+            ]);
+        }
+    }
 
 
 }

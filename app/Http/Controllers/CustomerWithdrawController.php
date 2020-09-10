@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Auth;
 use App\CustomerWithdraw;
+use App\Client;
 
 class CustomerWithdrawController extends Controller
 {
@@ -38,12 +39,17 @@ class CustomerWithdrawController extends Controller
             $userPassword = Auth::guard('customer')->user()->password;
             $name = Auth::guard('customer')->user()->name;
             $phone = Auth::guard('customer')->user()->phone;
+            $client_info = Client::find(Auth::guard('customer')->user()->id);
 
             if(!Hash::check(request()->password, $userPassword)){
             	return redirect()->back()->withErrors(['error' => 'Your password is wrong']);
             }elseif (Auth::guard('customer')->user()->balance - request()->withdraw_amount < 0 ) {
                 return redirect()->back()->withErrors(['error' => 'Your do not have sufficient balance']);
             }else{
+                $client_info->update([
+                    'balance' => $client_info->balance - request()->withdraw_amount,
+                ]);
+                
             	$withdraw->create([
 	                'client_id' => \Auth::guard('customer')->user()->id,
                     'name' => $name,
@@ -53,6 +59,9 @@ class CustomerWithdrawController extends Controller
 	                'withdraw_amount' => request()->withdraw_amount,
 	                'withdraw_number' => request()->withdraw_number,
 	        	]);
+
+                
+
 	        	return redirect(route('user.withdraw'))->with('success_message', 'Your withdraw request succesfull and will be sent to your account after admin review.');
             }
             

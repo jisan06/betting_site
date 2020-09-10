@@ -17,33 +17,33 @@ class MatchesController extends Controller
     public function index()
     {
         $title = "Manage All Matches";
-
+      
         Match::whereDate('date_time','>', Carbon::today())
             ->update([
                 'live' => 0
             ]);
 
-            //change status for which match are live today
-            Match::whereDate('date_time', Carbon::today())
+        //change status for which match are live today
+        Match::whereDate('date_time', Carbon::today())
+        ->update([
+            'live' => 1
+        ]);
+
+        //change status for which match are continuous long time manual
+        Match::whereDate('date_time','<', Carbon::today())
+            ->where('continuing_status',1)
             ->update([
                 'live' => 1
             ]);
 
-            //change status for which match are continuous long time manual
-            Match::whereDate('date_time','<', Carbon::today())
-                ->where('continuing_status',1)
-                ->update([
-                    'live' => 1
-                ]);
-
-            //change status for which match are closed
-            Match::whereDate('date_time','<', Carbon::today())
-                ->where(function($query){
-                    $query->where('continuing_status',0)->orWhere('continuing_status',NULL);
-                })
-                ->update([
-                    'live' => 2
-                ]);
+        //change status for which match are closed
+        Match::whereDate('date_time','<', Carbon::today())
+            ->where(function($query){
+                $query->where('continuing_status',0)->orWhere('continuing_status',NULL);
+            })
+            ->update([
+                'live' => 2
+            ]);
         $matches = Match::orderBy('id','desc')->get();
 
         return view('admin.match.index')->with(compact('title','matches'));

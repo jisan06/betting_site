@@ -15,7 +15,7 @@ class DepositeRequestController extends Controller
     {
         $title = "Manage All Deposite Request";
 
-        $customer_deposite_list = CustomerDeposite::orderBy('is_deposited','asc')->get();
+        $customer_deposite_list = CustomerDeposite::orderBy('is_deposited','asc')->orderBy('id','desc')->get();
 
         return view('admin.deposite_request.index')->with(compact('title','customer_deposite_list'));
     }
