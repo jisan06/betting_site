@@ -89,21 +89,21 @@
                                                     </li>
                                                 </ul>
                                             </div>
-                                            @php
-                                                $count_betting = 0;
-                                                foreach ($betting_list as $betting) {
-                                                    $get_count_betting = CustomerBett::where('betting_id',@$betting->id)->count();
-                                                    $count_betting = $count_betting + $get_count_betting;
-
-
-                                                    $exist_betting_check = CustomerBett::where('client_id',@Auth::guard('customer')->user()->id)->where('betting_id',@$betting->id)->first();
-                                                    if(@$exist_betting_check && @Auth::guard('customer')->user()){
-                                                        $disabled = "disabled";
-                                                    }else{
-                                                        $disabled = '';
-                                                    }
-                                            @endphp
                                                 <div class="part-match">
+                                                    @php
+                                                        $count_betting = 0;
+                                                        foreach ($betting_list as $betting) {
+                                                            $get_count_betting = CustomerBett::where('betting_id',@$betting->id)->count();
+                                                            $count_betting = $count_betting + $get_count_betting;
+
+
+                                                            $exist_betting_check = CustomerBett::where('client_id',@Auth::guard('customer')->user()->id)->where('betting_id',@$betting->id)->first();
+                                                            if(@$exist_betting_check && @Auth::guard('customer')->user()){
+                                                                $disabled = "disabled";
+                                                            }else{
+                                                                $disabled = '';
+                                                            }
+                                                    @endphp
                                                     <div class="single-place-to-bet">
                                                         <a href="javascript:void(0)" class="{{$disabled}} single_bett_{{$betting->id}}">
                                                             <span style="display: none;" class="betting_id">{{$betting->id}}</span>
@@ -113,10 +113,10 @@
                                                             </span>
                                                         </a>
                                                     </div>
+                                                    @php
+                                                        }
+                                                    @endphp
                                                 </div>
-                                            @php
-                                                }
-                                            @endphp
                                             <div class="part-bnonus">
                                                 <span class="bonus-number">+{{$count_betting}}</span>
                                             </div>
@@ -183,33 +183,34 @@
                                                         </li>
                                                     </ul>
                                                 </div>
-                                                @php
-                                                    $count_betting = 0;
-                                                    foreach ($betting_list as $betting) {
-                                                        $get_count_betting = CustomerBett::where('betting_id',@$betting->id)->count();
-                                                        $count_betting = $count_betting + $get_count_betting;
-
-                                                        $exist_betting_check = CustomerBett::where('client_id',@Auth::guard('customer')->user()->id)->where('betting_id',@$betting->id)->first();
-                                                        if(@$exist_betting_check && @Auth::guard('customer')->user()){
-                                                            $disabled = "disabled";
-                                                        }else{
-                                                            $disabled = '';
-                                                        }
-                                                @endphp
                                                     <div class="part-match">
-                                                        <div class="single-place-to-bet">
-                                                            <a href="javascript:void(0)" class="{{$disabled}} single_bett_{{$betting->id}}">
-                                                                <span style="display: none;" class="betting_id">{{$betting->id}}</span>
-                                                                <span class="bet-price">{{$betting->ratio}}</span>
-                                                                <span class="result-for-final">
-                                                                    {{$betting->name}}
-                                                                </span>
-                                                            </a>
-                                                        </div>
+                                                        @php
+                                                            $count_betting = 0;
+                                                            foreach ($betting_list as $betting) {
+                                                                $get_count_betting = CustomerBett::where('betting_id',@$betting->id)->count();
+                                                                $count_betting = $count_betting + $get_count_betting;
+
+                                                                $exist_betting_check = CustomerBett::where('client_id',@Auth::guard('customer')->user()->id)->where('betting_id',@$betting->id)->first();
+                                                                if(@$exist_betting_check && @Auth::guard('customer')->user()){
+                                                                    $disabled = "disabled";
+                                                                }else{
+                                                                    $disabled = '';
+                                                                }
+                                                        @endphp
+                                                            <div class="single-place-to-bet">
+                                                                <a href="javascript:void(0)" class="{{$disabled}} single_bett_{{$betting->id}}">
+                                                                    <span style="display: none;" class="betting_id">{{$betting->id}}</span>
+                                                                    <span class="bet-price">{{$betting->ratio}}</span>
+                                                                    <span class="result-for-final">
+                                                                        {{$betting->name}}
+                                                                    </span>
+                                                                </a>
+                                                            </div>
+
+                                                        @php
+                                                            }
+                                                        @endphp
                                                     </div>
-                                                @php
-                                                    }
-                                                @endphp
                                                 <div class="part-bnonus">
                                                     <span class="bonus-number">+{{$count_betting}}</span>
                                                 </div>
