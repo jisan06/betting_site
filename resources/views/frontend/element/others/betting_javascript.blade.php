@@ -36,7 +36,7 @@
                                 timer: 3000,
                             });
 
-                            $('.single_bett_'+betting_id).addClass('disabled');
+                            //$('.single_bett_'+betting_id).addClass('disabled');
                             $('#balance').text(response.balance);
                             closeModal();
                         },

@@ -99,7 +99,7 @@
 
                                                             $exist_betting_check = CustomerBett::where('client_id',@Auth::guard('customer')->user()->id)->where('betting_id',@$betting->id)->first();
                                                             if(@$exist_betting_check && @Auth::guard('customer')->user()){
-                                                                $disabled = "disabled";
+                                                                $disabled = "";
                                                             }else{
                                                                 $disabled = '';
                                                             }
@@ -192,7 +192,7 @@
 
                                                                 $exist_betting_check = CustomerBett::where('client_id',@Auth::guard('customer')->user()->id)->where('betting_id',@$betting->id)->first();
                                                                 if(@$exist_betting_check && @Auth::guard('customer')->user()){
-                                                                    $disabled = "disabled";
+                                                                    $disabled = "";
                                                                 }else{
                                                                     $disabled = '';
                                                                 }

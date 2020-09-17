@@ -2853,18 +2853,29 @@
         border: 1px solid rgba(233, 102, 74, 0.2);
         margin-top: 1px;
     }
+
+    .betting-table .bet-tab-content .tab-pane .sports-list .single-sport-box .part-match .single-place-to-bet a span {
+        float: right;
+        font-size: 12px;
+    }
+
+    .betting-table .bet-tab-content .tab-pane .sports-list .single-sport-box .part-match .single-place-to-bet a span.result-for-final {
+        float: left;
+        font-size: 12px;
+    }
     .betting .betting-table .bet-tab-content .tab-pane .sports-list .single-sport-box .part-match .single-place-to-bet a {
         width: auto;
-        /*display: flex;
-*/        justify-content: space-between;
+        display: block;
+        justify-content: space-between;
         padding: 15px;
         /* border: none; */
         border-radius: 0;
         margin-top: 10px;
     }
     .betting .betting-table .bet-tab-content .tab-pane .sports-list .single-sport-box .part-match .single-place-to-bet {
-        /*display: block;*/
+        display: inline-block;
         margin-right: 0;
+        width: 130px;
     }
     .betting .betting-table .bet-tab-content .tab-pane .sports-list .single-sport-box .part-team {
         padding-right: 0;

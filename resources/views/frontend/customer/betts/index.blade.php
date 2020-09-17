@@ -36,21 +36,21 @@
                             foreach ($customer_bets_list as $customer_bets) {
                                $bet = Bett::find($customer_bets->betting_id);
                                $betting_category = BettingCategory::find($bet->betting_category_id);
-                               $match = Match::find($betting_category->match_id);
-                               $game = Game::find($match->game_id);
+                               $match = Match::find(@$betting_category->match_id);
+                               $game = Game::find(@$match->game_id);
                         @endphp
                             <tr>
                                 <td>{{++$sl}}</td>
-                                <td>{{$game->name}}</td>
-                                <td>{{$match->name}}</td>
-                                <td>{{$betting_category->name}} ({{$bet->name}})</td>
-                                <td class="text-right">{{$customer_bets->betting_stack}}</td>
-                                <td class="text-right">{{$bet->ratio}}</td>
-                                <td class="text-right">{{$customer_bets->wining_amount}}</td>
+                                <td>{{@$game->name}}</td>
+                                <td>{{@$match->name}}</td>
+                                <td>{{@$betting_category->name}} ({{@$bet->name}})</td>
+                                <td class="text-right">{{@$customer_bets->betting_stack}}</td>
+                                <td class="text-right">{{@$bet->ratio}}</td>
+                                <td class="text-right">{{@$customer_bets->wining_amount}}</td>
                                 <td>
-                                    @if($customer_bets->winning_status == 0 && $customer_bets->winning_status != NULL )
+                                    @if(@$customer_bets->winning_status == 0 && $customer_bets->winning_status != NULL )
                                         Loss
-                                    @elseif($customer_bets->winning_status == 1 && $customer_bets->winning_status != NULL )
+                                    @elseif(@$customer_bets->winning_status == 1 && $customer_bets->winning_status != NULL )
                                         Win
                                     @else
                                         Pending

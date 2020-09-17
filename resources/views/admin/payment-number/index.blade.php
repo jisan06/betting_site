@@ -33,7 +33,7 @@
                         @endphp
                 		<tr class="row_{{ $payment_number->id }}">
                 			<td>{{ $sl++ }}</td>
-                            <td>{{ $payment_method->name }}</td>
+                            <td>{{ @$payment_method->name }}</td>
                             <td>{{ $payment_number->number }}</td>
                 			<td>{{ $payment_number->order_by }}</td>
                 			<td>

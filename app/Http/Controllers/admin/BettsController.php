@@ -114,6 +114,11 @@ class BettsController extends Controller
             $bett->update([
                 'is_published' => 1
             ]);
+        }elseif($bett->is_published == 0 && $bett->result == 0){
+            $customer_bet = CustomerBett::where('betting_id',$bett->id)
+                                ->update([
+                                    'winning_status' => 0,
+                                ]);
         }
 
         return redirect(route('bett.index',$request->betting_category_id))->with('msg','Bett Updated Successfully');
